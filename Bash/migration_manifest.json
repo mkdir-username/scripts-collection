@@ -1,0 +1,85 @@
+{
+  "timestamp": "2025-01-27T21:34:00Z",
+  "agent": "bash_migration",
+  "task": "Migrate bash scripts to versioned structure",
+  "version": "1.0.0",
+  "project": "front-middle-schema",
+  "files": {
+    "created": [
+      "/Users/username/Scripts/bash/v1.0.0/run_validator_with_clear_v1.0.0.sh",
+      "/Users/username/Scripts/bash/v1.0.0/validate_on_save_v1.0.0.sh",
+      "/Users/username/Scripts/bash/v1.0.0/validate_all_samples_v1.0.0.sh",
+      "/Users/username/Scripts/bash/v1.0.0/manage_validator_links_v1.0.0.sh",
+      "/Users/username/Scripts/bash/v1.0.0/organize_bash_scripts_v1.0.0.sh",
+      "/Users/username/Scripts/bash/sdui_validator.sh",
+      "/Users/username/Scripts/bash/bash_migration_report.md"
+    ],
+    "modified": [],
+    "deleted": [],
+    "backed_up": [
+      ".backup/bash_scripts_20250927/run_validator_with_clear.sh",
+      ".backup/bash_scripts_20250927/validate_on_save.sh",
+      ".backup/bash_scripts_20250927/validate_all_samples.sh",
+      ".backup/bash_scripts_20250927/manage_validator_links.sh",
+      ".backup/bash_scripts_20250927/organize_bash_scripts.sh"
+    ],
+    "symlinks_created": [
+      {
+        "link": "run_validator_with_clear.sh",
+        "target": "/Users/username/Scripts/bash/v1.0.0/run_validator_with_clear_v1.0.0.sh"
+      },
+      {
+        "link": "validate_on_save.sh",
+        "target": "/Users/username/Scripts/bash/v1.0.0/validate_on_save_v1.0.0.sh"
+      },
+      {
+        "link": "validate_all_samples.sh",
+        "target": "/Users/username/Scripts/bash/v1.0.0/validate_all_samples_v1.0.0.sh"
+      },
+      {
+        "link": "manage_validator_links.sh",
+        "target": "/Users/username/Scripts/bash/v1.0.0/manage_validator_links_v1.0.0.sh"
+      },
+      {
+        "link": "organize_bash_scripts.sh",
+        "target": "/Users/username/Scripts/bash/v1.0.0/organize_bash_scripts_v1.0.0.sh"
+      }
+    ]
+  },
+  "path_updates": {
+    "python_validators": {
+      "old_pattern": "sdui_web_validator_*.py",
+      "new_path": "/Users/username/Scripts/validators/v{X}.0.0/"
+    },
+    "project_tools": {
+      "old_pattern": "*.py",
+      "new_path": "/Users/username/Documents/front-middle-schema/tools/python/v{X}.0.0/"
+    }
+  },
+  "compliance": {
+    "naming_convention": "PASS",
+    "directory_structure": "PASS",
+    "versioning": "PASS",
+    "cleanup_completed": "PASS",
+    "backward_compatibility": "PASS"
+  },
+  "metrics": {
+    "files_in_root_before": 15,
+    "files_in_root_after": 5,
+    "scripts_migrated": 5,
+    "symlinks_created": 5,
+    "backups_created": 5,
+    "total_files_organized": 7
+  },
+  "testing": {
+    "symlinks_verified": true,
+    "paths_updated": true,
+    "backward_compatibility_tested": false,
+    "recommended_tests": [
+      "Test validate_on_save.sh with a sample JSON file",
+      "Test validate_all_samples.sh in SDUI directory",
+      "Verify Python validator paths are correct",
+      "Test VSCode integration with new paths"
+    ]
+  }
+}

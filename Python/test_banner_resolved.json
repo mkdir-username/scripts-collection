@@ -1,0 +1,1790 @@
+{
+  "type": "object",
+  "name": "BannerWrapper",
+  "description": "Модель для BannerWrapper с иконкой справа",
+  "releaseVersion": {
+    "ios": "12.23",
+    "android": "11.60",
+    "web": "released",
+    "iosInvest": "3.12",
+    "androidInvest": "2.32",
+    "webInvest": "released",
+    "iosAbm": "15.7",
+    "androidAbm": "notReleased",
+    "webAbm": "notReleased"
+  },
+  "properties": {
+    "content": {
+      "type": "object",
+      "name": "LayoutElement",
+      "description": "Контент",
+      "properties": {
+        "type": {
+          "type": "string",
+          "required": true,
+          "description": "Тип представления элемента"
+        },
+        "content": {
+          "type": "object",
+          "description": "Json для конкретного элемента (например DataView, BannerWrapper или Stack). Способ парсинга зависит от свойства type.",
+          "_stub": true,
+          "_reason": "LayoutElementContent",
+          "_path": "properties.content.properties.content",
+          "required": true
+        },
+        "accessibility": {
+          "type": "object",
+          "name": "Accessibility",
+          "description": "Описание элемента для удобного взаимодействия с ним через Accessibility",
+          "releaseVersion": {
+            "ios": "12.23",
+            "android": "12.23",
+            "web": "notReleased",
+            "iosInvest": "3.12",
+            "androidInvest": "2.36",
+            "webInvest": "notReleased",
+            "iosAbm": "15.7",
+            "androidAbm": "notReleased",
+            "webAbm": "notReleased"
+          },
+          "oneOf": [
+            {
+              "type": "object",
+              "description": "Вариант модели, реализованной только для iOS",
+              "_stub": true,
+              "_reason": "v1/variants/AccessibilityVariant1",
+              "_path": "properties.content.properties.accessibility.oneOf.0",
+              "value": "V_1",
+              "releaseVersion": {
+                "ios": "12.23",
+                "android": "willNotBeReleased",
+                "web": "willNotBeReleased",
+                "iosInvest": "3.12",
+                "androidInvest": "willNotBeReleased",
+                "webInvest": "willNotBeReleased",
+                "iosAbm": "15.7",
+                "androidAbm": "notReleased",
+                "webAbm": "notReleased"
+              }
+            },
+            {
+              "type": "object",
+              "description": "STUB: v1/variants/AccessibilityVariant2",
+              "_stub": true,
+              "_reason": "v1/variants/AccessibilityVariant2",
+              "_path": "properties.content.properties.accessibility.oneOf.1",
+              "value": "V_2",
+              "releaseVersion": {
+                "ios": "14.6",
+                "android": "12.23",
+                "web": "notReleased",
+                "iosInvest": "notReleased",
+                "androidInvest": "2.36",
+                "webInvest": "notReleased",
+                "iosAbm": "15.7",
+                "androidAbm": "notReleased",
+                "webAbm": "notReleased"
+              }
+            }
+          ],
+          "properties": {
+            "variant": {
+              "enum": [
+                "V_1",
+                "V_2"
+              ],
+              "default": "V_1",
+              "required": false,
+              "description": "Вариант модели Accessibility"
+            }
+          },
+          "definitions": {
+            "Variants": {
+              "enum": [
+                "V_1",
+                "V_2"
+              ]
+            }
+          },
+          "required": false
+        },
+        "action": {
+          "type": "object",
+          "name": "Action",
+          "description": "Действие, которое будет исполнено при нажатии на LayoutElement",
+          "releaseVersion": {
+            "ios": "12.23",
+            "android": "11.59",
+            "web": "released",
+            "iosInvest": "3.12",
+            "androidInvest": "2.32",
+            "webInvest": "released",
+            "iosAbm": "15.7",
+            "androidAbm": "15.11",
+            "webAbm": "notReleased"
+          },
+          "properties": {
+            "actionContent": {
+              "type": "object",
+              "description": "Контент действия",
+              "_stub": true,
+              "_reason": "ActionContent",
+              "_path": "properties.content.properties.action.properties.actionContent",
+              "$unwrap": true,
+              "required": true
+            },
+            "analytics": {
+              "type": "object",
+              "name": "AnalyticsEvent",
+              "description": "Аналитика",
+              "releaseVersion": {
+                "web": "released",
+                "webInvest": "released",
+                "iosAbm": "15.7",
+                "androidAbm": "notReleased",
+                "webAbm": "notReleased"
+              },
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "required": true,
+                  "description": "Объект события (event_label)"
+                },
+                "screen": {
+                  "type": "string",
+                  "required": true,
+                  "description": "Название экрана, на котором произошло событие (device_screen_name)"
+                },
+                "category": {
+                  "type": "string",
+                  "required": true,
+                  "description": "Категория события (event_category)"
+                },
+                "action": {
+                  "type": "object",
+                  "description": "Действие события (event_name)",
+                  "_stub": true,
+                  "_reason": "AnalyticsActionType",
+                  "_path": "properties.content.properties.action.properties.analytics.properties.action",
+                  "required": true
+                },
+                "analyticsSystems": {
+                  "type": "array",
+                  "required": false,
+                  "default": [],
+                  "description": "Список трекеров, в которые можно отправлять событие, неизвестные трекеры игнорировать и отправлять в известные, если поле не пришло, то событие никуда не будет отправлено",
+                  "items": {
+                    "type": "object",
+                    "description": "STUB: AnalyticsSystemName",
+                    "_stub": true,
+                    "_reason": "AnalyticsSystemName",
+                    "_path": "properties.content.properties.action.properties.analytics.properties.analyticsSystems.items"
+                  },
+                  "releaseVersion": {
+                    "ios": "12.30",
+                    "android": "11.66",
+                    "web": "released",
+                    "iosInvest": "3.12",
+                    "androidInvest": "2.32",
+                    "webInvest": "released",
+                    "iosAbm": "15.7",
+                    "androidAbm": "notReleased",
+                    "webAbm": "notReleased"
+                  }
+                },
+                "parameters": {
+                  "type": "array",
+                  "required": false,
+                  "description": "Массив с параметрами события",
+                  "items": {
+                    "type": "object",
+                    "description": "STUB: Parameter",
+                    "_stub": true,
+                    "_reason": "Parameter",
+                    "_path": "properties.content.properties.action.properties.analytics.properties.parameters.items"
+                  }
+                }
+              },
+              "required": false
+            },
+            "version": {
+              "type": "integer",
+              "required": false,
+              "default": 1,
+              "description": "Версия контракта",
+              "releaseVersion": {
+                "ios": "14.4",
+                "android": "12.21",
+                "web": "notReleased",
+                "iosInvest": "3.13",
+                "androidInvest": "2.36",
+                "webInvest": "notReleased",
+                "iosAbm": "15.7",
+                "androidAbm": "notReleased",
+                "webAbm": "notReleased"
+              }
+            },
+            "animation": {
+              "type": "object",
+              "name": "Animation",
+              "description": "Анимация при взаимодействии с элементом, по умолчанию отсутствует",
+              "releaseVersion": {
+                "ios": "13.5",
+                "android": "notReleased",
+                "web": "notReleased",
+                "iosInvest": "3.12",
+                "androidInvest": "notReleased",
+                "webInvest": "notReleased",
+                "iosAbm": "15.7",
+                "androidAbm": "notReleased",
+                "webAbm": "notReleased"
+              },
+              "oneOf": [
+                {
+                  "type": "object",
+                  "name": "FadeAnimation",
+                  "description": "Анимация изменения прозрачности элемента",
+                  "releaseVersion": {
+                    "ios": "13.5",
+                    "android": "notReleased",
+                    "web": "released",
+                    "iosInvest": "3.12",
+                    "androidInvest": "notReleased",
+                    "webInvest": "released",
+                    "iosAbm": "15.7",
+                    "androidAbm": "notReleased",
+                    "webAbm": "notReleased"
+                  },
+                  "properties": {
+                    "alpha": {
+                      "type": "number",
+                      "required": true,
+                      "description": "Степень прозрачности элемента от 0 до 1, где 0 - полностью прозрачный, 1 - полностью непрозрачный"
+                    }
+                  },
+                  "value": "fade"
+                },
+                {
+                  "type": "object",
+                  "name": "HighlightAnimation",
+                  "description": "Анимация изменения цвета фона элемента",
+                  "releaseVersion": {
+                    "ios": "13.5",
+                    "android": "notReleased",
+                    "web": "released",
+                    "iosInvest": "3.12",
+                    "androidInvest": "notReleased",
+                    "webInvest": "released",
+                    "iosAbm": "15.7",
+                    "androidAbm": "notReleased",
+                    "webAbm": "notReleased"
+                  },
+                  "properties": {
+                    "alpha": {
+                      "type": "number",
+                      "description": "Степень прозрачности цвета фона элемента от 0 до 1, где 0 - полностью прозрачный, 1 - полностью непрозрачный",
+                      "required": false,
+                      "default": 1
+                    },
+                    "color": {
+                      "type": "object",
+                      "name": "Color",
+                      "description": "Новый цвет фона элемента",
+                      "releaseVersion": {
+                        "ios": "0.0.0",
+                        "android": "0.0.0",
+                        "web": "released",
+                        "iosInvest": "3.12",
+                        "androidInvest": "2.32",
+                        "webInvest": "released",
+                        "iosAbm": "15.7",
+                        "androidAbm": "15.11",
+                        "webAbm": "notReleased"
+                      },
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "description": "STUB: PaletteColor",
+                          "_stub": true,
+                          "_reason": "PaletteColor",
+                          "_path": "properties.content.properties.action.properties.animation.oneOf.1.properties.color.oneOf.0"
+                        },
+                        {
+                          "type": "object",
+                          "description": "STUB: HexColor",
+                          "_stub": true,
+                          "_reason": "HexColor",
+                          "_path": "properties.content.properties.action.properties.animation.oneOf.1.properties.color.oneOf.1"
+                        }
+                      ],
+                      "required": true
+                    }
+                  },
+                  "value": "highlight"
+                },
+                {
+                  "type": "object",
+                  "name": "ScaleAnimation",
+                  "description": "Анимация изменения размера элемента",
+                  "releaseVersion": {
+                    "ios": "13.5",
+                    "android": "notReleased",
+                    "web": "released",
+                    "iosInvest": "3.12",
+                    "androidInvest": "notReleased",
+                    "webInvest": "released",
+                    "iosAbm": "15.7",
+                    "androidAbm": "notReleased",
+                    "webAbm": "notReleased"
+                  },
+                  "properties": {
+                    "ratio": {
+                      "type": "number",
+                      "required": false,
+                      "description": "Отношения нового размера элемента к исходному. Например, `0.5` для уменьшения в 2 раза. По умолчанию 0.95"
+                    }
+                  },
+                  "value": "scale"
+                }
+              ],
+              "properties": {
+                "animationType": {
+                  "enum": [
+                    "fade",
+                    "highlight",
+                    "scale"
+                  ],
+                  "required": true,
+                  "description": "Тип анимации"
+                }
+              },
+              "definitions": {
+                "AnimationType": {
+                  "enum": [
+                    "fade",
+                    "highlight",
+                    "scale"
+                  ]
+                }
+              },
+              "required": false
+            },
+            "feedback": {
+              "enum": [
+                "soft",
+                "medium",
+                "rigid"
+              ],
+              "required": false,
+              "description": "Интенсивность тактильной обратной связи при взаимодействии с элементом, по умолчанию отсутствует",
+              "releaseVersion": {
+                "ios": "13.5",
+                "android": "notReleased",
+                "web": "notReleased",
+                "iosInvest": "3.12",
+                "androidInvest": "notReleased",
+                "webInvest": "notReleased",
+                "iosAbm": "15.7",
+                "androidAbm": "notReleased",
+                "webAbm": "notReleased"
+              }
+            }
+          },
+          "definitions": {
+            "FeedbackType": {
+              "enum": [
+                "soft",
+                "medium",
+                "rigid"
+              ]
+            }
+          },
+          "required": false
+        },
+        "tag": {
+          "type": "string",
+          "required": false,
+          "description": "Идентификатор для autolayout'a"
+        },
+        "constraints": {
+          "type": "array",
+          "description": "Набор ограничений для элемента",
+          "items": {
+            "type": "object",
+            "name": "Constraint",
+            "description": "Набор ограничений для элемента",
+            "releaseVersion": {
+              "ios": "12.22",
+              "android": "11.63",
+              "web": "released",
+              "iosInvest": "3.12",
+              "androidInvest": "2.32",
+              "webInvest": "released",
+              "iosAbm": "15.7",
+              "androidAbm": "notReleased",
+              "webAbm": "notReleased"
+            },
+            "properties": {
+              "type": {
+                "type": "object",
+                "description": "Часть визуального представления объекта, которая должна быть использована для установки значения ограничения. (left, top, right, bottom, etc.)",
+                "_stub": true,
+                "_reason": "ConstraintAttribute",
+                "_path": "properties.content.properties.constraints.items.properties.type",
+                "required": true
+              },
+              "constant": {
+                "type": "number",
+                "required": true,
+                "description": "Константа ограничения"
+              },
+              "relation": {
+                "type": "object",
+                "description": "Отношение между первым атрибутом и измененным вторым атрибутом в ограничении. (=, >=, <=)",
+                "_stub": true,
+                "_reason": "Relation",
+                "_path": "properties.content.properties.constraints.items.properties.relation",
+                "required": false
+              },
+              "reference": {
+                "type": "string",
+                "required": false,
+                "description": "Связь к конкретному элементу, используем наименование элементов."
+              }
+            }
+          },
+          "required": false
+        },
+        "size": {
+          "type": "object",
+          "name": "Size",
+          "description": "Сущность, которая позволяет задать размер элементу. iOS игнорирует значения меньше или равные 0 для параметров width и height.",
+          "releaseVersion": {
+            "web": "released",
+            "webInvest": "released",
+            "iosAbm": "15.7",
+            "androidAbm": "15.11",
+            "webAbm": "notReleased"
+          },
+          "properties": {
+            "width": {
+              "type": "number",
+              "required": false,
+              "description": "Ширина"
+            },
+            "height": {
+              "type": "number",
+              "required": false,
+              "description": "Высота"
+            },
+            "minWidth": {
+              "type": "number",
+              "required": false,
+              "description": "Минимальная ширина"
+            },
+            "maxWidth": {
+              "type": "number",
+              "required": false,
+              "description": "Максимальная ширина"
+            },
+            "minHeight": {
+              "type": "number",
+              "required": false,
+              "description": "Минимальная высота"
+            },
+            "maxHeight": {
+              "type": "number",
+              "required": false,
+              "description": "Максимальная высота"
+            }
+          },
+          "required": false
+        },
+        "weight": {
+          "type": "number",
+          "description": "Индивидуальный вес для элемента внутри StackView, значение должно быть больше 0. При использовании весов следует указать нулевой size в зависимости от оси родительского StackView(width or height) для корректного расчета на android",
+          "required": false,
+          "releaseVersion": {
+            "ios": "12.32",
+            "android": "11.68",
+            "web": "released",
+            "iosInvest": "3.12",
+            "androidInvest": "2.32",
+            "webInvest": "released",
+            "iosAbm": "15.7",
+            "androidAbm": "notReleased",
+            "webAbm": "notReleased"
+          }
+        },
+        "margins": {
+          "type": "object",
+          "name": "EdgeOffsets",
+          "description": "Внешний отступ элемента, был задеприкейчен, так как в новой парадигме дизайн системы отступы управляются только через падинги. Можно использовать только для синхронизации поведения компонентов между ios и android",
+          "releaseVersion": {
+            "web": "released",
+            "webInvest": "released",
+            "iosAbm": "15.7",
+            "androidAbm": "15.11",
+            "webAbm": "notReleased"
+          },
+          "properties": {
+            "top": {
+              "type": "string",
+              "name": "Spacing",
+              "description": "Отступ от верхнего края",
+              "enum": [
+                "zero",
+                "xxxxs",
+                "xxxs",
+                "xxs",
+                "xs2xs",
+                "xs",
+                "xss",
+                "s",
+                "m",
+                "l",
+                "xl",
+                "xxl",
+                "xxxl",
+                "xxxxl",
+                "xxxxxl",
+                "xxxxxxl",
+                "horizontalMargin",
+                "extendedHorizontalMargin"
+              ],
+              "releaseVersion": {
+                "web": "released",
+                "webInvest": "released",
+                "iosAbm": "15.7",
+                "androidAbm": "15.11",
+                "webAbm": "notReleased",
+                "xxxxxxl": {
+                  "ios": "13.6",
+                  "android": "11.69",
+                  "web": "released",
+                  "iosInvest": "3.12",
+                  "androidInvest": "2.32",
+                  "webInvest": "released",
+                  "iosAbm": "15.7",
+                  "androidAbm": "15.11",
+                  "webAbm": "notReleased"
+                },
+                "xs2xs": {
+                  "ios": "13.13",
+                  "android": "12.10",
+                  "web": "released",
+                  "iosInvest": "3.12",
+                  "androidInvest": "2.32",
+                  "webInvest": "released",
+                  "iosAbm": "15.7",
+                  "androidAbm": "15.11",
+                  "webAbm": "notReleased"
+                },
+                "xss": {
+                  "ios": "13.13",
+                  "android": "12.10",
+                  "web": "released",
+                  "iosInvest": "3.12",
+                  "androidInvest": "2.32",
+                  "webInvest": "released",
+                  "iosAbm": "15.7",
+                  "androidAbm": "15.11",
+                  "webAbm": "notReleased"
+                }
+              },
+              "required": true
+            },
+            "left": {
+              "type": "string",
+              "name": "Spacing",
+              "description": "Отступ от левого края",
+              "enum": [
+                "zero",
+                "xxxxs",
+                "xxxs",
+                "xxs",
+                "xs2xs",
+                "xs",
+                "xss",
+                "s",
+                "m",
+                "l",
+                "xl",
+                "xxl",
+                "xxxl",
+                "xxxxl",
+                "xxxxxl",
+                "xxxxxxl",
+                "horizontalMargin",
+                "extendedHorizontalMargin"
+              ],
+              "releaseVersion": {
+                "web": "released",
+                "webInvest": "released",
+                "iosAbm": "15.7",
+                "androidAbm": "15.11",
+                "webAbm": "notReleased",
+                "xxxxxxl": {
+                  "ios": "13.6",
+                  "android": "11.69",
+                  "web": "released",
+                  "iosInvest": "3.12",
+                  "androidInvest": "2.32",
+                  "webInvest": "released",
+                  "iosAbm": "15.7",
+                  "androidAbm": "15.11",
+                  "webAbm": "notReleased"
+                },
+                "xs2xs": {
+                  "ios": "13.13",
+                  "android": "12.10",
+                  "web": "released",
+                  "iosInvest": "3.12",
+                  "androidInvest": "2.32",
+                  "webInvest": "released",
+                  "iosAbm": "15.7",
+                  "androidAbm": "15.11",
+                  "webAbm": "notReleased"
+                },
+                "xss": {
+                  "ios": "13.13",
+                  "android": "12.10",
+                  "web": "released",
+                  "iosInvest": "3.12",
+                  "androidInvest": "2.32",
+                  "webInvest": "released",
+                  "iosAbm": "15.7",
+                  "androidAbm": "15.11",
+                  "webAbm": "notReleased"
+                }
+              },
+              "required": true
+            },
+            "bottom": {
+              "type": "string",
+              "name": "Spacing",
+              "description": "Отступ от нижнего края",
+              "enum": [
+                "zero",
+                "xxxxs",
+                "xxxs",
+                "xxs",
+                "xs2xs",
+                "xs",
+                "xss",
+                "s",
+                "m",
+                "l",
+                "xl",
+                "xxl",
+                "xxxl",
+                "xxxxl",
+                "xxxxxl",
+                "xxxxxxl",
+                "horizontalMargin",
+                "extendedHorizontalMargin"
+              ],
+              "releaseVersion": {
+                "web": "released",
+                "webInvest": "released",
+                "iosAbm": "15.7",
+                "androidAbm": "15.11",
+                "webAbm": "notReleased",
+                "xxxxxxl": {
+                  "ios": "13.6",
+                  "android": "11.69",
+                  "web": "released",
+                  "iosInvest": "3.12",
+                  "androidInvest": "2.32",
+                  "webInvest": "released",
+                  "iosAbm": "15.7",
+                  "androidAbm": "15.11",
+                  "webAbm": "notReleased"
+                },
+                "xs2xs": {
+                  "ios": "13.13",
+                  "android": "12.10",
+                  "web": "released",
+                  "iosInvest": "3.12",
+                  "androidInvest": "2.32",
+                  "webInvest": "released",
+                  "iosAbm": "15.7",
+                  "androidAbm": "15.11",
+                  "webAbm": "notReleased"
+                },
+                "xss": {
+                  "ios": "13.13",
+                  "android": "12.10",
+                  "web": "released",
+                  "iosInvest": "3.12",
+                  "androidInvest": "2.32",
+                  "webInvest": "released",
+                  "iosAbm": "15.7",
+                  "androidAbm": "15.11",
+                  "webAbm": "notReleased"
+                }
+              },
+              "required": true
+            },
+            "right": {
+              "type": "string",
+              "name": "Spacing",
+              "description": "Отступ от правого края",
+              "enum": [
+                "zero",
+                "xxxxs",
+                "xxxs",
+                "xxs",
+                "xs2xs",
+                "xs",
+                "xss",
+                "s",
+                "m",
+                "l",
+                "xl",
+                "xxl",
+                "xxxl",
+                "xxxxl",
+                "xxxxxl",
+                "xxxxxxl",
+                "horizontalMargin",
+                "extendedHorizontalMargin"
+              ],
+              "releaseVersion": {
+                "web": "released",
+                "webInvest": "released",
+                "iosAbm": "15.7",
+                "androidAbm": "15.11",
+                "webAbm": "notReleased",
+                "xxxxxxl": {
+                  "ios": "13.6",
+                  "android": "11.69",
+                  "web": "released",
+                  "iosInvest": "3.12",
+                  "androidInvest": "2.32",
+                  "webInvest": "released",
+                  "iosAbm": "15.7",
+                  "androidAbm": "15.11",
+                  "webAbm": "notReleased"
+                },
+                "xs2xs": {
+                  "ios": "13.13",
+                  "android": "12.10",
+                  "web": "released",
+                  "iosInvest": "3.12",
+                  "androidInvest": "2.32",
+                  "webInvest": "released",
+                  "iosAbm": "15.7",
+                  "androidAbm": "15.11",
+                  "webAbm": "notReleased"
+                },
+                "xss": {
+                  "ios": "13.13",
+                  "android": "12.10",
+                  "web": "released",
+                  "iosInvest": "3.12",
+                  "androidInvest": "2.32",
+                  "webInvest": "released",
+                  "iosAbm": "15.7",
+                  "androidAbm": "15.11",
+                  "webAbm": "notReleased"
+                }
+              },
+              "required": true
+            }
+          },
+          "required": false,
+          "deprecatedVersion": {
+            "ios": "12.31",
+            "android": "11.66",
+            "iosInvest": "deprecated",
+            "androidInvest": "deprecated",
+            "web": "deprecated",
+            "webInvest": "deprecated",
+            "iosAbm": "notReleased",
+            "androidAbm": "notReleased",
+            "webAbm": "notReleased"
+          }
+        },
+        "paddings": {
+          "type": "object",
+          "name": "EdgeOffsets",
+          "description": "Внутренний отступ элемента",
+          "releaseVersion": {
+            "web": "released",
+            "webInvest": "released",
+            "iosAbm": "15.7",
+            "androidAbm": "15.11",
+            "webAbm": "notReleased"
+          },
+          "properties": {
+            "top": {
+              "type": "string",
+              "name": "Spacing",
+              "description": "Отступ от верхнего края",
+              "enum": [
+                "zero",
+                "xxxxs",
+                "xxxs",
+                "xxs",
+                "xs2xs",
+                "xs",
+                "xss",
+                "s",
+                "m",
+                "l",
+                "xl",
+                "xxl",
+                "xxxl",
+                "xxxxl",
+                "xxxxxl",
+                "xxxxxxl",
+                "horizontalMargin",
+                "extendedHorizontalMargin"
+              ],
+              "releaseVersion": {
+                "web": "released",
+                "webInvest": "released",
+                "iosAbm": "15.7",
+                "androidAbm": "15.11",
+                "webAbm": "notReleased",
+                "xxxxxxl": {
+                  "ios": "13.6",
+                  "android": "11.69",
+                  "web": "released",
+                  "iosInvest": "3.12",
+                  "androidInvest": "2.32",
+                  "webInvest": "released",
+                  "iosAbm": "15.7",
+                  "androidAbm": "15.11",
+                  "webAbm": "notReleased"
+                },
+                "xs2xs": {
+                  "ios": "13.13",
+                  "android": "12.10",
+                  "web": "released",
+                  "iosInvest": "3.12",
+                  "androidInvest": "2.32",
+                  "webInvest": "released",
+                  "iosAbm": "15.7",
+                  "androidAbm": "15.11",
+                  "webAbm": "notReleased"
+                },
+                "xss": {
+                  "ios": "13.13",
+                  "android": "12.10",
+                  "web": "released",
+                  "iosInvest": "3.12",
+                  "androidInvest": "2.32",
+                  "webInvest": "released",
+                  "iosAbm": "15.7",
+                  "androidAbm": "15.11",
+                  "webAbm": "notReleased"
+                }
+              },
+              "required": true
+            },
+            "left": {
+              "type": "string",
+              "name": "Spacing",
+              "description": "Отступ от левого края",
+              "enum": [
+                "zero",
+                "xxxxs",
+                "xxxs",
+                "xxs",
+                "xs2xs",
+                "xs",
+                "xss",
+                "s",
+                "m",
+                "l",
+                "xl",
+                "xxl",
+                "xxxl",
+                "xxxxl",
+                "xxxxxl",
+                "xxxxxxl",
+                "horizontalMargin",
+                "extendedHorizontalMargin"
+              ],
+              "releaseVersion": {
+                "web": "released",
+                "webInvest": "released",
+                "iosAbm": "15.7",
+                "androidAbm": "15.11",
+                "webAbm": "notReleased",
+                "xxxxxxl": {
+                  "ios": "13.6",
+                  "android": "11.69",
+                  "web": "released",
+                  "iosInvest": "3.12",
+                  "androidInvest": "2.32",
+                  "webInvest": "released",
+                  "iosAbm": "15.7",
+                  "androidAbm": "15.11",
+                  "webAbm": "notReleased"
+                },
+                "xs2xs": {
+                  "ios": "13.13",
+                  "android": "12.10",
+                  "web": "released",
+                  "iosInvest": "3.12",
+                  "androidInvest": "2.32",
+                  "webInvest": "released",
+                  "iosAbm": "15.7",
+                  "androidAbm": "15.11",
+                  "webAbm": "notReleased"
+                },
+                "xss": {
+                  "ios": "13.13",
+                  "android": "12.10",
+                  "web": "released",
+                  "iosInvest": "3.12",
+                  "androidInvest": "2.32",
+                  "webInvest": "released",
+                  "iosAbm": "15.7",
+                  "androidAbm": "15.11",
+                  "webAbm": "notReleased"
+                }
+              },
+              "required": true
+            },
+            "bottom": {
+              "type": "string",
+              "name": "Spacing",
+              "description": "Отступ от нижнего края",
+              "enum": [
+                "zero",
+                "xxxxs",
+                "xxxs",
+                "xxs",
+                "xs2xs",
+                "xs",
+                "xss",
+                "s",
+                "m",
+                "l",
+                "xl",
+                "xxl",
+                "xxxl",
+                "xxxxl",
+                "xxxxxl",
+                "xxxxxxl",
+                "horizontalMargin",
+                "extendedHorizontalMargin"
+              ],
+              "releaseVersion": {
+                "web": "released",
+                "webInvest": "released",
+                "iosAbm": "15.7",
+                "androidAbm": "15.11",
+                "webAbm": "notReleased",
+                "xxxxxxl": {
+                  "ios": "13.6",
+                  "android": "11.69",
+                  "web": "released",
+                  "iosInvest": "3.12",
+                  "androidInvest": "2.32",
+                  "webInvest": "released",
+                  "iosAbm": "15.7",
+                  "androidAbm": "15.11",
+                  "webAbm": "notReleased"
+                },
+                "xs2xs": {
+                  "ios": "13.13",
+                  "android": "12.10",
+                  "web": "released",
+                  "iosInvest": "3.12",
+                  "androidInvest": "2.32",
+                  "webInvest": "released",
+                  "iosAbm": "15.7",
+                  "androidAbm": "15.11",
+                  "webAbm": "notReleased"
+                },
+                "xss": {
+                  "ios": "13.13",
+                  "android": "12.10",
+                  "web": "released",
+                  "iosInvest": "3.12",
+                  "androidInvest": "2.32",
+                  "webInvest": "released",
+                  "iosAbm": "15.7",
+                  "androidAbm": "15.11",
+                  "webAbm": "notReleased"
+                }
+              },
+              "required": true
+            },
+            "right": {
+              "type": "string",
+              "name": "Spacing",
+              "description": "Отступ от правого края",
+              "enum": [
+                "zero",
+                "xxxxs",
+                "xxxs",
+                "xxs",
+                "xs2xs",
+                "xs",
+                "xss",
+                "s",
+                "m",
+                "l",
+                "xl",
+                "xxl",
+                "xxxl",
+                "xxxxl",
+                "xxxxxl",
+                "xxxxxxl",
+                "horizontalMargin",
+                "extendedHorizontalMargin"
+              ],
+              "releaseVersion": {
+                "web": "released",
+                "webInvest": "released",
+                "iosAbm": "15.7",
+                "androidAbm": "15.11",
+                "webAbm": "notReleased",
+                "xxxxxxl": {
+                  "ios": "13.6",
+                  "android": "11.69",
+                  "web": "released",
+                  "iosInvest": "3.12",
+                  "androidInvest": "2.32",
+                  "webInvest": "released",
+                  "iosAbm": "15.7",
+                  "androidAbm": "15.11",
+                  "webAbm": "notReleased"
+                },
+                "xs2xs": {
+                  "ios": "13.13",
+                  "android": "12.10",
+                  "web": "released",
+                  "iosInvest": "3.12",
+                  "androidInvest": "2.32",
+                  "webInvest": "released",
+                  "iosAbm": "15.7",
+                  "androidAbm": "15.11",
+                  "webAbm": "notReleased"
+                },
+                "xss": {
+                  "ios": "13.13",
+                  "android": "12.10",
+                  "web": "released",
+                  "iosInvest": "3.12",
+                  "androidInvest": "2.32",
+                  "webInvest": "released",
+                  "iosAbm": "15.7",
+                  "androidAbm": "15.11",
+                  "webAbm": "notReleased"
+                }
+              },
+              "required": true
+            }
+          },
+          "required": false
+        },
+        "hidden": {
+          "type": "boolean",
+          "required": false,
+          "description": "Признак видимости компонента. Если значение true, то компонент при рендеренге игнорируется",
+          "default": false,
+          "releaseVersion": {
+            "ios": "14.4",
+            "android": "12.21",
+            "web": "notReleased",
+            "iosInvest": "3.12",
+            "androidInvest": "2.36",
+            "webInvest": "notReleased",
+            "iosAbm": "15.7",
+            "androidAbm": "15.11",
+            "webAbm": "notReleased"
+          }
+        },
+        "version": {
+          "type": "integer",
+          "required": false,
+          "default": 1,
+          "description": "Версия элемента",
+          "releaseVersion": {
+            "ios": "13.9",
+            "android": "12.10",
+            "web": "released",
+            "iosInvest": "3.12",
+            "androidInvest": "2.32",
+            "webInvest": "released",
+            "iosAbm": "15.7",
+            "androidAbm": "15.11",
+            "webAbm": "notReleased"
+          }
+        },
+        "settings": {
+          "type": "object",
+          "name": "Settings",
+          "description": "Настройки layout-элемента",
+          "releaseVersion": {
+            "ios": "14.4",
+            "android": "12.21",
+            "web": "notReleased",
+            "iosInvest": "3.12",
+            "androidInvest": "2.36",
+            "webInvest": "notReleased",
+            "iosAbm": "15.7",
+            "androidAbm": "15.11",
+            "webAbm": "notReleased"
+          },
+          "properties": {
+            "smartUpdate": {
+              "type": "boolean",
+              "required": false,
+              "description": "По умолчанию умное обновление включено. Этим параметром можно отключить. Подробности: https://confluence.moscow.alfaintra.net/pages/viewpage.action?pageId=1632860666"
+            }
+          },
+          "required": false
+        },
+        "appearance": {
+          "type": "object",
+          "name": "OneOfAppearance",
+          "description": "Appearance элемента",
+          "oneOf": [
+            {
+              "type": "object",
+              "description": "STUB: ControlAppearance",
+              "_stub": true,
+              "_reason": "ControlAppearance",
+              "_path": "properties.content.properties.appearance.oneOf.0",
+              "value": "control"
+            },
+            {
+              "type": "object",
+              "description": "STUB: Appearance",
+              "_stub": true,
+              "_reason": "Appearance",
+              "_path": "properties.content.properties.appearance.oneOf.1",
+              "value": "plain"
+            },
+            {
+              "type": "object",
+              "description": "STUB: FocusedAppearance",
+              "_stub": true,
+              "_reason": "FocusedAppearance",
+              "_path": "properties.content.properties.appearance.oneOf.2",
+              "value": "focused",
+              "releaseVersion": {
+                "ios": "notReleased",
+                "android": "notReleased",
+                "web": "notReleased",
+                "iosInvest": "notReleased",
+                "androidInvest": "notReleased",
+                "webInvest": "notReleased",
+                "iosAbm": "notReleased",
+                "androidAbm": "notReleased",
+                "webAbm": "notReleased"
+              }
+            },
+            {
+              "type": "object",
+              "description": "STUB: SelectionAppearance",
+              "_stub": true,
+              "_reason": "SelectionAppearance",
+              "_path": "properties.content.properties.appearance.oneOf.3",
+              "value": "selection",
+              "releaseVersion": {
+                "ios": "notReleased",
+                "android": "notReleased",
+                "web": "notReleased",
+                "iosInvest": "notReleased",
+                "androidInvest": "notReleased",
+                "webInvest": "notReleased",
+                "iosAbm": "notReleased",
+                "androidAbm": "notReleased",
+                "webAbm": "notReleased"
+              }
+            },
+            {
+              "type": "object",
+              "description": "STUB: SelectionControlAppearance",
+              "_stub": true,
+              "_reason": "SelectionControlAppearance",
+              "_path": "properties.content.properties.appearance.oneOf.4",
+              "value": "selectionControl",
+              "releaseVersion": {
+                "ios": "notReleased",
+                "android": "notReleased",
+                "web": "notReleased",
+                "iosInvest": "notReleased",
+                "androidInvest": "notReleased",
+                "webInvest": "notReleased",
+                "iosAbm": "notReleased",
+                "androidAbm": "notReleased",
+                "webAbm": "notReleased"
+              }
+            }
+          ],
+          "properties": {
+            "type": {
+              "enum": [
+                "plain",
+                "control",
+                "focused",
+                "selection",
+                "selectionControl"
+              ],
+              "required": true,
+              "description": "Тип"
+            }
+          },
+          "definitions": {
+            "AppearanceType": {
+              "enum": [
+                "plain",
+                "control",
+                "focused",
+                "selection",
+                "selectionControl"
+              ]
+            }
+          },
+          "required": false,
+          "releaseVersion": {
+            "ios": "14.2",
+            "android": "12.14",
+            "web": "released",
+            "iosInvest": "3.12",
+            "androidInvest": "2.32",
+            "webInvest": "notReleased",
+            "iosAbm": "15.7",
+            "androidAbm": "15.11",
+            "webAbm": "notReleased"
+          }
+        },
+        "preset": {
+          "type": "string",
+          "required": false,
+          "description": "Было добавлено для поддержки пресетов у компонентов AlertView (iOS: 14.3-14.5; Android: 12.17-12.20) и ButtonViewV2 (iOS: 14.5-14.7; Android: 12.24-12.25). Т.к. реализация в AM не соответствовала контакту (preset должен быть на уровне content, но АМ ожидало его в LayoutElement). Помечено deprecated после того, как реализация в AM приведена в соответсвии с контрактом",
+          "deprecatedVersion": {
+            "ios": "14.8",
+            "android": "12.26",
+            "iosInvest": "deprecated",
+            "androidInvest": "deprecated",
+            "web": "deprecated",
+            "webInvest": "deprecated",
+            "iosAbm": "notReleased",
+            "androidAbm": "notReleased",
+            "webAbm": "notReleased"
+          }
+        },
+        "dataTestId": {
+          "type": "string",
+          "required": false,
+          "devOnly": true,
+          "description": "Идентификатор для автоматизированного тестирования. Используется только в тестовой среде. Недоступно в prod.",
+          "releaseVersion": {
+            "ios": "notReleased",
+            "android": "12.33",
+            "web": "released",
+            "iosInvest": "notReleased",
+            "androidInvest": "notReleased",
+            "webInvest": "released",
+            "iosAbm": "notReleased",
+            "androidAbm": "15.11",
+            "webAbm": "notReleased"
+          }
+        },
+        "position": {
+          "type": "object",
+          "name": "AbsolutePosition",
+          "description": "Сущность, которая позволяет установить позиционирование элемента относительно родительского элемента. Используется для элементов внутри FigmaFrame",
+          "releaseVersion": {
+            "ios": "notReleased",
+            "android": "notReleased",
+            "web": "notReleased",
+            "iosInvest": "notReleased",
+            "androidInvest": "notReleased",
+            "webInvest": "notReleased",
+            "iosAbm": "notReleased",
+            "androidAbm": "15.11",
+            "webAbm": "notReleased"
+          },
+          "properties": {
+            "verticalConstraints": {
+              "type": "object",
+              "description": "Вертикальные ограничения",
+              "_stub": true,
+              "_reason": "VerticalConstraints",
+              "_path": "properties.content.properties.position.properties.verticalConstraints",
+              "required": true
+            },
+            "horizontalConstraints": {
+              "type": "object",
+              "description": "Горизонтальные ограничения",
+              "_stub": true,
+              "_reason": "HorizontalConstraints",
+              "_path": "properties.content.properties.position.properties.horizontalConstraints",
+              "required": true
+            }
+          },
+          "required": false
+        }
+      },
+      "required": true
+    },
+    "contentInteractionEnabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "Флаг, необходимый ios для взаимодействия с контентом",
+      "default": false,
+      "releaseVersion": {
+        "ios": "12.23",
+        "android": "willNotBeReleased",
+        "web": "willNotBeReleased",
+        "iosInvest": "3.13",
+        "androidInvest": "willNotBeReleased",
+        "webInvest": "willNotBeReleased",
+        "iosAbm": "15.7",
+        "androidAbm": "notReleased",
+        "webAbm": "notReleased"
+      }
+    },
+    "contentEnabledState": {
+      "type": "boolean",
+      "required": false,
+      "description": "Флаг, необходимый ios для выключенного состояния враппера",
+      "default": true,
+      "releaseVersion": {
+        "ios": "13.11",
+        "android": "willNotBeReleased",
+        "web": "willNotBeReleased",
+        "iosInvest": "3.13",
+        "androidInvest": "willNotBeReleased",
+        "webInvest": "willNotBeReleased",
+        "iosAbm": "15.7",
+        "androidAbm": "notReleased",
+        "webAbm": "notReleased"
+      }
+    },
+    "style": {
+      "enum": [
+        "fill",
+        "stroke",
+        "shadow"
+      ],
+      "required": false,
+      "description": "Пресет для стиля, по умолчанию fill"
+    },
+    "backgroundColor": {
+      "type": "object",
+      "name": "Color",
+      "description": "Цвет фона, по умолчанию backgroundColorSecondary",
+      "releaseVersion": {
+        "ios": "0.0.0",
+        "android": "0.0.0",
+        "web": "released",
+        "iosInvest": "3.12",
+        "androidInvest": "2.32",
+        "webInvest": "released",
+        "iosAbm": "15.7",
+        "androidAbm": "15.11",
+        "webAbm": "notReleased"
+      },
+      "oneOf": [
+        {
+          "type": "object",
+          "description": "STUB: PaletteColor",
+          "_stub": true,
+          "_reason": "PaletteColor",
+          "_path": "properties.backgroundColor.oneOf.0"
+        },
+        {
+          "type": "object",
+          "description": "STUB: HexColor",
+          "_stub": true,
+          "_reason": "HexColor",
+          "_path": "properties.backgroundColor.oneOf.1"
+        }
+      ],
+      "required": false
+    },
+    "backgroundColorHighlighted": {
+      "type": "object",
+      "name": "Color",
+      "description": "Цвет фона при нажатии, по умолчанию backgroundColorTertiary",
+      "releaseVersion": {
+        "ios": "0.0.0",
+        "android": "0.0.0",
+        "web": "released",
+        "iosInvest": "3.12",
+        "androidInvest": "2.32",
+        "webInvest": "released",
+        "iosAbm": "15.7",
+        "androidAbm": "15.11",
+        "webAbm": "notReleased"
+      },
+      "oneOf": [
+        {
+          "type": "object",
+          "description": "STUB: PaletteColor",
+          "_stub": true,
+          "_reason": "PaletteColor",
+          "_path": "properties.backgroundColorHighlighted.oneOf.0"
+        },
+        {
+          "type": "object",
+          "description": "STUB: HexColor",
+          "_stub": true,
+          "_reason": "HexColor",
+          "_path": "properties.backgroundColorHighlighted.oneOf.1"
+        }
+      ],
+      "required": false
+    },
+    "borderColor": {
+      "type": "object",
+      "name": "Color",
+      "description": "Цвет обводки",
+      "releaseVersion": {
+        "ios": "0.0.0",
+        "android": "0.0.0",
+        "web": "released",
+        "iosInvest": "3.12",
+        "androidInvest": "2.32",
+        "webInvest": "released",
+        "iosAbm": "15.7",
+        "androidAbm": "15.11",
+        "webAbm": "notReleased"
+      },
+      "oneOf": [
+        {
+          "type": "object",
+          "description": "STUB: PaletteColor",
+          "_stub": true,
+          "_reason": "PaletteColor",
+          "_path": "properties.borderColor.oneOf.0"
+        },
+        {
+          "type": "object",
+          "description": "STUB: HexColor",
+          "_stub": true,
+          "_reason": "HexColor",
+          "_path": "properties.borderColor.oneOf.1"
+        }
+      ],
+      "required": false
+    },
+    "margins": {
+      "type": "object",
+      "name": "EdgeOffsets",
+      "description": "DEPRECATED! Внешние отступы для враппера",
+      "releaseVersion": {
+        "web": "released",
+        "webInvest": "released",
+        "iosAbm": "15.7",
+        "androidAbm": "15.11",
+        "webAbm": "notReleased"
+      },
+      "properties": {
+        "top": {
+          "type": "string",
+          "name": "Spacing",
+          "description": "Отступ от верхнего края",
+          "enum": [
+            "zero",
+            "xxxxs",
+            "xxxs",
+            "xxs",
+            "xs2xs",
+            "xs",
+            "xss",
+            "s",
+            "m",
+            "l",
+            "xl",
+            "xxl",
+            "xxxl",
+            "xxxxl",
+            "xxxxxl",
+            "xxxxxxl",
+            "horizontalMargin",
+            "extendedHorizontalMargin"
+          ],
+          "releaseVersion": {
+            "web": "released",
+            "webInvest": "released",
+            "iosAbm": "15.7",
+            "androidAbm": "15.11",
+            "webAbm": "notReleased",
+            "xxxxxxl": {
+              "ios": "13.6",
+              "android": "11.69",
+              "web": "released",
+              "iosInvest": "3.12",
+              "androidInvest": "2.32",
+              "webInvest": "released",
+              "iosAbm": "15.7",
+              "androidAbm": "15.11",
+              "webAbm": "notReleased"
+            },
+            "xs2xs": {
+              "ios": "13.13",
+              "android": "12.10",
+              "web": "released",
+              "iosInvest": "3.12",
+              "androidInvest": "2.32",
+              "webInvest": "released",
+              "iosAbm": "15.7",
+              "androidAbm": "15.11",
+              "webAbm": "notReleased"
+            },
+            "xss": {
+              "ios": "13.13",
+              "android": "12.10",
+              "web": "released",
+              "iosInvest": "3.12",
+              "androidInvest": "2.32",
+              "webInvest": "released",
+              "iosAbm": "15.7",
+              "androidAbm": "15.11",
+              "webAbm": "notReleased"
+            }
+          },
+          "required": true
+        },
+        "left": {
+          "type": "string",
+          "name": "Spacing",
+          "description": "Отступ от левого края",
+          "enum": [
+            "zero",
+            "xxxxs",
+            "xxxs",
+            "xxs",
+            "xs2xs",
+            "xs",
+            "xss",
+            "s",
+            "m",
+            "l",
+            "xl",
+            "xxl",
+            "xxxl",
+            "xxxxl",
+            "xxxxxl",
+            "xxxxxxl",
+            "horizontalMargin",
+            "extendedHorizontalMargin"
+          ],
+          "releaseVersion": {
+            "web": "released",
+            "webInvest": "released",
+            "iosAbm": "15.7",
+            "androidAbm": "15.11",
+            "webAbm": "notReleased",
+            "xxxxxxl": {
+              "ios": "13.6",
+              "android": "11.69",
+              "web": "released",
+              "iosInvest": "3.12",
+              "androidInvest": "2.32",
+              "webInvest": "released",
+              "iosAbm": "15.7",
+              "androidAbm": "15.11",
+              "webAbm": "notReleased"
+            },
+            "xs2xs": {
+              "ios": "13.13",
+              "android": "12.10",
+              "web": "released",
+              "iosInvest": "3.12",
+              "androidInvest": "2.32",
+              "webInvest": "released",
+              "iosAbm": "15.7",
+              "androidAbm": "15.11",
+              "webAbm": "notReleased"
+            },
+            "xss": {
+              "ios": "13.13",
+              "android": "12.10",
+              "web": "released",
+              "iosInvest": "3.12",
+              "androidInvest": "2.32",
+              "webInvest": "released",
+              "iosAbm": "15.7",
+              "androidAbm": "15.11",
+              "webAbm": "notReleased"
+            }
+          },
+          "required": true
+        },
+        "bottom": {
+          "type": "string",
+          "name": "Spacing",
+          "description": "Отступ от нижнего края",
+          "enum": [
+            "zero",
+            "xxxxs",
+            "xxxs",
+            "xxs",
+            "xs2xs",
+            "xs",
+            "xss",
+            "s",
+            "m",
+            "l",
+            "xl",
+            "xxl",
+            "xxxl",
+            "xxxxl",
+            "xxxxxl",
+            "xxxxxxl",
+            "horizontalMargin",
+            "extendedHorizontalMargin"
+          ],
+          "releaseVersion": {
+            "web": "released",
+            "webInvest": "released",
+            "iosAbm": "15.7",
+            "androidAbm": "15.11",
+            "webAbm": "notReleased",
+            "xxxxxxl": {
+              "ios": "13.6",
+              "android": "11.69",
+              "web": "released",
+              "iosInvest": "3.12",
+              "androidInvest": "2.32",
+              "webInvest": "released",
+              "iosAbm": "15.7",
+              "androidAbm": "15.11",
+              "webAbm": "notReleased"
+            },
+            "xs2xs": {
+              "ios": "13.13",
+              "android": "12.10",
+              "web": "released",
+              "iosInvest": "3.12",
+              "androidInvest": "2.32",
+              "webInvest": "released",
+              "iosAbm": "15.7",
+              "androidAbm": "15.11",
+              "webAbm": "notReleased"
+            },
+            "xss": {
+              "ios": "13.13",
+              "android": "12.10",
+              "web": "released",
+              "iosInvest": "3.12",
+              "androidInvest": "2.32",
+              "webInvest": "released",
+              "iosAbm": "15.7",
+              "androidAbm": "15.11",
+              "webAbm": "notReleased"
+            }
+          },
+          "required": true
+        },
+        "right": {
+          "type": "string",
+          "name": "Spacing",
+          "description": "Отступ от правого края",
+          "enum": [
+            "zero",
+            "xxxxs",
+            "xxxs",
+            "xxs",
+            "xs2xs",
+            "xs",
+            "xss",
+            "s",
+            "m",
+            "l",
+            "xl",
+            "xxl",
+            "xxxl",
+            "xxxxl",
+            "xxxxxl",
+            "xxxxxxl",
+            "horizontalMargin",
+            "extendedHorizontalMargin"
+          ],
+          "releaseVersion": {
+            "web": "released",
+            "webInvest": "released",
+            "iosAbm": "15.7",
+            "androidAbm": "15.11",
+            "webAbm": "notReleased",
+            "xxxxxxl": {
+              "ios": "13.6",
+              "android": "11.69",
+              "web": "released",
+              "iosInvest": "3.12",
+              "androidInvest": "2.32",
+              "webInvest": "released",
+              "iosAbm": "15.7",
+              "androidAbm": "15.11",
+              "webAbm": "notReleased"
+            },
+            "xs2xs": {
+              "ios": "13.13",
+              "android": "12.10",
+              "web": "released",
+              "iosInvest": "3.12",
+              "androidInvest": "2.32",
+              "webInvest": "released",
+              "iosAbm": "15.7",
+              "androidAbm": "15.11",
+              "webAbm": "notReleased"
+            },
+            "xss": {
+              "ios": "13.13",
+              "android": "12.10",
+              "web": "released",
+              "iosInvest": "3.12",
+              "androidInvest": "2.32",
+              "webInvest": "released",
+              "iosAbm": "15.7",
+              "androidAbm": "15.11",
+              "webAbm": "notReleased"
+            }
+          },
+          "required": true
+        }
+      },
+      "deprecatedVersion": {
+        "ios": "13.7",
+        "android": "12.04",
+        "iosInvest": "deprecated",
+        "androidInvest": "deprecated",
+        "web": "deprecated",
+        "webInvest": "deprecated",
+        "iosAbm": "notReleased",
+        "androidAbm": "notReleased",
+        "webAbm": "notReleased"
+      },
+      "required": false
+    }
+  },
+  "definitions": {
+    "Style": {
+      "enum": [
+        "fill",
+        "stroke",
+        "shadow"
+      ]
+    }
+  },
+  "_metadata": {
+    "resolved_at": "2025-09-24T15:44:46.500501",
+    "resolver_version": "2.0.0",
+    "statistics": {
+      "total_resolutions": 122,
+      "stub_count": 24,
+      "state_aware_count": 0,
+      "computed_count": 0,
+      "validation_errors": 0
+    },
+    "components": {
+      "total": 0,
+      "list": []
+    }
+  }
+}

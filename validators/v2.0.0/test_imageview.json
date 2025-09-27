@@ -1,0 +1,88 @@
+{
+  "data": {
+    "alfaOnlyBanner": {
+      "content": {
+        "content": {
+          "content": {
+            "children": [
+              {
+                "content": {
+                  "children": [
+                    {
+                      "type": "ImageView",
+                      "version": 2,
+                      "content": {
+                        "image": {
+                          "url": "test.png"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "alfaSmartLvlBanner": {
+      "content": {
+        "content": {
+          "content": {
+            "children": [
+              {
+                "content": {
+                  "children": [
+                    {
+                      "type": "ImageView",
+                      "version": 2,
+                      "content": {
+                        "image": {
+                          "url": "test2.png"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "rootElement": {
+    "content": {
+      "content": {
+        "content": {
+          "children": [
+            {
+              "content": {
+                "children": [
+                  {
+                    "type": "ImageView",
+                    "version": 2,
+                    "content": {
+                      "image": {
+                        "url": "root.png"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "ImageView",
+              "version": 2,
+              "content": {
+                "image": {
+                  "url": "direct.png"
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

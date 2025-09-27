@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "name": "TestStateAware",
+  "description": "Test contract for StateAware functionality",
+  "properties": {
+    "stateAwareField": {
+      "type": "object",
+      "stateAware": true,
+      "stateType": "Control",
+      "wrappedType": "string",
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "state": {
+          "type": "object",
+          "properties": {
+            "isValid": {"type": "boolean"},
+            "isDirty": {"type": "boolean"}
+          }
+        }
+      }
+    },
+    "computed": {
+      "fullName": {
+        "expression": "concat(firstName, ' ', lastName)",
+        "dependencies": ["firstName", "lastName"],
+        "returnType": "string"
+      }
+    }
+  }
+}

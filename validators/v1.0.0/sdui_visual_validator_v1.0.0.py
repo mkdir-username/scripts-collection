@@ -1,0 +1,1 @@
+/Users/username/Documents/front-middle-schema/src/sdui_visual_validator_v1.0.0.py

@@ -1,0 +1,992 @@
+[
+  {
+    "fileMatch": [
+      "SDUI/actions/Action/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/actions/Action/Action.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/actions/AnalyticsAction/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/actions/AnalyticsAction/AnalyticsAction.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/actions/Animation/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/actions/Animation/Animation.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/actions/CopyAction/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/actions/CopyAction/CopyAction.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/actions/DebounceAction/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/actions/DebounceAction/DebounceAction.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/actions/DeeplinkAction/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/actions/DeeplinkAction/DeeplinkAction.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/actions/EventAction/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/actions/EventAction/EventAction.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/actions/FadeAnimation/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/actions/FadeAnimation/FadeAnimation.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/actions/HighlightAnimation/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/actions/HighlightAnimation/HighlightAnimation.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/actions/HttpAction/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/actions/HttpAction/v1/HttpAction.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/actions/HttpAction/v2/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/actions/HttpAction/v2/HttpAction.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/actions/IfAction/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/actions/IfAction/IfAction.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/actions/LazyAction/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/actions/LazyAction/LazyAction.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/actions/OpenNextAction/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/actions/OpenNextAction/OpenNextAction.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/actions/PopupAction/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/actions/PopupAction/PopupAction.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/actions/SaveDataAction/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/actions/SaveDataAction/SaveDataAction.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/actions/ScaleAnimation/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/actions/ScaleAnimation/ScaleAnimation.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/actions/SequenceAction/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/actions/SequenceAction/SequenceAction.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/actions/SetResultAction/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/actions/SetResultAction/SetResultAction.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/actions/SetValueAction/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/actions/SetValueAction/SetValueAction.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/actions/UpdateNavBarAction/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/actions/UpdateNavBarAction/UpdateNavBarAction.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/atoms/AbsolutePosition/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/AbsolutePosition/AbsolutePosition.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/atoms/Color/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Color/Color.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/atoms/Corners/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Corners/v1/Corners.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/atoms/Corners/v2/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Corners/v2/Corners.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/atoms/EdgeOffsets/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/EdgeOffsets/EdgeOffsets.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/atoms/Gradient/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Gradient/v1/Gradient.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/atoms/HorizontalMargin/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/HorizontalMargin/HorizontalMargin.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/atoms/Icon/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Icon/Icon.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/atoms/Mask/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Mask/Mask.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/atoms/ResizeMode/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/ResizeMode/ResizeMode.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/atoms/Size/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Size/Size.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/atoms/Spacing/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Spacing/Spacing.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/atoms/Stroke/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Stroke/v1/Stroke.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/atoms/Stroke/v2/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Stroke/v2/Stroke.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/atoms/Text/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Text/v1/Text.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/atoms/Typography/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Typography/Typography.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/AccordionWrapper/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/AccordionWrapper/v1/AccordionWrapper.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/AccountContent/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/AccountContent/v1/AccountContent.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/AdCardView/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/AdCardView/v1/AdCardView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/AlertView/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/AlertView/v1/AlertView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/BannerWrapper/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/BannerWrapper/v1/BannerWrapper.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/BannerWrapper/v1/samples/*_resolved.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/BannerWrapper/v1/BannerWrapper_resolved.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/BannerWrapper/v1/samples/*_web.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/BannerWrapper/v1/BannerWrapper_web.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/ButtonView/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/ButtonView/v1/ButtonView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/ButtonView/v2/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/ButtonView/v2/ButtonView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/CardIconStackView/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/CardIconStackView/v1/CardIconStackView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/CardIconView/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/CardIconView/v1/CardIconView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/CardIconView/v3/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/CardIconView/v3/CardIconView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/CarouselWrapper/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/CarouselWrapper/v1/CarouselWrapper.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/ChevronWrapper/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/ChevronWrapper/v1/ChevronWrapper.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/ChipsStackView/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/ChipsStackView/v1/ChipsStackView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/CircleProgressIcon/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/CircleProgressIcon/v1/CircleProgressIcon.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/ClickWrapper/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/ClickWrapper/v1/ClickWrapper.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/CustomView/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/CustomView/v1/CustomView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/DataContent/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/DataContent/v1/DataContent.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/DataContent/v2/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/DataContent/v2/DataContent.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/DataStackView/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/DataStackView/v1/DataStackView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/DataView/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/DataView/v1/DataView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/ErrorLoadingView/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/ErrorLoadingView/v1/ErrorLoadingView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/HorizontalCarouselWrapper/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/HorizontalCarouselWrapper/v1/HorizontalCarouselWrapper.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/HorizontalHistogramView/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/HorizontalHistogramView/v1/HorizontalHistogramView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/HorizontalProgressView/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/HorizontalProgressView/v1/HorizontalProgressView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/IconView/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/IconView/v1/IconView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/ImageView/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/ImageView/v1/ImageView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/ImageView/v2/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/ImageView/v2/ImageView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/IndexContainerWrapper/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/IndexContainerWrapper/v1/IndexContainerWrapper.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/IndicatorView/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/IndicatorView/v1/IndicatorView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/IndicatorView/v2/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/IndicatorView/v2/IndicatorView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/LabelView/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/LabelView/v1/LabelView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/MarkdownView/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/MarkdownView/v1/MarkdownView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/MultiLinearGraphView/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/MultiLinearGraphView/v1/MultiLinearGraphView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/PageIndicatorBulletView/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/PageIndicatorBulletView/v1/PageIndicatorBulletView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/PageIndicatorRunnerView/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/PageIndicatorRunnerView/v1/PageIndicatorRunnerView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/PageIndicatorStepView/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/PageIndicatorStepView/v1/PageIndicatorStepView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/ProgressBarView/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/ProgressBarView/v1/ProgressBarView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/ProgressBarView/v2/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/ProgressBarView/v2/ProgressBarView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/RectangleView/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/RectangleView/v1/RectangleView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/ReferralBonusView/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/ReferralBonusView/v1/ReferralBonusView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/ReplaceWrapper/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/ReplaceWrapper/v1/ReplaceWrapper.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/RightIconWrapper/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/RightIconWrapper/v1/RightIconWrapper.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/SelectionWrapper/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/SelectionWrapper/v1/SelectionWrapper.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/SelectionWrapper/v2/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/SelectionWrapper/v2/SelectionWrapper.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/SkeletonView/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/SkeletonView/v1/SkeletonView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/Slider/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/Slider/v1/Slider.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/Spacer/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/Spacer/v1/Spacer.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/SpinnerView/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/SpinnerView/v1/SpinnerView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/SquareWrapper/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/SquareWrapper/v1/SquareWrapper.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/StepView/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/StepView/v1/StepView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/SwitchView/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/SwitchView/v1/SwitchView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/TagView/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/TagView/v1/TagView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/TextField/v2/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/TextField/v2/TextField.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/components/TextView/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/components/TextView/v1/TextView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/amount/Format/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/amount/Format/v1/Format.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/amount/GetMajorUnits/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/amount/GetMajorUnits/v1/GetMajorUnits.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/amount/GetMinorUnits/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/amount/GetMinorUnits/v1/GetMinorUnits.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/cast/ToFloat/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/cast/ToFloat/v1/ToFloat.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/cast/ToInt/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/cast/ToInt/v1/ToInt.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/cast/ToString/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/cast/ToString/v1/ToString.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/collection/Append/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/collection/Append/v1/Append.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/collection/Count/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/collection/Count/v1/Count.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/collection/ElementAtIndex/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/collection/ElementAtIndex/v1/ElementAtIndex.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/collection/Filter/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/collection/Filter/v1/Filter.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/collection/FlatMap/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/collection/FlatMap/v1/FlatMap.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/collection/IndexOfElement/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/collection/IndexOfElement/v1/IndexOfElement.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/collection/Join/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/collection/Join/v1/Join.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/collection/Map/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/collection/Map/v1/Map.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/collection/Merge/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/collection/Merge/v1/Merge.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/collection/Reduce/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/collection/Reduce/v1/Reduce.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/collection/Sort/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/collection/Sort/v1/Sort.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/data/ContainsData/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/data/ContainsData/v1/ContainsData.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/data/GetData/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/data/GetData/v1/GetData.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/date/ContainsDate/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/date/ContainsDate/v1/ContainsDate.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/feature/CheckFeature/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/feature/CheckFeature/v1/CheckFeature.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/json/ApplyTemplate/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/json/ApplyTemplate/v1/ApplyTemplate.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/logical/And/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/logical/And/v1/And.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/logical/Not/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/logical/Not/v1/Not.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/logical/Or/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/logical/Or/v1/Or.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/logical/Xor/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/logical/Xor/v1/Xor.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/mathematical/Abs/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/mathematical/Abs/v1/Abs.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/mathematical/Ceil/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/mathematical/Ceil/v1/Ceil.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/mathematical/Divide/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/mathematical/Divide/v1/Divide.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/mathematical/Floor/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/mathematical/Floor/v1/Floor.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/mathematical/Max/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/mathematical/Max/v1/Max.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/mathematical/MaxElement/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/mathematical/MaxElement/v1/MaxElement.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/mathematical/Min/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/mathematical/Min/v1/Min.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/mathematical/MinElement/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/mathematical/MinElement/v1/MinElement.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/mathematical/Minus/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/mathematical/Minus/v1/Minus.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/mathematical/Mod/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/mathematical/Mod/v1/Mod.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/mathematical/Multiply/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/mathematical/Multiply/v1/Multiply.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/mathematical/Round/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/mathematical/Round/v1/Round.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/mathematical/Subtract/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/mathematical/Subtract/v1/Subtract.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/mathematical/Sum/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/mathematical/Sum/v1/Sum.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/relational/Equals/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/relational/Equals/v1/Equals.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/relational/Greater/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/relational/Greater/v1/Greater.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/relational/GreaterOrEquals/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/relational/GreaterOrEquals/v1/GreaterOrEquals.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/relational/Less/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/relational/Less/v1/Less.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/relational/LessOrEquals/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/relational/LessOrEquals/v1/LessOrEquals.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/relational/NotEquals/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/relational/NotEquals/v1/NotEquals.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/string/Concat/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/string/Concat/v1/Concat.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/string/Contains/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/string/Contains/v1/Contains.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/string/IndexOf/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/string/IndexOf/v1/IndexOf.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/string/LastIndexOf/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/string/LastIndexOf/v1/LastIndexOf.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/string/Len/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/string/Len/v1/Len.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/string/Match/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/string/Match/v1/Match.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/string/Substring/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/string/Substring/v1/Substring.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/string/Template/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/string/Template/v1/Template.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/string/Trim/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/string/Trim/v1/Trim.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/functions/theme/isDarkMode/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/functions/theme/isDarkMode/v1/isDarkMode.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/layouts/Constraint/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/layouts/Constraint/v1/Constraint.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/layouts/Constraint/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/layouts/Constraint/v1/Constraint.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/layouts/FigmaFrame/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/layouts/FigmaFrame/v1/FigmaFrame.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/layouts/FigmaFrame/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/layouts/FigmaFrame/v1/FigmaFrame.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/layouts/HorizontalListWrapper/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/layouts/HorizontalListWrapper/v1/HorizontalListWrapper.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/layouts/HorizontalListWrapper/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/layouts/HorizontalListWrapper/v1/HorizontalListWrapper.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/layouts/ScrollWrapper/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/layouts/ScrollWrapper/v1/ScrollWrapper.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/layouts/ScrollWrapper/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/layouts/ScrollWrapper/v1/ScrollWrapper.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/layouts/StackView/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/layouts/StackView/v1/StackView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/layouts/StackView/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/layouts/StackView/v1/StackView.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/layouts/StackWrapper/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/layouts/StackWrapper/v1/StackWrapper.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/layouts/StackWrapper/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/layouts/StackWrapper/v1/StackWrapper.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/layouts/SwipeContextWrapper/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/layouts/SwipeContextWrapper/v1/SwipeContextWrapper.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/layouts/SwipeContextWrapper/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/layouts/SwipeContextWrapper/v1/SwipeContextWrapper.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/layouts/VerticalListWrapper/v1/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/layouts/VerticalListWrapper/v1/VerticalListWrapper.json"
+  },
+  {
+    "fileMatch": [
+      "SDUI/layouts/VerticalListWrapper/v1/samples/*.json"
+    ],
+    "url": "file:///Users/username/Documents/front-middle-schema/SDUI/layouts/VerticalListWrapper/v1/VerticalListWrapper.json"
+  }
+]

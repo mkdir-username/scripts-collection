@@ -1,0 +1,1 @@
+/Users/username/Documents/front-middle-schema/src/breaking_change_detector_v1.0.0.py
