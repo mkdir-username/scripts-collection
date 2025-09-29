@@ -1,1 +1,0 @@
-tests/test_mcp_sdui_v1.0.0.py

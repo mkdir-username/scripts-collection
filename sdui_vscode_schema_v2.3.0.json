@@ -1,0 +1,2637 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SDUI Contract Schema",
+  "description": "Полная схема для валидации SDUI контрактов",
+  "oneOf": [
+    {
+      "type": "object",
+      "required": [
+        "rootElement"
+      ],
+      "properties": {
+        "version": {
+          "type": "number"
+        },
+        "rootElement": {
+          "$ref": "#/definitions/SDUIComponent"
+        },
+        "data": {
+          "type": "object"
+        },
+        "state": {
+          "type": "object"
+        },
+        "computed": {
+          "type": "object"
+        }
+      }
+    },
+    {
+      "$ref": "#/definitions/SDUIComponent"
+    }
+  ],
+  "definitions": {
+    "SDUIComponent": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "AccordionWrapper",
+            "AccountContent",
+            "AdCardView",
+            "AlertView",
+            "BannerWrapper",
+            "ButtonView",
+            "CardIconStackView",
+            "CardIconView",
+            "CarouselWrapper",
+            "ChevronWrapper",
+            "ChipsStackView",
+            "CircleProgressIcon",
+            "ClickWrapper",
+            "ConstraintWrapper",
+            "CustomView",
+            "DataContent",
+            "DataStackView",
+            "DataView",
+            "ErrorLoadingView",
+            "FigmaFrame",
+            "HorizontalCarouselWrapper",
+            "HorizontalHistogramView",
+            "HorizontalListWrapper",
+            "HorizontalProgressView",
+            "IconView",
+            "ImageView",
+            "IndexContainerWrapper",
+            "IndicatorView",
+            "LabelView",
+            "MarkdownView",
+            "MultiLinearGraphView",
+            "PageIndicatorBulletView",
+            "PageIndicatorRunnerView",
+            "PageIndicatorStepView",
+            "ProgressBarView",
+            "RectangleView",
+            "ReferralBonusView",
+            "ReplaceWrapper",
+            "RightIconWrapper",
+            "ScrollWrapper",
+            "SelectionWrapper",
+            "SkeletonView",
+            "Slider",
+            "Spacer",
+            "SpinnerView",
+            "SquareWrapper",
+            "StackView",
+            "StackWrapper",
+            "StepView",
+            "SwipeContextWrapper",
+            "SwitchView",
+            "TagView",
+            "TextField",
+            "TextView",
+            "VerticalListWrapper"
+          ],
+          "description": "Тип SDUI компонента"
+        },
+        "NAME": {
+          "type": "string",
+          "description": "Описательное имя компонента для документирования"
+        }
+      },
+      "additionalProperties": true,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "AccordionWrapper"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "AccordionWrapper"
+              },
+              "topContent": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/AccordionWrapper/v1/TopContent.json",
+                "description": "Верхняя часть контента"
+              },
+              "expandedContent": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/common/LayoutElement/LayoutElement.json",
+                "description": "Контент, который появляется при раскрытия аккордеона"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "AccountContent"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "AccountContent"
+              },
+              "title": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Text/v1/Text.json",
+                "description": "Название счёта. По-умолчанию цвет textColorPrimary"
+              },
+              "subtitle": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Text/v1/Text.json",
+                "description": "Подзаголовок счёта. По-умолчанию цвет textColorSecondary"
+              },
+              "balance": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Text/v1/Text.json",
+                "description": "Баланс по счёту. По-умолчанию цвет textColorPrimary"
+              },
+              "percent": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Text/v1/Text.json",
+                "description": "Процент по счёту. По-умолчанию цвет textColorPrimary"
+              },
+              "description": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Text/v1/Text.json",
+                "description": "Описание счёта. По-умолчанию цвет textColorSecondary"
+              },
+              "status": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Text/v1/Text.json",
+                "description": "Статус счёта. По-умолчанию цвет textColorNegative"
+              },
+              "icon": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/IconView/v1/IconView.json",
+                "description": "Иконка слева от текста с процентами"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "AdCardView"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "AdCardView"
+              },
+              "mainContent": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/AdCardView/v1/MainContent.json",
+                "description": "Контент карточки без картинки"
+              },
+              "topPadding": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Spacing/Spacing.json",
+                "description": "Верхний отступ карточки от границы контейнера"
+              },
+              "graphic": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/common/LayoutElement/LayoutElement.json",
+                "description": "Картинка карточки"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "AlertView"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "AlertView"
+              },
+              "preset": {
+                "$ref": "#/definitions/Preset",
+                "default": "custom",
+                "description": "Название пресета AlertView."
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "BannerWrapper"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "BannerWrapper"
+              },
+              "content": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/common/LayoutElement/LayoutElement.json",
+                "description": "Контент"
+              },
+              "contentInteractionEnabled": {
+                "type": "boolean",
+                "default": false,
+                "description": "Флаг, необходимый ios для взаимодействия с контентом"
+              },
+              "contentEnabledState": {
+                "type": "boolean",
+                "default": true,
+                "description": "Флаг, необходимый ios для выключенного состояния враппера"
+              },
+              "style": {
+                "$ref": "#/definitions/Style",
+                "description": "Пресет для стиля, по умолчанию fill"
+              },
+              "backgroundColor": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Color/Color.json",
+                "description": "Цвет фона, по умолчанию backgroundColorSecondary"
+              },
+              "backgroundColorHighlighted": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Color/Color.json",
+                "description": "Цвет фона при нажатии, по умолчанию backgroundColorTertiary"
+              },
+              "borderColor": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Color/Color.json",
+                "description": "Цвет обводки"
+              },
+              "margins": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/EdgeOffsets/EdgeOffsets.json",
+                "description": "DEPRECATED! Внешние отступы для враппера"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "ButtonView"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "ButtonView"
+              },
+              "preset": {
+                "$ref": "#/definitions/Preset",
+                "default": "custom",
+                "description": "Название пресета ButtonView."
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "CardIconStackView"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "CardIconStackView"
+              },
+              "productItem": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/CardIconStackView/v1/ProductItem.json",
+                "description": "Продукт, находящийся в стэке"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "CardIconView"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "CardIconView"
+              },
+              "showShadow": {
+                "type": "boolean",
+                "description": "Флаг отображения тени на продукте"
+              },
+              "overlay": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/CardIconView/v3/Overlay.json",
+                "description": "Подложка продукта"
+              },
+              "details": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/CardIconView/v3/Details.json",
+                "description": "Детали о продукте и его владельце"
+              },
+              "cover": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/common/LayoutElement/LayoutElement.json",
+                "description": "Рубашка продукта"
+              },
+              "icon": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/common/LayoutElement/LayoutElement.json",
+                "description": "Модель иконки поверх продукта"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "CarouselWrapper"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "CarouselWrapper"
+              },
+              "events": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/CarouselWrapper/v1/CarouselWrapperEvents.json",
+                "description": "События, на которые мы можем навесить sdui экшены"
+              },
+              "scaling": {
+                "type": "boolean",
+                "description": "Высота боковых элементов: в состоянии true левый и правый элемент приобретают высоту равную 80% от центрального элемента"
+              },
+              "transparency": {
+                "type": "boolean",
+                "description": "Прозрачность боковых элементов: в состоянии true левый и правый элемент приобретают прозрачность равную 30% от центрального элемента"
+              },
+              "pageControlPosition": {
+                "$ref": "#/definitions/PageControlPosition",
+                "description": "Режим отображения Page Control элемента. Важно: в режиме .none параметр gap игнорируется"
+              },
+              "sideItemPlacement": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Spacing/Spacing.json",
+                "default": "xxxl",
+                "description": "Ширина видимой части правого и левого элементов коллекции"
+              },
+              "backgroundColor": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Color/Color.json",
+                "description": "Цвет фона"
+              },
+              "corners": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Corners/v1/Corners.json",
+                "description": "Радиусы скругления углов"
+              },
+              "interItemSpacing": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Spacing/Spacing.json",
+                "default": "xs",
+                "description": "Расстояние между элементами"
+              },
+              "gap": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Spacing/Spacing.json",
+                "default": "m",
+                "description": "Расстояние между контентом и Page Control"
+              },
+              "initialItemIndex": {
+                "type": "number",
+                "default": 0,
+                "description": "Индекс элемента, до которого сработает невидимый автоматический скрол. Важно: при инвалидном индексе - компонент не отобразится"
+              },
+              "itemCollectionList": {
+                "type": "array",
+                "items": {
+                  "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/common/LayoutElement/LayoutElement.json"
+                },
+                "description": "Массив отображаемых компонентов в области контента. Важно: при пустом массиве - компонент не отобразится"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "ChevronWrapper"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "ChevronWrapper"
+              },
+              "titleView": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/common/LayoutElement/LayoutElement.json",
+                "description": "Контент в свёрнутом состоянии компонента"
+              },
+              "collapsibleView": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/common/LayoutElement/LayoutElement.json",
+                "description": "Дополнительный контент в развёрнутом состоянии компонента"
+              },
+              "wholeViewClickable": {
+                "type": "boolean",
+                "default": true,
+                "description": "Раскрытие компонента по нажатию в любое место(true)/на шеврон(false)"
+              },
+              "collapsed": {
+                "type": "boolean",
+                "default": false,
+                "description": "Начальное состояние компонента развернутое (false) / свернутое (true)"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "ChipsStackView"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "ChipsStackView"
+              },
+              "isMultiline": {
+                "type": "boolean",
+                "description": "Расположение элементов на экране: в один ряд, либо в несколько строк с переносом"
+              },
+              "alignment": {
+                "$ref": "#/definitions/Alignment",
+                "description": "Выравнивание элементов на экране: слева или справа"
+              },
+              "chipsStack": {
+                "type": "array",
+                "items": {
+                  "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/common/LayoutElement/LayoutElement.json"
+                },
+                "description": "Массив с чипсами, состоящий из ButtonViewV2. Должен приходить как LayoutElement, т.к. appearance находится в нём"
+              },
+              "title": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/common/LayoutElement/LayoutElement.json",
+                "description": "Тайтл чипс-вью"
+              },
+              "subtitle": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/common/LayoutElement/LayoutElement.json",
+                "description": "Сабтайтл чипс-вью."
+              },
+              "focusItem": {
+                "type": "integer",
+                "description": "Индекс выбранного элемента Chip для осуществления центрирования по выбранному элементу"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "CircleProgressIcon"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "CircleProgressIcon"
+              },
+              "progress": {
+                "type": "number",
+                "description": "Текущий прогресс в процентах, диапазон [0,100]"
+              },
+              "size": {
+                "$ref": "#/definitions/Size",
+                "default": "medium",
+                "description": "Размер прогресса, по умолчанию medium"
+              },
+              "fill": {
+                "$ref": "#/definitions/Fill",
+                "description": "Заливка центра прогресса, по умолчанию none"
+              },
+              "content": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/CircleProgressIcon/v1/CircleProgressIconContent.json",
+                "description": "Тип контента, по умолчанию none"
+              },
+              "progressColor": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Color/Color.json",
+                "description": "Цвет прогресса, по умолчанию graphicColorPositive"
+              },
+              "stroke": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Color/Color.json",
+                "description": "Подложка прогресса, по умолчанию none"
+              },
+              "direction": {
+                "$ref": "#/definitions/Direction",
+                "description": "Направление выполнения прогресса, по умолчанию clockwise"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "ClickWrapper"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "ClickWrapper"
+              },
+              "preset": {
+                "$ref": "#/definitions/Preset",
+                "default": "full",
+                "description": "Название пресета ClickWrapper."
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "ConstraintWrapper"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "ConstraintWrapper"
+              },
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/common/LayoutElement/LayoutElement.json"
+                },
+                "description": "Вложенные элементы"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "CustomView"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "CustomView"
+              },
+              "customViewKey": {
+                "$ref": "#/definitions/CustomViewKey",
+                "description": "Ключ идентификации конкретной реализации"
+              },
+              "element": {
+                "type": "object",
+                "format": "JsonElement",
+                "description": "Элемент в виде json-а. Парсится конкретной фичей, где используется данный элемент."
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "DataContent"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "DataContent"
+              },
+              "firstLineGroup": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/DataContent/v2/DataContentV2Line.json",
+                "description": "Параметры и свойства для первой линии с контентом."
+              },
+              "secondLineGroup": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/DataContent/v2/DataContentV2Line.json",
+                "description": "Параметры и свойства для второй линии с контентом."
+              },
+              "thirdLineGroup": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/DataContent/v2/DataContentV2Line.json",
+                "description": "Параметры и свойства для третьей линии с контентом."
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "DataStackView"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "DataStackView"
+              },
+              "iconView": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/IconView/v1/IconView.json",
+                "description": "Иконка сверху"
+              },
+              "resizeMode": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/ResizeMode/ResizeMode.json",
+                "description": "Поведение стека на растягивание"
+              },
+              "title": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Text/v1/Text.json",
+                "description": "Текст под иконкой"
+              },
+              "subtitle": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Text/v1/Text.json",
+                "description": "Текст между двумя лейблами"
+              },
+              "extraSubtitle": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Text/v1/Text.json",
+                "description": "Текст снизу"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "DataView"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "DataView"
+              },
+              "dataContent": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/DataContent/v1/DataContent.json",
+                "description": "Объект с текстом"
+              },
+              "iconView": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/IconView/v1/IconView.json",
+                "description": "Иконка слева"
+              },
+              "indicatorView": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/IndicatorView/v1/IndicatorView.json",
+                "description": "Индикатор справа"
+              },
+              "contentAndIconAlignment": {
+                "$ref": "#/definitions/VerticalAlignment",
+                "description": "Вертикальное выравнивание иконки и контента"
+              },
+              "indicatorAlignment": {
+                "$ref": "#/definitions/VerticalAlignment",
+                "default": "leading",
+                "description": "Вертикальное выравнивание индикатора"
+              },
+              "extraPaddings": {
+                "type": "boolean",
+                "default": true,
+                "description": "Отступы вокруг компонента. Ознакомьтесь внимательно с adoc по этому полю."
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "ErrorLoadingView"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "ErrorLoadingView"
+              },
+              "message": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Text/v1/Text.json",
+                "description": "Текст ошибки"
+              },
+              "icon": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/IconView/v1/IconView.json",
+                "description": "Иконка справа"
+              },
+              "height": {
+                "type": "number",
+                "description": "Высота"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "FigmaFrame"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "FigmaFrame"
+              },
+              "preset": {
+                "$ref": "#/definitions/Preset",
+                "default": "full",
+                "description": "Название пресета FigmaFrame"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "HorizontalCarouselWrapper"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "HorizontalCarouselWrapper"
+              },
+              "snapPosition": {
+                "$ref": "#/definitions/SnapPosition",
+                "description": "Позиция куда встает активная карточка. Значение по умолчанию — start."
+              },
+              "itemsGap": {
+                "type": "number",
+                "description": "Расстояние между элементами внутри слоя ItemsList. Значение по умолчанию — 8."
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/common/LayoutElement/LayoutElement.json"
+                },
+                "description": "Список элементов, которые отображаются в carouselWrapper."
+              },
+              "resizingMode": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/HorizontalCarouselWrapper/v1/ResizingModeHorizontalCarouselWrapper.json",
+                "description": "fill - растягивает центральный блок с элементами на всю ширину. fixed - позволяет задать фиксированный размер, который применится к каждому элементу коллекции. Значеение по умолчанию - fill"
+              },
+              "itemsPaddings": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/EdgeOffsets/EdgeOffsets.json",
+                "description": "Левый и правый паддинг влияет на ширину видимых элементов коллекции. А также верхний и нижний паддинг сжимает контент по высоте. Значение по умолчанию — VerticalPaddings 0, HorizontalPaddings 20"
+              },
+              "currentIndex": {
+                "type": "integer",
+                "description": "Параметр отвечает за индекс активного элемента item. Если задать индекс, карусель автоматически прокрутится до элемента item с этим индексом. Параметр принимает любые значения от 0 до +∞. Значение по умолчанию — 0."
+              },
+              "withScrollAnimation": {
+                "type": "boolean",
+                "description": "Параметр отвечает за наличие анимации при автоматической прокрутке к определённому индексу. Если значение true — прокрутка происходит с анимацией, если false — без анимации. Значение по умолчанию — true."
+              },
+              "events": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/HorizontalCarouselWrapper/v1/HorizontalCarouselWrapperEvents.json",
+                "description": "События, на которые мы можем навесить sdui экшены"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "HorizontalHistogramView"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "HorizontalHistogramView"
+              },
+              "segments": {
+                "type": "array",
+                "items": {
+                  "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/HorizontalHistogramView/v1/HorizontalHistogramSegment.json"
+                },
+                "description": "Массив отображаемых сегментов"
+              },
+              "height": {
+                "type": "number",
+                "description": "Высота гистограммы"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "HorizontalListWrapper"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "HorizontalListWrapper"
+              },
+              "itemsGap": {
+                "type": "number",
+                "description": "Гэп между элементами. В фигме задаётся на слое ItemsList. Значение по умолчанию - 8"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/layouts/HorizontalListWrapper/v1/Item.json"
+                },
+                "description": "Список элементов, которые отображаются в списке"
+              },
+              "visibleItemsCount": {
+                "type": "integer",
+                "description": "Параметр определяет, сколько карточек одновременно отображается в ширину компонента, деля пространство поровну.Ширина карточки расчитывается по формуле: (Component Width -  (LeftPadding + RightPadding) - (LeftItemsPadding+ RightItemsPadding) - Gap*(VisiableItemsCount-1)) / VisiableItemsCount. Принимает значения от 1 и больше, все значения меньше 1 выключает параметр"
+              },
+              "itemsPaddings": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/EdgeOffsets/EdgeOffsets.json",
+                "description": "Параметр добавляет контентные паддинги. Левый паддинг отображается в начале списка, правый паддинг в конце списка, а так же паддинги сверху и снизу. В фигме задаётся на слое ItemsList. Значение по умолчанию - 0"
+              },
+              "events": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/layouts/HorizontalListWrapper/v1/HorizontalListWrapperEvents.json",
+                "description": "События, на которые мы можем навесить sdui экшены"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "HorizontalProgressView"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "HorizontalProgressView"
+              },
+              "title": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Text/v1/Text.json",
+                "description": "Заголовок"
+              },
+              "subtitle": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Text/v1/Text.json",
+                "description": "Подзаголовок"
+              },
+              "progressBarView": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/ProgressBarView/v1/ProgressBarView.json",
+                "description": "Визуальное отображение прогресса"
+              },
+              "margins": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/EdgeOffsets/EdgeOffsets.json",
+                "description": "Внешние отступы"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "IconView"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "IconView"
+              },
+              "icon": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Icon/Icon.json",
+                "description": "Иконка"
+              },
+              "backgroundColor": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Color/Color.json",
+                "default": "transparent",
+                "description": "Цвет фона, по умолчанию transparent"
+              },
+              "backgroundIcon": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Icon/Icon.json",
+                "description": "Иконка для фона"
+              },
+              "size": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/IconView/v1/IconViewSize.json",
+                "default": "small",
+                "description": "Размер иконки, по умолчанию small"
+              },
+              "shape": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/IconView/v1/IconViewShape.json",
+                "default": "noshape",
+                "description": "Форма иконки, по умолчанию noshape"
+              },
+              "initials": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Text/v1/Text.json",
+                "description": "Инициалы вместо иконки"
+              },
+              "stroke": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Stroke/v1/Stroke.json",
+                "description": "Тип обводки иконки"
+              },
+              "topSubicon": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Icon/Icon.json",
+                "description": "Icon в правом-верхнем углу"
+              },
+              "topSubiconBackgroundColor": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Color/Color.json",
+                "description": "Цвет фона для Icon в правом-верхнем углу, по умолчанию specialBackgroundColorPrimaryGrouped"
+              },
+              "indicatorView": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/IndicatorView/v1/IndicatorView.json",
+                "description": "IndicatorView в правом-верхнем углу"
+              },
+              "bottomSubicon": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Icon/Icon.json",
+                "description": "Icon в правом-нижнем углу"
+              },
+              "bottomSubiconBackgroundColor": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Color/Color.json",
+                "description": "Цвет фона для Icon в правом-нижнем углу, по умолчанию specialBackgroundColorPrimaryGrouped"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "ImageView"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "ImageView"
+              },
+              "preset": {
+                "$ref": "#/definitions/Preset",
+                "default": "full",
+                "description": "Название пресета ImageView."
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "IndexContainerWrapper"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "IndexContainerWrapper"
+              },
+              "indexProvider": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/common/LayoutElement/LayoutElement.json",
+                "description": "Элемент, который должен предоставлять текущий индекс контента"
+              },
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/common/LayoutElement/LayoutElement.json"
+                },
+                "description": "Массив элементов, отображаемые по индексу"
+              },
+              "contentPosition": {
+                "$ref": "#/definitions/ContentPosition",
+                "description": "Настраивает отображение контента по вертикали относительно провайдера индекса"
+              },
+              "spacing": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Spacing/Spacing.json",
+                "description": "Отступ между контентом и индекс провайдером"
+              },
+              "backgroundColor": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Color/Color.json",
+                "description": "Цвет фона"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "IndicatorView"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "IndicatorView"
+              },
+              "preset": {
+                "$ref": "#/definitions/Preset",
+                "default": "full",
+                "description": "Название пресета IndicatorView."
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "LabelView"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "LabelView"
+              },
+              "text": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Text/v1/Text.json",
+                "description": "Текст"
+              },
+              "horizontalAlignment": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/TextView/v1/HorizontalAlignment.json",
+                "description": "Горизонтальное выравнивание: по умолчанию применяется HorizontalAlignment: left"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "MarkdownView"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "MarkdownView"
+              },
+              "text": {
+                "type": "string",
+                "description": "Текст"
+              },
+              "padding": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/EdgeOffsets/EdgeOffsets.json",
+                "description": "Отступы"
+              },
+              "horizontalAlignment": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/TextView/v1/HorizontalAlignment.json",
+                "default": "left",
+                "description": "Горизонтальное выравнивание"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "MultiLinearGraphView"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "MultiLinearGraphView"
+              },
+              "lines": {
+                "type": "array",
+                "items": {
+                  "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/MultiLinearGraphView/v1/MultiLinearGraphViewLine.json"
+                },
+                "description": "Линии графика"
+              },
+              "xAxisConfig": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/MultiLinearGraphView/v1/MultiLinearGraphViewXAxisConfig.json",
+                "description": "Настройка оси Х"
+              },
+              "horizontalVisibleScope": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/MultiLinearGraphView/v1/MultiLinearGraphViewVisibleScope.json",
+                "description": "Область видимости по горизонтали. По умолчанию подстраивается под массив точек на графике."
+              },
+              "horizontalLimitLines": {
+                "type": "array",
+                "items": {
+                  "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/MultiLinearGraphView/v1/MultiLinearGraphViewLimitLine.json"
+                },
+                "description": "Лимит-линии графика, параллельные оси Х"
+              },
+              "xAxisLabelFormatter": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/MultiLinearGraphView/v1/MultiLinearGraphViewLabelFormatter.json",
+                "description": "Форматтер для лейблов оси Х"
+              },
+              "yAxisLabelFormatter": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/MultiLinearGraphView/v1/MultiLinearGraphViewLabelFormatter.json",
+                "description": "Форматтер для лейблов оси Y"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "PageIndicatorBulletView"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "PageIndicatorBulletView"
+              },
+              "countOfIndicators": {
+                "type": "integer",
+                "default": 10,
+                "description": "Параметр, определяющий количество элементов в pageIndicator: от 1 до 10. Значение по умолчанию – 10"
+              },
+              "selectedIndicator": {
+                "type": "integer",
+                "default": 0,
+                "description": "Параметр, определяющий индекс выбранного элемента: от 0 до 9. Значение по умолчанию – 0"
+              },
+              "gap": {
+                "type": "number",
+                "default": 8,
+                "description": "Параметр, определяющий расстояние между индикаторами. Значение по умолчанию – 8"
+              },
+              "indicatorColor": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Color/Color.json",
+                "default": "neutralTranslucentColor200",
+                "description": "Параметр, определяющий цвет основных индикаторов. Значение по умолчанию – neutralTranslucentColor200"
+              },
+              "selectedIndicatorColor": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Color/Color.json",
+                "default": "accentColorSecondary",
+                "description": "Параметр, определяющий цвет выбранного индикатора. Значение по умолчанию – accentColorSecondary"
+              },
+              "selectedIndicatorHeight": {
+                "type": "number",
+                "default": 8,
+                "description": "Параметр, определяющий размер индикаторов. Значение по умолчанию – 8"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "PageIndicatorRunnerView"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "PageIndicatorRunnerView"
+              },
+              "countOfIndicators": {
+                "type": "integer",
+                "description": "Параметр, определяющий количество элементов в pageIndicator: от 1 до 10Значение по умолчанию – 10"
+              },
+              "selectedIndicator": {
+                "type": "integer",
+                "description": "Параметр, определяющий индекс выбранного элемента: от 0 до 10Значение по умолчанию – 0"
+              },
+              "indicatorCorners": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Corners/v2/Corners.json",
+                "description": "Параметр, определяющий скругления у дефолтного индикатораЗначение по умолчанию – 2"
+              },
+              "indicatorColor": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Color/Color.json",
+                "description": "Цвет дефолтного индикатораЗначение по умолчанию – neutral-translucent/200"
+              },
+              "selectedIndicatorCorners": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Corners/v2/Corners.json",
+                "description": "Параметр, определяющий скругления у дефолтного индикатораЗначение по умолчанию – 2"
+              },
+              "selectedIndicatorColor": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Color/Color.json",
+                "description": "Цвет выбранного индикатораЗначение по умолчанию – accent/secondary"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "PageIndicatorStepView"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "PageIndicatorStepView"
+              },
+              "countOfIndicators": {
+                "type": "integer",
+                "description": "Параметр, определяющий количество элементов в pageIndicator: от 1 до 10. Значение по умолчанию – 10"
+              },
+              "selectedIndicator": {
+                "type": "integer",
+                "description": "Параметр, определяющий индекс выбранного элемента: от 0 до 9. Значение по умолчанию – 0"
+              },
+              "gap": {
+                "type": "number",
+                "description": "Параметр, определяющий расстояние между индикаторами. Значение по умолчанию – 8"
+              },
+              "indicatorCorners": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Corners/v2/Corners.json",
+                "description": "Скругление углов основных индикаторов"
+              },
+              "indicatorColor": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Color/Color.json",
+                "description": "Параметр, определяющий цвет основных индикаторов. Значение по умолчанию – neutralTranslucentColor200"
+              },
+              "selectedIndicatorCorners": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Corners/v2/Corners.json",
+                "description": "Скругление углов выбранного индикатора"
+              },
+              "selectedIndicatorColor": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Color/Color.json",
+                "description": "Параметр, определяющий цвет выбранного индикатора. Значение по умолчанию – accentColorSecondary"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "ProgressBarView"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "ProgressBarView"
+              },
+              "titles": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/ProgressBarView/v2/ProgressBarTitles.json",
+                "description": "Заголовки под линией прогресса с стилями для шрифта, цвета и признаком многострочности."
+              },
+              "bar": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/ProgressBarView/v2/ProgressBarViewLine.json",
+                "description": "Линия прогресса. Состоит из сегментов, между которыми может быть или не быть расстояние. Сегменты растягиваются по ширине вьюхи."
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "RectangleView"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "RectangleView"
+              },
+              "backgroundColor": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Color/Color.json",
+                "description": "Цвет фона плитки. На клиентах используется backgroundColorSecondary, если не получилось распарсить цвет"
+              },
+              "badgeIcon": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Icon/Icon.json",
+                "description": "Иконка для отображения какого-либо признака в правом верхнем углу плитки"
+              },
+              "badgeBackgroundColor": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Color/Color.json",
+                "description": "Цвет фона бейджа для иконки в правом верхнем углу плитки"
+              },
+              "soloIcon": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/IconView/v1/IconView.json",
+                "description": "Логотип в нижнем правом углу плитки в случае, когда он один"
+              },
+              "icons": {
+                "type": "array",
+                "items": {
+                  "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Icon/Icon.json"
+                },
+                "description": "Массив логотипов в нижнем правом углу плитки. Используется, когда логотипов больше 1. Логотипов не может быть > 5. Shape всегда будет circle"
+              },
+              "image": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/ImageView/v1/ImageView.json",
+                "description": "Фоновая картинка для плитки. Может быть прислана, если плитка достаточно большая, чтобы картинка не мешала отображаемому тексту"
+              },
+              "topDataContent": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/DataContent/v1/DataContent.json",
+                "description": "Верхняя область для отображения текстовой информации на плитке"
+              },
+              "bottomDataContent": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/DataContent/v1/DataContent.json",
+                "description": "Нижняя область для отображения текстовой информации на плитке"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "ReferralBonusView"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "ReferralBonusView"
+              },
+              "dataContent": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/DataContent/v1/DataContent.json",
+                "description": "Объект с текстами"
+              },
+              "iconView": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/IconView/v1/IconView.json",
+                "description": "Иконка справа"
+              },
+              "timerText": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Text/v1/PlainText.json",
+                "description": "Текст"
+              },
+              "timerBackgroundColor": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Color/PaletteColor.json",
+                "description": "Цвет фона, по умолчанию staticGraphicColorFrenchLilac"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "ReplaceWrapper"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "ReplaceWrapper"
+              },
+              "animation": {
+                "$ref": "#/definitions/Animation",
+                "default": "instant",
+                "description": "Определяет вид анимации при переходе между контентом."
+              },
+              "item": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/common/LayoutElement/LayoutElement.json",
+                "description": "Контент, который можно заменить на любой даже локальный компонент"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "RightIconWrapper"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "RightIconWrapper"
+              },
+              "content": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/common/LayoutElement/LayoutElement.json",
+                "description": "Контент"
+              },
+              "iconView": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/IconView/v1/IconView.json",
+                "description": "Иконка справа"
+              },
+              "padding": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/EdgeOffsets/EdgeOffsets.json",
+                "description": "Внешние отступы"
+              },
+              "spacing": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Spacing/Spacing.json",
+                "description": "Отступ между контентом и иконкой"
+              },
+              "iconAction": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/actions/Action/Action.json",
+                "description": "Действие, которое будет исполнено при нажатии на иконку"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "ScrollWrapper"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "ScrollWrapper"
+              },
+              "events": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/layouts/ScrollWrapper/v1/ScrollWrapperEvents.json",
+                "description": "События, на которые мы можем навесить sdui экшены"
+              },
+              "isFillViewport": {
+                "type": "boolean",
+                "description": "Флаг определяющий должен ли content растягиваться, чтобы заполнить всю доступную область. По дефолту false. Только для android"
+              },
+              "axis": {
+                "$ref": "#/definitions/Axis",
+                "description": "Направление оси"
+              },
+              "showAxisScrollIndicator": {
+                "type": "boolean",
+                "default": true,
+                "description": "Настройка отображения индикатора скролла на оси. Только для iOS и Web"
+              },
+              "content": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/common/LayoutElement/LayoutElement.json",
+                "description": "Контент"
+              },
+              "shouldScrollToEnd": {
+                "type": "boolean",
+                "default": false,
+                "description": "Флаг для автоматического проскролла в конец списка"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "SelectionWrapper"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "SelectionWrapper"
+              },
+              "isSelected": {
+                "type": "boolean",
+                "default": false,
+                "description": "Отображение выбранного и невыбранного состояния компонента. Значение по умолчанию – false"
+              },
+              "isEnabled": {
+                "type": "boolean",
+                "default": true,
+                "description": "Отображение состояния доступного и недоступного для нажатия компонента. Значение по умолчанию – true"
+              },
+              "item": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/common/LayoutElement/LayoutElement.json",
+                "description": "Контентная часть компонента"
+              },
+              "highlightedEffectColor": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Color/Color.json",
+                "description": "Параметр отвечает за настройку цвета области, которая накладывается поверх всего содержимого компонента во время зажатия, цвет применяется с 20% прозрачности. Значение по умолчанию - NeutralTranslucentColor400"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "SkeletonView"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "SkeletonView"
+              },
+              "skeletonViewPreset": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/SkeletonView/v1/SkeletonViewPreset.json",
+                "description": "Пресет скелетона"
+              },
+              "color": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Color/Color.json",
+                "default": "specialBackgroundColorPrimaryGrouped",
+                "description": "Цвет скелетона. По умолчанию используется specialBackgroundColorPrimaryGrouped"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "Slider"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "Slider"
+              },
+              "isEnabled": {
+                "type": "boolean",
+                "default": true,
+                "description": "Отображение состояния доступного и недоступного для нажатия компонента"
+              },
+              "currentValue": {
+                "type": "number",
+                "description": "Текущее значение слайдера. Значение по умолчанию 0.5"
+              },
+              "leftValue": {
+                "type": "number",
+                "description": "Значение слева на треке. Обычно минимальное значение. Значение по умолчанию 0"
+              },
+              "rightValue": {
+                "type": "number",
+                "description": "Значение справа на треке. Обычно максимальное значение. Значение по умолчанию 1"
+              },
+              "knobAppearance": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/common/Appearance/Appearance.json",
+                "description": "Визуальные свойства кноба."
+              },
+              "knobSize": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Size/Size.json",
+                "description": "Высота и ширина кноба. Минимальные значения 0. Значение по умолчанию 16x16"
+              },
+              "knobDiscreteBehaviour": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/Slider/v1/KnobDiscreteBehaviour.json",
+                "description": "Тип перемещения кноба. Если параметр не заполнен, то кноб перемещается по треку плавно, не дискретно"
+              },
+              "trackAppearance": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/common/Appearance/Appearance.json",
+                "description": "Визуальные свойства трэка слайдера."
+              },
+              "trackHeight": {
+                "type": "number",
+                "description": "Высота бэграунда у слайдера. Минимальное значение 0. Значение по умолчанию 4"
+              },
+              "selectedTrackAppearance": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/common/Appearance/Appearance.json",
+                "description": "Визуальные свойства активной части трэка слайдера. Значение по умолчанию – accent/primary"
+              },
+              "dots": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/Slider/v1/Dots.json",
+                "description": "Отображение точек на слайдере. "
+              },
+              "events": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/Slider/v1/SliderEvents.json",
+                "description": "События, на которые мы можем навесить sdui экшены"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "Spacer"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "Spacer"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "SpinnerView"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "SpinnerView"
+              },
+              "preset": {
+                "$ref": "#/definitions/Preset",
+                "default": "full",
+                "description": "Название пресета Spinner"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "SquareWrapper"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "SquareWrapper"
+              },
+              "content": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/common/LayoutElement/LayoutElement.json",
+                "description": "Контент"
+              },
+              "backgroundColor": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Color/Color.json",
+                "description": "Цвет фона, по умолчанию backgroundColorSecondary"
+              },
+              "backgroundIcon": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Icon/Icon.json",
+                "description": "Иконка для фона"
+              },
+              "description": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Text/v1/Text.json",
+                "description": "Текст внизу"
+              },
+              "subDescription": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Text/v1/Text.json",
+                "description": "Дополнительный текст внизу"
+              },
+              "icons": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Icon"
+                },
+                "description": "Массив иконок в правом нижнем углу"
+              },
+              "iconShape": {
+                "$ref": "#/definitions/IconShape",
+                "description": "Форма иконок в правом нижнем углу, по умолчанию noshape"
+              },
+              "size": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Size/Size.json",
+                "description": "Сущность, которая позволяет задать размер элементу"
+              },
+              "sizeMode": {
+                "$ref": "#/definitions/SizeMode",
+                "description": "Форма компонента, по умолчанию square"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "StackView"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "StackView"
+              },
+              "axis": {
+                "$ref": "#/definitions/Axis",
+                "description": "Ось по которой располагются дочернии элементы"
+              },
+              "alignment": {
+                "$ref": "#/definitions/Alignment",
+                "description": "Выравнивание элементов относительно основной оси"
+              },
+              "distribution": {
+                "$ref": "#/definitions/Distribution",
+                "default": "default",
+                "description": "Стратегия вычисления размеров дочерних элементов вдоль оси представления. default - игнорирует параметр weight из LayoutElement, использует size. weighted - размеры рассчитываются пропорционально полю weight, если поле не пришло используются size(для таких вью поведение будет как default)"
+              },
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/common/LayoutElement/LayoutElement.json"
+                },
+                "description": "Массив дочерних элементов"
+              },
+              "backgroundColor": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Color/Color.json",
+                "description": "Цвет фона"
+              },
+              "padding": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/EdgeOffsets/EdgeOffsets.json",
+                "description": "Отступ дочерних элементов от краев стека"
+              },
+              "corners": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Corners/v1/Corners.json",
+                "description": "Радиусы скругления углов"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "StackWrapper"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "StackWrapper"
+              },
+              "axis": {
+                "$ref": "#/definitions/Axis",
+                "description": "Ось, по которой располагаются дочерние элементы"
+              },
+              "alignment": {
+                "$ref": "#/definitions/Alignment",
+                "description": "Выравнивание элементов относительно основной оси"
+              },
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/common/LayoutElement/LayoutElement.json"
+                },
+                "description": "Массив дочерних элементов"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "StepView"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "StepView"
+              },
+              "axis": {
+                "$ref": "#/definitions/Axis",
+                "description": "Выравнивание внутренних элементов компонента: по вертикальной или горизонтальной оси"
+              },
+              "graphic": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/StepView/v1/Graphic.json",
+                "description": "Тип элемента графики, расположенный между двумя трэками"
+              },
+              "firstTrack": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/StepView/v1/Track.json",
+                "description": "Параметры для FirstTrack. Если их нет, то трек не отображается"
+              },
+              "secondTrack": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/StepView/v1/Track.json",
+                "description": "Параметры для SecondTrack. Если их нет, то трек не отображается"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "SwipeContextWrapper"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "SwipeContextWrapper"
+              },
+              "contextItemsPosition": {
+                "$ref": "#/definitions/ActionsViewPosition",
+                "description": "Параметр определяет, с какой стороны будут изначально отображаться контекстные действия. Значение Hide скрывает все действия, показывая только содержимое ячейки без предварительно открытых контекстных действий. Значение по умолчанию = hide"
+              },
+              "transitionType": {
+                "$ref": "#/definitions/TransitionType",
+                "description": "Параметр описывает как трансформируются и появляются контекстные действия при свайпе ячейки. Значение по умолчанию — pushSlideIn"
+              },
+              "gap": {
+                "type": "number",
+                "description": "Расстояние между ячейкой и контекстными действиями. Значение по умолчанию — 0"
+              },
+              "cell": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/common/LayoutElement/LayoutElement.json",
+                "description": "Контент ячейки"
+              },
+              "leftAddon": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/layouts/SwipeContextWrapper/v1/ContextItems.json",
+                "description": "Контекстные действия с левой стороны, которые выезжают при свайпе слева направо"
+              },
+              "rightAddon": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/layouts/SwipeContextWrapper/v1/ContextItems.json",
+                "description": "Контекстные действия с правой стороны, которые выезжают при свайпе справа налево"
+              },
+              "events": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/layouts/SwipeContextWrapper/v1/SwipeContextWrapperEvents.json",
+                "description": "События, на которые мы можем навесить sdui экшены"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "SwitchView"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "SwitchView"
+              },
+              "isSelected": {
+                "type": "boolean",
+                "default": false,
+                "description": "Отображение состояния выбранного компонента"
+              },
+              "isEnabled": {
+                "type": "boolean",
+                "default": true,
+                "description": "Отображение состояния доступного и недоступного для нажатия компонента"
+              },
+              "backgroundShape": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/SwitchView/v1/BackgroundShape.json",
+                "description": "Группа определяет визуальные и функциональные характеристики фигуры, по которой движется Knob, включая отступы и appearance"
+              },
+              "knobShape": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/SwitchView/v1/KnobShape.json",
+                "description": "Группа определяет визуальные и функциональные характеристики Knob’а, включая его размеры и appearance"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "TagView"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "TagView"
+              },
+              "leftAddon": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/TagView/v1/TagViewAddon.json",
+                "description": "Левая иконка"
+              },
+              "title": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/LabelView/v1/LabelView.json",
+                "description": "Текст"
+              },
+              "titlePaddings": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/EdgeOffsets/EdgeOffsets.json",
+                "description": "Отступы у текста"
+              },
+              "rightAddon": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/TagView/v1/TagViewAddon.json",
+                "description": "Правая иконка"
+              },
+              "backgroundColor": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Color/Color.json",
+                "description": "Цвет фона"
+              },
+              "corners": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Corners/v1/Corners.json",
+                "description": "Радиусы скругления углов"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "TextField"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "TextField"
+              },
+              "isEnabled": {
+                "type": "boolean",
+                "description": "Состояние доступного и недоступного для нажатия компонента. Значение по умолчанию – True"
+              },
+              "focusMode": {
+                "$ref": "#/definitions/FocusMode",
+                "description": "Состояние компонента в фокусе (активированном), характеризуемое наличием объекта Cursor. Значение по умолчанию – Auto"
+              },
+              "isSecured": {
+                "type": "boolean",
+                "description": "Скрытие контента, введённого в Value, за счёт символов безопасности. Значение по умолчанию – False"
+              },
+              "textAlignment": {
+                "$ref": "#/definitions/TextAlignment",
+                "description": "Выравнивание текста внутри компонента. Значение по умолчанию - left."
+              },
+              "value": {
+                "type": "string",
+                "description": "Вводимое в поле ввода значение пользователем. Значение по умолчанию – «»"
+              },
+              "valueColor": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Color/Color.json",
+                "description": "Цвет вводимого в поле ввода значения. Значение по умолчанию – TextPrimary"
+              },
+              "valueTypography": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Typography/Typography.json",
+                "description": "Типографика вводимого в поле ввода значения. Значение по умолчанию – ParagraphPrimaryMedium"
+              },
+              "placeholder": {
+                "type": "string",
+                "description": "Подсказка в поле ввода, пока значение не введено."
+              },
+              "placeholderColor": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Color/Color.json",
+                "description": "Цвет подсказки в поле ввода. Значение по умолчанию – TextColorSecondary"
+              },
+              "placeholderTypography": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Typography/Typography.json",
+                "description": "Подсказка в поле ввода. Значение по умолчанию – ParagraphPrimaryMedium"
+              },
+              "showClearButton": {
+                "$ref": "#/definitions/ShowClearButton",
+                "description": "Поведение отображения иконки очистки. Где WhileEditing — иконка отображается только при наличии символов в поле Value и установленном фокусе, WhenNotEmpty — отображается толькопри наличии символов в поле Value, Always — отображается всегда и Never — иконка всегда скрыта. Значение по умолчанию – WhileEditing"
+              },
+              "clearButtonColor": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Color/Color.json",
+                "description": "Цвет иконки очистки. Значение по умолчанию – Translucent500"
+              },
+              "clearButtonLeftPadding": {
+                "type": "integer",
+                "description": "Левый отступ элемента ClearButton. Значение по умолчанию – 16"
+              },
+              "formatter": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/TextField/v2/Formatter.json",
+                "description": "Введённый текст, показанный в определённом форматировании или без него."
+              },
+              "cursorColor": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Color/Color.json",
+                "description": "Цвет курсора. Значение по умолчанию – neutral1300"
+              },
+              "keyboardSettings": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/TextField/v2/KeyboardSettings.json",
+                "description": "Настройки клавиатуры"
+              },
+              "numberOfLines": {
+                "type": "integer",
+                "description": "Максимальное количество строк контента, передаваемого в Value. Значение по умолчанию – 0, то есть «многострочный»."
+              },
+              "events": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/TextField/v2/TextFieldEvents.json",
+                "description": "События, на которые мы можем навесить sdui экшены"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "TextView"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "TextView"
+              },
+              "leftText": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Text/v1/Text.json",
+                "description": "Текст слева"
+              },
+              "rightText": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/Text/v1/Text.json",
+                "description": "Текст справа"
+              },
+              "padding": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/EdgeOffsets/EdgeOffsets.json",
+                "description": "Отступы"
+              },
+              "verticalAlignment": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/TextView/v1/VerticalAlignment.json",
+                "description": "Вертикальное выравнивание"
+              },
+              "horizontalAlignment": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/components/TextView/v1/HorizontalAlignment.json",
+                "description": "Горизонтальное выравнивание"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "VerticalListWrapper"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "VerticalListWrapper"
+              },
+              "events": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/layouts/VerticalListWrapper/v1/Events.json",
+                "description": "События, на которые мы можем навесить sdui экшены"
+              },
+              "childrenGap": {
+                "type": "number",
+                "default": 0,
+                "description": "Размер отступа между элементами массива"
+              },
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/layouts/VerticalListWrapper/v1/Item.json"
+                },
+                "description": "Массив дочерних элементов"
+              },
+              "childrenPaddings": {
+                "$ref": "file:///Users/username/Documents/front-middle-schema/SDUI/atoms/EdgeOffsets/EdgeOffsets.json",
+                "description": "Контентный левый, верхний, правый и нижний паддинги вокруг массива. Значение по умолчанию - zero"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        }
+      ]
+    },
+    "LayoutElement": {
+      "$ref": "#/definitions/SDUIComponent"
+    },
+    "Spacing": {
+      "type": "string",
+      "enum": [
+        "zero",
+        "xxxxs",
+        "xxxs",
+        "xxs",
+        "xs2xs",
+        "xs",
+        "xss",
+        "s",
+        "m",
+        "l",
+        "xl",
+        "xxl",
+        "xxxl",
+        "xxxxl",
+        "xxxxxl",
+        "xxxxxxl",
+        "horizontalMargin",
+        "extendedHorizontalMargin"
+      ],
+      "description": "Токены отступов из дизайн-системы"
+    },
+    "Color": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        {
+          "type": "string",
+          "enum": [
+            "textColorPrimary",
+            "textColorPrimaryInverted",
+            "textColorSecondary",
+            "textColorSecondaryInverted",
+            "textColorTertiary",
+            "textColorTertiaryInverted",
+            "textColorQuaternary",
+            "textColorQuaternaryInverted",
+            "textColorAccent",
+            "textColorLink",
+            "textColorLinkInverted",
+            "textColorNegative",
+            "textColorPositive",
+            "textColorAttention",
+            "textColorParagraph",
+            "textColorParagraphInverted",
+            "backgroundColorPrimary",
+            "backgroundColorPrimaryInverted",
+            "backgroundColorSecondary",
+            "backgroundColorSecondaryInverted",
+            "backgroundColorTertiary",
+            "backgroundColorTertiaryInverted",
+            "backgroundColorAccent",
+            "backgroundColorComponent",
+            "backgroundColorComponentInverted",
+            "backgroundColorNegativeMuted",
+            "backgroundColorPositiveMuted",
+            "backgroundColorAttentionMuted",
+            "backgroundColorInfoMuted",
+            "backgroundColorLinkMuted",
+            "backgroundColorNeutral",
+            "borderColorPrimary",
+            "borderColorPrimaryInverted",
+            "borderColorSecondary",
+            "borderColorSecondaryInverted",
+            "borderColorTertiary",
+            "borderColorTertiaryInverted",
+            "borderColorAccent",
+            "borderColorLink",
+            "borderColorKey",
+            "borderColorKeyInverted",
+            "graphicColorPrimary",
+            "graphicColorSecondary",
+            "graphicColorTertiary",
+            "graphicColorQuaternary",
+            "clear",
+            "staticGraphicColorBlueMaya",
+            "staticGraphicColorRed",
+            "staticGraphicColorGreen",
+            "staticGraphicColorOrange",
+            "staticGraphicColorPurple",
+            "staticGraphicColorYellow"
+          ]
+        }
+      ],
+      "description": "Цвет из палитры или hex"
+    },
+    "Typography": {
+      "type": "string",
+      "enum": [
+        "HeadlineXLarge",
+        "HeadlineLarge",
+        "HeadlineMedium",
+        "HeadlineSmall",
+        "HeadlineXSmall",
+        "PromoXLarge",
+        "PromoLarge",
+        "PromoMedium",
+        "PromoSmall",
+        "PromoXSmall",
+        "ParagraphPrimaryLarge",
+        "ParagraphPrimaryMedium",
+        "ParagraphPrimarySmall",
+        "ParagraphSecondaryLarge",
+        "ParagraphSecondaryMedium",
+        "ParagraphSecondarySmall",
+        "ParagraphComponent",
+        "ParagraphComponentSecondary",
+        "ParagraphTagline",
+        "ParagraphCaps",
+        "ActionPrimaryLarge",
+        "ActionPrimaryMedium",
+        "ActionPrimarySmall",
+        "ActionSecondaryLarge",
+        "ActionSecondaryMedium",
+        "ActionSecondarySmall",
+        "ActionComponent"
+      ]
+    },
+    "Action": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "key": {
+          "type": "string"
+        },
+        "source": {},
+        "version": {
+          "type": "number"
+        }
+      }
+    }
+  }
+}

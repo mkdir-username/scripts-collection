@@ -1,0 +1,349 @@
+{
+  "version": "1.0.0",
+  "description": "Маппинг SDUI функций и синтаксиса в Jinja2 шаблоны",
+
+  "patterns": {
+    "conditional": {
+      "if_then_else": {
+        "pattern": "\\{\"type\":\\s*\"if\",\\s*\"if\":\\s*\"(.+?)\",\\s*\"then\":\\s*(.+?),\\s*\"else\":\\s*(.+?)\\}",
+        "template": "{{ $2 if $1 else $3 }}",
+        "description": "Условные выражения if/then/else"
+      },
+      "ternary": {
+        "pattern": "\\$\\{(.+?)\\s*\\?\\s*(.+?)\\s*:\\s*(.+?)\\}",
+        "template": "{{ $2 if $1 else $3 }}",
+        "description": "Тернарный оператор"
+      }
+    },
+
+    "variables": {
+      "state": {
+        "pattern": "\\$\\{state\\.([^}]+)\\}",
+        "template": "{{ state.$1 }}",
+        "description": "Переменные состояния"
+      },
+      "computed": {
+        "pattern": "\\$\\{computed\\.([^}]+)\\}",
+        "template": "{{ computed.$1 }}",
+        "description": "Вычисляемые свойства"
+      },
+      "props": {
+        "pattern": "\\$\\{props\\.([^}]+)\\}",
+        "template": "{{ props.$1 }}",
+        "description": "Входные параметры"
+      },
+      "data": {
+        "pattern": "\\$\\{data\\.([^}]+)\\}",
+        "template": "{{ data.$1 }}",
+        "description": "Данные"
+      },
+      "context": {
+        "pattern": "\\$\\{context\\.([^}]+)\\}",
+        "template": "{{ context.$1 }}",
+        "description": "Контекстные переменные"
+      },
+      "simple": {
+        "pattern": "\\$\\{([^.}]+)\\}",
+        "template": "{{ $1 }}",
+        "description": "Простые переменные"
+      }
+    },
+
+    "logical": {
+      "and": {
+        "pattern": "\\{\"type\":\\s*\"and\",\\s*\"values\":\\s*\\[(.+?)\\]\\}",
+        "template": "{{ ($1) }}",
+        "transform": "join_with_and",
+        "description": "Логическое И"
+      },
+      "or": {
+        "pattern": "\\{\"type\":\\s*\"or\",\\s*\"values\":\\s*\\[(.+?)\\]\\}",
+        "template": "{{ ($1) }}",
+        "transform": "join_with_or",
+        "description": "Логическое ИЛИ"
+      },
+      "not": {
+        "pattern": "\\{\"type\":\\s*\"not\",\\s*\"value\":\\s*(.+?)\\}",
+        "template": "{{ not ($1) }}",
+        "description": "Логическое НЕ"
+      }
+    },
+
+    "string": {
+      "concat": {
+        "pattern": "\\{\"type\":\\s*\"concat\",\\s*\"values\":\\s*\\[(.+?)\\]\\}",
+        "template": "{{ $1 }}",
+        "transform": "join_strings",
+        "description": "Конкатенация строк"
+      },
+      "uppercase": {
+        "pattern": "\\{\"type\":\\s*\"uppercase\",\\s*\"value\":\\s*(.+?)\\}",
+        "template": "{{ ($1) | upper }}",
+        "description": "Преобразование в верхний регистр"
+      },
+      "lowercase": {
+        "pattern": "\\{\"type\":\\s*\"lowercase\",\\s*\"value\":\\s*(.+?)\\}",
+        "template": "{{ ($1) | lower }}",
+        "description": "Преобразование в нижний регистр"
+      },
+      "capitalize": {
+        "pattern": "\\{\"type\":\\s*\"capitalize\",\\s*\"value\":\\s*(.+?)\\}",
+        "template": "{{ ($1) | capitalize }}",
+        "description": "Первая буква заглавная"
+      },
+      "trim": {
+        "pattern": "\\{\"type\":\\s*\"trim\",\\s*\"value\":\\s*(.+?)\\}",
+        "template": "{{ ($1) | trim }}",
+        "description": "Удаление пробелов"
+      },
+      "replace": {
+        "pattern": "\\{\"type\":\\s*\"replace\",\\s*\"value\":\\s*(.+?),\\s*\"search\":\\s*\"(.+?)\",\\s*\"replace\":\\s*\"(.+?)\"\\}",
+        "template": "{{ ($1) | replace('$2', '$3') }}",
+        "description": "Замена подстроки"
+      },
+      "substring": {
+        "pattern": "\\{\"type\":\\s*\"substring\",\\s*\"value\":\\s*(.+?),\\s*\"start\":\\s*(\\d+),\\s*\"end\":\\s*(\\d+)\\}",
+        "template": "{{ ($1)[$2:$3] }}",
+        "description": "Подстрока"
+      }
+    },
+
+    "mathematical": {
+      "add": {
+        "pattern": "\\{\"type\":\\s*\"add\",\\s*\"values\":\\s*\\[(.+?)\\]\\}",
+        "template": "{{ $1 }}",
+        "transform": "join_with_plus",
+        "description": "Сложение"
+      },
+      "subtract": {
+        "pattern": "\\{\"type\":\\s*\"subtract\",\\s*\"left\":\\s*(.+?),\\s*\"right\":\\s*(.+?)\\}",
+        "template": "{{ ($1) - ($2) }}",
+        "description": "Вычитание"
+      },
+      "multiply": {
+        "pattern": "\\{\"type\":\\s*\"multiply\",\\s*\"values\":\\s*\\[(.+?)\\]\\}",
+        "template": "{{ $1 }}",
+        "transform": "join_with_multiply",
+        "description": "Умножение"
+      },
+      "divide": {
+        "pattern": "\\{\"type\":\\s*\"divide\",\\s*\"left\":\\s*(.+?),\\s*\"right\":\\s*(.+?)\\}",
+        "template": "{{ ($1) / ($2) }}",
+        "description": "Деление"
+      },
+      "modulo": {
+        "pattern": "\\{\"type\":\\s*\"modulo\",\\s*\"left\":\\s*(.+?),\\s*\"right\":\\s*(.+?)\\}",
+        "template": "{{ ($1) % ($2) }}",
+        "description": "Остаток от деления"
+      },
+      "round": {
+        "pattern": "\\{\"type\":\\s*\"round\",\\s*\"value\":\\s*(.+?),\\s*\"precision\":\\s*(\\d+)\\}",
+        "template": "{{ ($1) | round($2) }}",
+        "description": "Округление"
+      },
+      "floor": {
+        "pattern": "\\{\"type\":\\s*\"floor\",\\s*\"value\":\\s*(.+?)\\}",
+        "template": "{{ ($1) | int }}",
+        "description": "Округление вниз"
+      },
+      "ceil": {
+        "pattern": "\\{\"type\":\\s*\"ceil\",\\s*\"value\":\\s*(.+?)\\}",
+        "template": "{{ (($1) + 0.999) | int }}",
+        "description": "Округление вверх"
+      },
+      "abs": {
+        "pattern": "\\{\"type\":\\s*\"abs\",\\s*\"value\":\\s*(.+?)\\}",
+        "template": "{{ ($1) | abs }}",
+        "description": "Абсолютное значение"
+      }
+    },
+
+    "array": {
+      "length": {
+        "pattern": "\\{\"type\":\\s*\"length\",\\s*\"value\":\\s*(.+?)\\}",
+        "template": "{{ ($1) | length }}",
+        "description": "Длина массива"
+      },
+      "first": {
+        "pattern": "\\{\"type\":\\s*\"first\",\\s*\"value\":\\s*(.+?)\\}",
+        "template": "{{ ($1) | first }}",
+        "description": "Первый элемент"
+      },
+      "last": {
+        "pattern": "\\{\"type\":\\s*\"last\",\\s*\"value\":\\s*(.+?)\\}",
+        "template": "{{ ($1) | last }}",
+        "description": "Последний элемент"
+      },
+      "join": {
+        "pattern": "\\{\"type\":\\s*\"join\",\\s*\"value\":\\s*(.+?),\\s*\"separator\":\\s*\"(.+?)\"\\}",
+        "template": "{{ ($1) | join('$2') }}",
+        "description": "Объединение элементов"
+      },
+      "filter": {
+        "pattern": "\\{\"type\":\\s*\"filter\",\\s*\"value\":\\s*(.+?),\\s*\"condition\":\\s*(.+?)\\}",
+        "template": "{{ ($1) | selectattr('$2') | list }}",
+        "description": "Фильтрация массива"
+      },
+      "map": {
+        "pattern": "\\{\"type\":\\s*\"map\",\\s*\"value\":\\s*(.+?),\\s*\"property\":\\s*\"(.+?)\"\\}",
+        "template": "{{ ($1) | map(attribute='$2') | list }}",
+        "description": "Преобразование массива"
+      },
+      "reverse": {
+        "pattern": "\\{\"type\":\\s*\"reverse\",\\s*\"value\":\\s*(.+?)\\}",
+        "template": "{{ ($1) | reverse | list }}",
+        "description": "Реверс массива"
+      },
+      "sort": {
+        "pattern": "\\{\"type\":\\s*\"sort\",\\s*\"value\":\\s*(.+?)\\}",
+        "template": "{{ ($1) | sort }}",
+        "description": "Сортировка массива"
+      },
+      "unique": {
+        "pattern": "\\{\"type\":\\s*\"unique\",\\s*\"value\":\\s*(.+?)\\}",
+        "template": "{{ ($1) | unique | list }}",
+        "description": "Уникальные элементы"
+      }
+    },
+
+    "date": {
+      "now": {
+        "pattern": "\\{\"type\":\\s*\"now\"\\}",
+        "template": "{{ now() }}",
+        "description": "Текущая дата и время"
+      },
+      "format_date": {
+        "pattern": "\\{\"type\":\\s*\"formatDate\",\\s*\"value\":\\s*(.+?),\\s*\"format\":\\s*\"(.+?)\"\\}",
+        "template": "{{ ($1) | format_date('$2') }}",
+        "description": "Форматирование даты"
+      },
+      "date_add": {
+        "pattern": "\\{\"type\":\\s*\"dateAdd\",\\s*\"value\":\\s*(.+?),\\s*\"days\":\\s*(\\d+)\\}",
+        "template": "{{ ($1) | date_add(days=$2) }}",
+        "description": "Добавление дней к дате"
+      }
+    },
+
+    "comparison": {
+      "equals": {
+        "pattern": "\\{\"type\":\\s*\"equals\",\\s*\"left\":\\s*(.+?),\\s*\"right\":\\s*(.+?)\\}",
+        "template": "{{ ($1) == ($2) }}",
+        "description": "Равенство"
+      },
+      "not_equals": {
+        "pattern": "\\{\"type\":\\s*\"notEquals\",\\s*\"left\":\\s*(.+?),\\s*\"right\":\\s*(.+?)\\}",
+        "template": "{{ ($1) != ($2) }}",
+        "description": "Неравенство"
+      },
+      "greater_than": {
+        "pattern": "\\{\"type\":\\s*\"greaterThan\",\\s*\"left\":\\s*(.+?),\\s*\"right\":\\s*(.+?)\\}",
+        "template": "{{ ($1) > ($2) }}",
+        "description": "Больше"
+      },
+      "greater_or_equal": {
+        "pattern": "\\{\"type\":\\s*\"greaterOrEqual\",\\s*\"left\":\\s*(.+?),\\s*\"right\":\\s*(.+?)\\}",
+        "template": "{{ ($1) >= ($2) }}",
+        "description": "Больше или равно"
+      },
+      "less_than": {
+        "pattern": "\\{\"type\":\\s*\"lessThan\",\\s*\"left\":\\s*(.+?),\\s*\"right\":\\s*(.+?)\\}",
+        "template": "{{ ($1) < ($2) }}",
+        "description": "Меньше"
+      },
+      "less_or_equal": {
+        "pattern": "\\{\"type\":\\s*\"lessOrEqual\",\\s*\"left\":\\s*(.+?),\\s*\"right\":\\s*(.+?)\\}",
+        "template": "{{ ($1) <= ($2) }}",
+        "description": "Меньше или равно"
+      },
+      "in": {
+        "pattern": "\\{\"type\":\\s*\"in\",\\s*\"value\":\\s*(.+?),\\s*\"list\":\\s*\\[(.+?)\\]\\}",
+        "template": "{{ ($1) in [$2] }}",
+        "description": "Проверка вхождения"
+      },
+      "not_in": {
+        "pattern": "\\{\"type\":\\s*\"notIn\",\\s*\"value\":\\s*(.+?),\\s*\"list\":\\s*\\[(.+?)\\]\\}",
+        "template": "{{ ($1) not in [$2] }}",
+        "description": "Проверка отсутствия"
+      }
+    },
+
+    "object": {
+      "get": {
+        "pattern": "\\{\"type\":\\s*\"get\",\\s*\"object\":\\s*(.+?),\\s*\"key\":\\s*\"(.+?)\"\\}",
+        "template": "{{ ($1).$2 }}",
+        "description": "Получение значения по ключу"
+      },
+      "keys": {
+        "pattern": "\\{\"type\":\\s*\"keys\",\\s*\"value\":\\s*(.+?)\\}",
+        "template": "{{ ($1).keys() | list }}",
+        "description": "Ключи объекта"
+      },
+      "values": {
+        "pattern": "\\{\"type\":\\s*\"values\",\\s*\"value\":\\s*(.+?)\\}",
+        "template": "{{ ($1).values() | list }}",
+        "description": "Значения объекта"
+      },
+      "has_key": {
+        "pattern": "\\{\"type\":\\s*\"hasKey\",\\s*\"object\":\\s*(.+?),\\s*\"key\":\\s*\"(.+?)\"\\}",
+        "template": "{{ '$2' in ($1) }}",
+        "description": "Проверка наличия ключа"
+      }
+    },
+
+    "special": {
+      "default": {
+        "pattern": "\\{\"type\":\\s*\"default\",\\s*\"value\":\\s*(.+?),\\s*\"default\":\\s*(.+?)\\}",
+        "template": "{{ ($1) | default($2) }}",
+        "description": "Значение по умолчанию"
+      },
+      "json_encode": {
+        "pattern": "\\{\"type\":\\s*\"jsonEncode\",\\s*\"value\":\\s*(.+?)\\}",
+        "template": "{{ ($1) | tojson }}",
+        "description": "Преобразование в JSON"
+      },
+      "json_decode": {
+        "pattern": "\\{\"type\":\\s*\"jsonDecode\",\\s*\"value\":\\s*(.+?)\\}",
+        "template": "{{ ($1) | fromjson }}",
+        "description": "Парсинг JSON"
+      }
+    }
+  },
+
+  "transformations": {
+    "join_with_and": {
+      "separator": " and ",
+      "wrapper": "parentheses"
+    },
+    "join_with_or": {
+      "separator": " or ",
+      "wrapper": "parentheses"
+    },
+    "join_with_plus": {
+      "separator": " + ",
+      "wrapper": "parentheses"
+    },
+    "join_with_multiply": {
+      "separator": " * ",
+      "wrapper": "parentheses"
+    },
+    "join_strings": {
+      "separator": " ~ ",
+      "wrapper": "none"
+    }
+  },
+
+  "priority_order": [
+    "conditional.if_then_else",
+    "logical.and",
+    "logical.or",
+    "logical.not",
+    "comparison",
+    "mathematical",
+    "string",
+    "array",
+    "object",
+    "date",
+    "variables",
+    "special"
+  ]
+}
