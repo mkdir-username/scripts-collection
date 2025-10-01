@@ -450,7 +450,7 @@ class EnhancedJinjaJsonPreprocessor:
 class JinjaHotReloaderV32(FileSystemEventHandler):
     """Hot Reload v3.2.4 с отслеживанием зависимостей импортов"""
 
-    SUPPORTED_EXTENSIONS = {'.json', '.jinja', '.j2', '.json.jinja', '.json.j2'}
+    SUPPORTED_EXTENSIONS = {'.json', '.jinja', '.j2', '.json.jinja', '.json.j2', '.j2.java', '.jinja.java', '.java'}
 
     def __init__(self, watch_dir: str = None, debug: bool = False,
                  browser_reload: bool = True, smart_mode: bool = False):

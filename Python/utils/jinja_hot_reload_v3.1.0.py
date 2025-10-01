@@ -63,21 +63,25 @@ class JinjaJsonPreprocessor:
         replacements = {}
         counter = 0
 
-        # Паттерны Jinja2 которые ломают JSON
+        # Паттерны Jinja2 которые ломают JSON (от сложных к простым)
         patterns = [
-            # {% if ... %} ... {% endif %}
-            (r'\{%\s*if\s+[^%]*%[^}]*\}[^{]*\{%\s*endif\s*%[^}]*\}', 'JINJA_IF'),
+            # {% if ... %} ... {% elif %} ... {% else %} ... {% endif %}
+            (r'\{%\s*if\s+[^%]+%\}.*?\{%\s*endif\s*%\}', 'JINJA_IF'),
             # {% for ... %} ... {% endfor %}
-            (r'\{%\s*for\s+[^%]*%[^}]*\}[^{]*\{%\s*endfor\s*%[^}]*\}', 'JINJA_FOR'),
-            # Одиночные {% ... %}
-            (r'\{%[^}]*%[^}]*\}', 'JINJA_TAG'),
+            (r'\{%\s*for\s+[^%]+%\}.*?\{%\s*endfor\s*%\}', 'JINJA_FOR'),
+            # {% set ... %}
+            (r'\{%\s*set\s+[^%]+%\}', 'JINJA_SET'),
+            # {% ... %} (любые другие теги)
+            (r'\{%[^}]+%\}', 'JINJA_TAG'),
+            # {{ ... }} (переменные Jinja2)
+            (r'\{\{[^}]+\}\}', 'JINJA_VAR'),
         ]
 
         cleaned = content
 
         # Удаляем Jinja2 блоки для валидного JSON
         for pattern, block_type in patterns:
-            matches = list(re.finditer(pattern, cleaned, re.DOTALL))
+            matches = list(re.finditer(pattern, cleaned, re.DOTALL | re.MULTILINE))
             for match in reversed(matches):
                 counter += 1
                 key = f"__{block_type}_{counter}__"
@@ -85,15 +89,30 @@ class JinjaJsonPreprocessor:
                 # Удаляем блок полностью
                 cleaned = cleaned[:match.start()] + cleaned[match.end():]
 
-        # Исправляем структурные проблемы после удаления
-        # Удаляем лишние запятые
-        cleaned = re.sub(r',\s*,', ',', cleaned)
+        # Агрессивная очистка структурных проблем
+        # 1. Удаляем множественные запятые
+        while ',,' in cleaned:
+            cleaned = cleaned.replace(',,', ',')
+
+        # 2. Удаляем запятые перед закрывающими скобками
         cleaned = re.sub(r',\s*\]', ']', cleaned)
         cleaned = re.sub(r',\s*\}', '}', cleaned)
-        cleaned = re.sub(r'\[\s*,', '[', cleaned)
 
-        # Удаляем пустые элементы в массивах
-        cleaned = re.sub(r'\[\s*\]', '[]', cleaned)
+        # 3. Удаляем запятые после открывающих скобок
+        cleaned = re.sub(r'\[\s*,', '[', cleaned)
+        cleaned = re.sub(r'\{\s*,', '{', cleaned)
+
+        # 4. Удаляем запятые перед двоеточием (после удаления значения)
+        cleaned = re.sub(r',\s*:', ':', cleaned)
+
+        # 5. Удаляем пустые значения после двоеточия
+        cleaned = re.sub(r':\s*,', ': null,', cleaned)
+        cleaned = re.sub(r':\s*\}', ': null}', cleaned)
+        cleaned = re.sub(r':\s*\]', ': null]', cleaned)
+
+        # 6. Удаляем пустые свойства
+        cleaned = re.sub(r'"\w+"\s*:\s*null\s*,\s*', '', cleaned)
+        cleaned = re.sub(r',\s*"\w+"\s*:\s*null\s*\}', '}', cleaned)
 
         return cleaned, replacements
 
@@ -142,6 +161,9 @@ class SDUIWebConverter:
 class JinjaHotReloaderV3(FileSystemEventHandler):
     """Hot Reload для Jinja2/SDUI с валидацией для WEB"""
 
+    # Поддерживаемые расширения для [JJ_] файлов
+    SUPPORTED_EXTENSIONS = {'.json', '.jinja', '.j2', '.json.jinja', '.json.j2'}
+
     def __init__(self, watch_dir: str = None, debug: bool = False, browser_reload: bool = True):
         self.watch_dir = Path(watch_dir) if watch_dir else Path('/Users/username/Documents/front-middle-schema/.JSON')
         self.debug = debug
@@ -164,6 +186,26 @@ class JinjaHotReloaderV3(FileSystemEventHandler):
         logger.info(f"📁 Директория наблюдения: {self.watch_dir}")
         logger.info(f"🔍 SDUI поддержка: {'✅ Включена' if self.sdui_transformer else '❌ Отключена'}")
         logger.info(f"🌐 Перезагрузка браузера: {'✅ Включена (Vivaldi:9090)' if self.browser_reload else '❌ Отключена'}")
+        logger.info(f"📄 Поддерживаемые расширения: {', '.join(self.SUPPORTED_EXTENSIONS)}")
+
+    def is_jj_file(self, file_path: Path) -> bool:
+        """Проверяет, является ли файл JJ_ файлом с поддерживаемым расширением"""
+        if not file_path.name.startswith('[JJ_'):
+            return False
+
+        # Проверяем расширение
+        # Для составных расширений типа .json.jinja проверяем последние две части
+        if file_path.suffix in self.SUPPORTED_EXTENSIONS:
+            return True
+
+        # Проверка для составных расширений (.json.jinja, .json.j2)
+        name_parts = file_path.name.split('.')
+        if len(name_parts) >= 3:
+            compound_ext = '.' + '.'.join(name_parts[-2:])
+            if compound_ext in self.SUPPORTED_EXTENSIONS:
+                return True
+
+        return False
 
     def find_data_file(self, jj_file: Path) -> Optional[Path]:
         """Ищет [data] файл для данного [JJ_] файла"""
@@ -207,12 +249,22 @@ class JinjaHotReloaderV3(FileSystemEventHandler):
             try:
                 json_obj = json.loads(cleaned_content)
             except json.JSONDecodeError as e:
-                logger.error(f"❌ Ошибка парсинга JSON: {e}")
+                logger.error(f"❌ Ошибка парсинга JSON на строке {e.lineno}: {e.msg}")
+                logger.error(f"   Файл: {file_path.name}")
                 if self.debug:
                     debug_path = file_path.with_name(f"{file_path.stem}_debug.json")
                     with open(debug_path, 'w', encoding='utf-8') as f:
                         f.write(cleaned_content)
-                    logger.info(f"📝 Debug файл: {debug_path.name}")
+                    logger.info(f"📝 Debug файл создан: {debug_path.name}")
+                    # Показываем проблемное место
+                    lines = cleaned_content.split('\n')
+                    if e.lineno <= len(lines):
+                        start = max(0, e.lineno - 3)
+                        end = min(len(lines), e.lineno + 2)
+                        logger.info(f"   Контекст ошибки (строки {start+1}-{end}):")
+                        for i in range(start, end):
+                            marker = " >>> " if i == e.lineno - 1 else "     "
+                            logger.info(f"{marker}{i+1:4d} | {lines[i][:100]}")
                 return
 
             # 4. Конвертируем для WEB если это Android контракт
@@ -252,7 +304,7 @@ class JinjaHotReloaderV3(FileSystemEventHandler):
                 rendered = template.render(**context)
                 result_obj = json.loads(rendered)
             except (TemplateSyntaxError, UndefinedError) as e:
-                logger.error(f"❌ Ошибка Jinja2: {e}")
+                logger.warning(f"⚠️ Jinja2: {e} (используется исходный JSON)")
                 result_obj = json_obj
             except json.JSONDecodeError as e:
                 logger.error(f"❌ Ошибка парсинга результата: {e}")
@@ -260,7 +312,15 @@ class JinjaHotReloaderV3(FileSystemEventHandler):
 
             # 8. Генерируем [FULL_] файл
             # Определяем имя выходного файла
-            file_stem = file_path.stem
+            # Убираем все поддерживаемые расширения из имени файла
+            file_name = file_path.name
+            for ext in sorted(self.SUPPORTED_EXTENSIONS, key=len, reverse=True):
+                if file_name.endswith(ext):
+                    file_stem = file_name[:-len(ext)]
+                    break
+            else:
+                file_stem = file_path.stem
+
             if file_stem.startswith('[JJ_'):
                 # Заменяем JJ_ на FULL_
                 platform = file_stem[4:file_stem.find(']')]
@@ -358,16 +418,17 @@ class JinjaHotReloaderV3(FileSystemEventHandler):
 
         path = Path(event.src_path)
 
-        # Обрабатываем только [JJ_] файлы
-        if path.name.startswith('[JJ_') and path.suffix == '.json':
+        # Обрабатываем только [JJ_] файлы с поддерживаемыми расширениями
+        if self.is_jj_file(path):
             self.process_jj_file(path)
 
         # Перезагружаем data файлы
         elif path.name.startswith('[data'):
             logger.info(f"🔄 Обновлен data файл: {path.name}")
             # Переобрабатываем все [JJ_] файлы в этой директории
-            for jj_file in path.parent.glob('[JJ_*.json'):
-                self.process_jj_file(jj_file)
+            for jj_file in path.parent.iterdir():
+                if self.is_jj_file(jj_file):
+                    self.process_jj_file(jj_file)
 
     def process_all(self):
         """Обрабатывает все [JJ_] файлы"""
@@ -376,8 +437,9 @@ class JinjaHotReloaderV3(FileSystemEventHandler):
         jj_files = []
         for root, dirs, files in os.walk(self.watch_dir):
             for file in files:
-                if file.startswith('[JJ_') and file.endswith('.json'):
-                    jj_files.append(Path(root) / file)
+                file_path = Path(root) / file
+                if self.is_jj_file(file_path):
+                    jj_files.append(file_path)
 
         logger.info(f"📊 Найдено {len(jj_files)} [JJ_] файлов")
 

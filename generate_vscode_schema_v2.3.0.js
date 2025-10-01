@@ -23,8 +23,11 @@ async function loadJson(filePath) {
 }
 
 // Рекурсивно нормализует схему: убирает лишние поля, оставляет только нужное для JSON Schema
-function extractSchemaFragment(schema) {
+function extractSchemaFragment(schema, depth = 0) {
   if (!schema || typeof schema !== 'object') return schema;
+
+  // Защита от слишком глубокой рекурсии
+  if (depth > 10) return schema;
 
   // Убираем поля, не относящиеся к JSON Schema
   const {
@@ -39,22 +42,67 @@ function extractSchemaFragment(schema) {
     items,
     format,
     default: def,
+    oneOf,
+    anyOf,
+    allOf,
+    additionalProperties,
     ...rest
   } = schema;
 
   const result = {};
   if (type !== undefined) result.type = type;
   if (enumVal !== undefined) result.enum = enumVal;
-  if ($ref !== undefined) result.$ref = $ref;
-  if (items !== undefined) result.items = extractSchemaFragment(items);
+
+  // Обработка $ref
+  if ($ref !== undefined) {
+    // Если это file:// ссылка, заменяем на AnyComponent (предотвращает зависание IntelliSense)
+    if ($ref.startsWith('file://')) {
+      result.$ref = '#/definitions/AnyComponent';
+    }
+    // Если это внутренняя ссылка #/definitions/..., сохраняем как есть
+    else if ($ref.startsWith('#/definitions/')) {
+      result.$ref = $ref;
+    }
+    // Для остальных случаев тоже сохраняем
+    else {
+      result.$ref = $ref;
+    }
+  }
+
+  if (items !== undefined) {
+    // Для массивов компонентов используем AnyComponent
+    const extractedItems = extractSchemaFragment(items, depth + 1);
+    if (extractedItems.$ref && extractedItems.$ref.includes('/')) {
+      result.items = { $ref: '#/definitions/AnyComponent' };
+    } else {
+      result.items = extractedItems;
+    }
+  }
+
   if (format !== undefined) result.format = format;
   if (def !== undefined) result.default = def;
   if (description !== undefined) result.description = description;
+  if (oneOf !== undefined) result.oneOf = oneOf.map((s) => extractSchemaFragment(s, depth + 1));
+  if (anyOf !== undefined) result.anyOf = anyOf.map((s) => extractSchemaFragment(s, depth + 1));
+  if (allOf !== undefined) result.allOf = allOf.map((s) => extractSchemaFragment(s, depth + 1));
+  if (additionalProperties !== undefined) result.additionalProperties = additionalProperties;
 
   if (properties) {
     result.properties = {};
     for (const [key, value] of Object.entries(properties)) {
-      result.properties[key] = extractSchemaFragment(value);
+      // Специальная обработка для свойств, содержащих компоненты
+      if (key === 'children' || key === 'content' || key === 'rootElement' ||
+          key === 'leftAddon' || key === 'rightAddon' || key === 'header' || key === 'footer') {
+        const extracted = extractSchemaFragment(value, depth + 1);
+        // Если это ссылка на компонент, заменяем на AnyComponent
+        if (extracted.$ref && extracted.$ref.includes('/')) {
+          result.properties[key] = { $ref: '#/definitions/AnyComponent' };
+        } else {
+          result.properties[key] = extracted;
+        }
+      } else {
+        result.properties[key] = extractSchemaFragment(value, depth + 1);
+      }
     }
   }
 
@@ -98,8 +146,9 @@ async function generateSchema() {
   const allComponents = Array.from(componentMap.keys()).sort();
   console.log(`📦 Найдено ${allComponents.length} компонентов`);
 
-  // 2. Генерируем определения для каждого компонента
-  const componentConditions = [];
+  // 2. Генерируем отдельные определения для каждого компонента (для oneOf)
+  const componentDefinitions = {};
+  const sharedDefinitions = {}; // Для enum'ов и вспомогательных типов
 
   for (const componentName of allComponents) {
     const schemaPath = componentMap.get(componentName);
@@ -110,38 +159,47 @@ async function generateSchema() {
       continue;
     }
 
+    // Извлекаем definitions из схемы компонента (enum'ы, вспомогательные типы)
+    if (schema.definitions) {
+      for (const [defName, defValue] of Object.entries(schema.definitions)) {
+        // Пропускаем определения компонентов (они уже будут добавлены)
+        if (!allComponents.includes(defName) && !sharedDefinitions[defName]) {
+          sharedDefinitions[defName] = extractSchemaFragment(defValue);
+        }
+      }
+    }
+
     // Извлекаем корневые properties и required из схемы компонента
     const fragment = extractSchemaFragment(schema);
 
-    // Убедимся, что type — это объект с полем "type"
-    const thenBlock = {
+    // Создаём определение компонента с const для type
+    const componentDef = {
       type: 'object',
       properties: {
-        type: { const: componentName }
+        type: {
+          const: componentName,
+          description: `Компонент ${componentName}`
+        }
       },
-      required: ['type']
+      required: ['type'],
+      additionalProperties: true
     };
 
-    // Переносим properties и required из схемы компонента в thenBlock
+    // Переносим properties и required из схемы компонента
     if (fragment.properties) {
-      thenBlock.properties = { ...thenBlock.properties, ...fragment.properties };
+      componentDef.properties = { ...componentDef.properties, ...fragment.properties };
     }
     if (fragment.required && Array.isArray(fragment.required)) {
-      thenBlock.required = [
-        ...new Set([...(thenBlock.required || []), ...fragment.required])
+      componentDef.required = [
+        ...new Set([...(componentDef.required || []), ...fragment.required])
       ];
     }
 
-    componentConditions.push({
-      if: {
-        properties: { type: { const: componentName } },
-        required: ['type']
-      },
-      then: thenBlock
-    });
-
+    componentDefinitions[componentName] = componentDef;
     console.log(`  ✅ ${componentName}`);
   }
+
+  console.log(`\n📚 Извлечено ${Object.keys(sharedDefinitions).length} общих определений`);
 
   // 3. Формируем базовые определения (цвета, отступы и т.д.)
   const baseDefinitions = {
@@ -277,56 +335,81 @@ async function generateSchema() {
     // Добавьте другие общие определения по мере необходимости
   };
 
-  // 4. Собираем финальную схему
-  const fullSchema = {
+  // 4. Собираем ЕДИНУЮ универсальную схему для контрактов И компонентов
+  const universalSchema = {
     $schema: 'http://json-schema.org/draft-07/schema#',
-    title: 'SDUI Contract Schema',
-    description: 'Полная схема для валидации SDUI контрактов',
+    title: 'SDUI Universal Schema with VS Code IntelliSense',
+    description: 'Единая схема для всех SDUI JSON: контрактов, экранов и компонентов',
     oneOf: [
-      {
+      // Вариант 1: Полный контракт (с rootElement)
+      { $ref: '#/definitions/SDUIContract' },
+      // Вариант 2: Отдельный компонент
+      { $ref: '#/definitions/AnyComponent' }
+    ],
+    definitions: {
+      SDUIContract: {
         type: 'object',
         required: ['rootElement'],
         properties: {
-          version: { type: 'number' },
-          rootElement: { $ref: '#/definitions/SDUIComponent' },
-          data: { type: 'object' },
-          state: { type: 'object' },
-          computed: { type: 'object' }
-        }
-      },
-      { $ref: '#/definitions/SDUIComponent' }
-    ],
-    definitions: {
-      SDUIComponent: {
-        type: 'object',
-        required: ['type'],
-        properties: {
-          type: {
+          $schema: {
             type: 'string',
-            enum: allComponents,
-            description: 'Тип SDUI компонента'
+            description: 'Ссылка на JSON Schema'
           },
-          NAME: {
-            type: 'string',
-            description: 'Описательное имя компонента для документирования'
+          version: {
+            type: 'integer',
+            description: 'Версия контракта'
+          },
+          rootElement: {
+            $ref: '#/definitions/AnyComponent',
+            description: 'Корневой элемент UI (должен содержать type)'
+          },
+          data: {
+            type: 'object',
+            description: 'Статические данные контракта',
+            additionalProperties: true
+          },
+          state: {
+            type: 'object',
+            description: 'Состояние контракта (runtime переменные)',
+            additionalProperties: true
+          },
+          computed: {
+            type: 'object',
+            description: 'Вычисляемые свойства',
+            additionalProperties: true
+          },
+          metadata: {
+            type: 'object',
+            description: 'Метаданные контракта',
+            additionalProperties: true
           }
         },
-        additionalProperties: true,
-        allOf: componentConditions
+        additionalProperties: false
       },
-      LayoutElement: { $ref: '#/definitions/SDUIComponent' },
+      AnyComponent: {
+        oneOf: allComponents.map((name) => ({
+          $ref: `#/definitions/${name}`
+        }))
+      },
+      ...componentDefinitions,
+      ...sharedDefinitions,
       ...baseDefinitions
     }
   };
 
-  // 5. Сохраняем
-  const outputPath = path.join(__dirname, 'sdui_vscode_schema_v2.3.0.json');
-  await fs.writeFile(outputPath, JSON.stringify(fullSchema, null, 2), 'utf8');
+  // 5. Сохраняем единую схему
+  const schemaPath = path.join(SDUI_ROOT, 'SDUI', 'sdui_vscode_schema_v2.3.0.json');
+  await fs.writeFile(schemaPath, JSON.stringify(universalSchema, null, 2), 'utf8');
 
-  const stats = await fs.stat(outputPath);
-  console.log(`\n✅ Схема сохранена: ${outputPath}`);
-  console.log(`📏 Размер: ${(stats.size / 1024).toFixed(2)} KB`);
+  const schemaStats = await fs.stat(schemaPath);
+  console.log(`\n✅ Единая схема сохранена: ${schemaPath}`);
+  console.log(`📏 Размер: ${(schemaStats.size / 1024).toFixed(2)} KB`);
   console.log(`🧩 Компонентов: ${allComponents.length}`);
+
+  // Также сохраняем копию в Scripts для обратной совместимости
+  const legacyPath = path.join(__dirname, 'sdui_vscode_schema_v2.3.0.json');
+  await fs.writeFile(legacyPath, JSON.stringify(universalSchema, null, 2), 'utf8');
+  console.log(`✅ Копия сохранена в Scripts: ${legacyPath}`);
 }
 
 generateSchema().catch((err) => {
