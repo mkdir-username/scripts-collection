@@ -1,0 +1,14 @@
+{# This is a Jinja2 comment that should be removed #}
+{
+  "type": "ButtonView",
+  {# Another comment inside object #}
+  "title": {
+    "defaultValue": "Click Me"
+  },
+  {# Comment before array #}
+  "states": [
+    "normal",
+    {# Comment in array #}
+    "pressed"
+  ]
+}

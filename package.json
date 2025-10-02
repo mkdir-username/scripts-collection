@@ -1,0 +1,31 @@
+{
+  "name": "scripts",
+  "version": "1.0.0",
+  "description": "A comprehensive collection of Python and Bash scripts for SDUI validation, schema management, and development automation.",
+  "main": "generate_settings_schemas_v1.0.0.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkdir-username/scripts-collection.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mkdir-username/scripts-collection/issues"
+  },
+  "homepage": "https://github.com/mkdir-username/scripts-collection#readme",
+  "dependencies": {
+    "jsonc-parser": "^3.3.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

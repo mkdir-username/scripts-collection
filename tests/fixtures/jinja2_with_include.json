@@ -1,0 +1,10 @@
+{
+  "type": "LayoutElement",
+  "children": [
+    {% include 'button_component.json' %},
+    {
+      "type": "TextView",
+      "text": "{{ user_name }}"
+    }
+  ]
+}

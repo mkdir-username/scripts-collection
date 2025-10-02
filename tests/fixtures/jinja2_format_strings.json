@@ -1,0 +1,9 @@
+{
+  "type": "TextView",
+  "text": "User: {{ user.name | upper }}",
+  "formatted": "{{ '{:,.2f}'.format(price) }}",
+  "pythonic": "{{ f'Total: {total:.2f}' }}",
+  "nested": {
+    "pattern": "{{ 'ID: {}'.format(item_id) }}"
+  }
+}

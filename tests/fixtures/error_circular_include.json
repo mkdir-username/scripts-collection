@@ -1,0 +1,6 @@
+{
+  "type": "LayoutElement",
+  "children": [
+    {% include 'error_circular_include_2.json' %}
+  ]
+}

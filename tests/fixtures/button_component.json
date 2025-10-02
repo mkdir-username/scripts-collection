@@ -1,0 +1,6 @@
+{
+  "type": "ButtonView",
+  "title": {
+    "defaultValue": "Included Button"
+  }
+}

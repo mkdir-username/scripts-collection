@@ -1,0 +1,25 @@
+{
+  "type": "LayoutElement",
+  "releaseVersion": {
+    "web": "released"
+  },
+  "children": [
+    {
+      "type": "TextView",
+      "text": {
+        "defaultValue": {{ user_name | tojson }}
+      },
+      "textColor": {
+        "defaultValue": "#000000",
+        "highlightedValue": "#FF0000"
+      }
+    }
+  ],
+  "spacing": 16,
+  "padding": {
+    "top": 20,
+    "bottom": 20,
+    "left": 16,
+    "right": 16
+  }
+}

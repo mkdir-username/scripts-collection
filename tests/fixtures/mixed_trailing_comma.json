@@ -1,0 +1,10 @@
+{
+  "type": "LayoutElement",
+  "children": [
+    {% include 'button.json' %},
+    {
+      "type": "TextView",
+      "text": "{{ message }}"
+    },
+  ]
+}

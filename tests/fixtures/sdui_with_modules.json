@@ -1,0 +1,17 @@
+{
+  "type": "ButtonView",
+  "releaseVersion": {
+    "web": "released"
+  },
+  "title": {
+    "defaultValue": "Click Here"
+  },
+  "action": {
+    "type": "HttpAction",
+    "url": "/api/submit",
+    "method": "POST"
+  },
+  "style": {
+    "$ref": "#/components/styles/primaryButton"
+  }
+}

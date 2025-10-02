@@ -1,0 +1,9 @@
+{
+  "type": "ButtonView",
+  "title": {
+    "defaultValue": "{{ unclosed_tag "
+  },
+  "action": {
+    "type": "{{ action_type }"
+  }
+}

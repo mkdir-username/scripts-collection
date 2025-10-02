@@ -1,0 +1,15 @@
+{
+  "type": "ButtonView",
+  "releaseVersion": {
+    "web": "released",
+    "android": "released",
+    "ios": "released"
+  },
+  "title": {
+    "defaultValue": "Submit",
+    "highlightedValue": "Submit!"
+  },
+  "backgroundColor": {
+    "defaultValue": "#007AFF"
+  }
+}
