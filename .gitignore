@@ -26,3 +26,6 @@ Thumbs.db
 workspace/
 # Embedded repositories
 xray-installer/
+
+# MCP servers
+alfa-sdui-mcp/

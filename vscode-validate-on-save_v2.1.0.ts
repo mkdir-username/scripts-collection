@@ -18,7 +18,7 @@ const PROJECT_ROOT =
   '/Users/username/Documents/front-middle-schema';
 
 // Путь к MCP серверу с валидатором
-const MCP_ROOT = '/Users/username/Documents/front-middle-schema/alfa-sdui-mcp';
+const MCP_ROOT = '/Users/username/Scripts/alfa-sdui-mcp';
 
 // Получить путь к файлу из аргументов
 const filePath = process.argv[2];
