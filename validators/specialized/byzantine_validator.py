@@ -569,7 +569,7 @@ class ByzantineValidator:
 def main():
     """Main entry point"""
     contract_path = "/Users/username/Documents/newclick-server-driven-ui/unified_contract.json"
-    sdui_framework_path = "/Users/username/Documents/front-middle-schema/SDUI"
+    sdui_framework_path = "/Users/username/Documents/FMS_GIT/SDUI"
 
     validator = ByzantineValidator(contract_path, sdui_framework_path)
     result = validator.validate()
@@ -578,7 +578,7 @@ def main():
     print("\n" + report)
 
     # Save report to file
-    report_path = "/Users/username/Documents/front-middle-schema/validation_report.txt"
+    report_path = "/Users/username/Documents/FMS_GIT/validation_report.txt"
     with open(report_path, 'w', encoding='utf-8') as f:
         f.write(report)
 

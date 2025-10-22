@@ -216,8 +216,8 @@ def main():
 
     parser.add_argument(
         '--base-path',
-        default='/Users/username/Documents/front-middle-schema/.JSON',
-        help='Базовый путь для мониторинга (по умолчанию: /Users/username/Documents/front-middle-schema/.JSON)'
+        default='/Users/username/Documents/FMS_GIT/_JSON',
+        help='Базовый путь для мониторинга (по умолчанию: /Users/username/Documents/FMS_GIT/_JSON)'
     )
 
     parser.add_argument(

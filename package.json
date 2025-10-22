@@ -1,6 +1,6 @@
 {
   "name": "scripts",
-  "version": "1.0.0",
+  "version": "2.3.1",
   "description": "A comprehensive collection of Python and Bash scripts for SDUI validation, schema management, and development automation.",
   "main": "generate_settings_schemas_v1.0.0.js",
   "directories": {
@@ -8,13 +8,25 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc --project tsconfig.json",
+    "build:watch": "tsc --project tsconfig.json --watch",
+    "validate": "node vscode-validate-on-save_v2.3.1.js",
+    "validate:verbose": "node vscode-validate-on-save_v2.3.1.js --verbose",
+    "install:validator": "bash install_v2.3.1.sh"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mkdir-username/scripts-collection.git"
   },
-  "keywords": [],
+  "keywords": [
+    "sdui",
+    "validation",
+    "json",
+    "jinja",
+    "vscode",
+    "typescript"
+  ],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
@@ -23,9 +35,18 @@
   },
   "homepage": "https://github.com/mkdir-username/scripts-collection#readme",
   "dependencies": {
-    "jsonc-parser": "^3.3.1"
+    "jsonc-parser": "^3.3.1",
+    "node-jq": "^2.3.5",
+    "jsonpath": "^1.1.1",
+    "chalk": "^4.1.2"
   },
   "devDependencies": {
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "@types/node": "^20.0.0",
+    "@types/jsonpath": "^0.2.4"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
   }
 }

@@ -1,0 +1,201 @@
+{
+  "mcpServers": {
+    "alfa-sdui-mcp": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "/Users/username/Scripts/alfa-sdui-mcp/dist/index.js"
+      ],
+      "env": {
+        "PROJECT_ROOT": "/Users/username/Scripts/sdui-data_v2",
+        "SDUI_BASE_PATH": "/Users/username/Scripts/sdui-data_v2/SDUI",
+        "METASCHEMA_PATH": "/Users/username/Scripts/sdui-data_v2/metaschema/schema/strict_unversioned.json",
+        "DEFAULT_PLATFORM": "web"
+      },
+      "alwaysAllow": [
+        "check_component_availability",
+        "find_alternative_component",
+        "validate_contract_incremental",
+        "convert_to_web",
+        "apply_state_aware",
+        "resolve_schema_ref",
+        "build_contract_step",
+        "get_web_components",
+        "validate_stateaware"
+      ]
+    },
+    "code-index": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "code-index-mcp"
+      ],
+      "env": {
+        "PROJECT_PATH": "/Users/username/Scripts/sdui-data_v2",
+        "AUTO_INDEX": "true",
+        "EXCLUDE_PATTERNS": "node_modules,.git,.venv,venv"
+      }
+    },
+    "context7": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp@latest"
+      ],
+      "env": {
+        "UPSTASH_API_KEY": "ctx7sk-7ff05767-0087-4e72-ad58-28715571bad3"
+      }
+    },
+    "memory": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "@nmeierpolys/mcp-structured-memory"
+      ],
+      "env": {}
+    },
+    "figma": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "figma-developer-mcp",
+        "--stdio"
+      ],
+      "env": {
+        "FIGMA_API_KEY": "***REMOVED***"
+      }
+    },
+    "morphllm-fast-apply": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@morph-llm/morph-fast-apply"
+      ],
+      "env": {
+        "MORPH_API_KEY": "sk-O4NeSd8MqVXv_AinXXiBk-eOL3N-w5GddZjrokcy0jUd1Ioy"
+      }
+    },
+    "sequential-thinking": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "env": {}
+    },
+    "json-filter": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "json-mcp-filter@latest"
+      ],
+      "env": {
+        "MAX_CHUNK_SIZE": "400KB",
+        "ENABLE_REMOTE_URLS": "false"
+      }
+    },
+    "json-patch": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@wacry/json-patch-mcp"
+      ],
+      "env": {
+        "DEFAULT_BASE_PATH": "/Users/username/Scripts/sdui-data_v2/SDUI"
+      }
+    },
+    "json-maker": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@zb2947244682/mcp-json-maker"
+      ],
+      "env": {
+        "PROJECT_PATH": "/Users/username/Scripts/sdui-data_v2",
+        "OUTPUT_PATH": "/Users/username/Scripts/sdui-data_v2/workspace/generated",
+        "TEMPLATES_PATH": "/Users/username/Scripts/sdui-data_v2/workspace/templates"
+      }
+    },
+    "qdrant": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "mcp-server-qdrant"
+      ],
+      "env": {
+        "QDRANT_URL": "${QDRANT_URL:-http://localhost:6333}",
+        "QDRANT_API_KEY": "${QDRANT_API_KEY:-}",
+        "DEFAULT_COLLECTION": "mcp_memory",
+        "AUTO_CREATE_COLLECTION": "true"
+      }
+    },
+    "json-schema": {
+      "type": "stdio",
+      "command": "/Users/username/Scripts/json-schema-mcp/venv/bin/python",
+      "args": [
+        "/Users/username/Scripts/json-schema-mcp/server.py"
+      ],
+      "env": {}
+    },
+    "playwright-screenshot": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "/Users/username/mcp-playwright-screenshot/build/index.js"
+      ],
+      "alwaysAllow": [
+        "get-screenshot"
+      ]
+    },
+    "zen": {
+      "type": "stdio",
+      "command": "/Users/username/Scripts/zen-mcp-server/.zen_venv/bin/python",
+      "args": [
+        "/Users/username/Scripts/zen-mcp-server/server.py"
+      ],
+      "env": {
+        "PROJECT_ROOT": "/Users/username/Scripts/sdui-data_v2",
+        "SDUI_BASE_PATH": "/Users/username/Scripts/sdui-data_v2/SDUI",
+        "ENABLE_WEBSEARCH": "true",
+        "ENABLE_THINKING_MODE": "true",
+        "DEFAULT_MODEL": "gemini-2.5-flash",
+        "CONFIDENCE_THRESHOLD": "0.85",
+        "DEBUG_MODE": "false"
+      }
+    }
+  },
+  "projectConfig": {
+    "name": "sdui-data_v2",
+    "type": "sdui-development",
+    "version": "2.0.0",
+    "adapters": {
+      "zen": {
+        "version": "5.17.4",
+        "features": [
+          "thinkdeep",
+          "consensus",
+          "debug",
+          "codereview",
+          "precommit",
+          "planner",
+          "chat"
+        ]
+      }
+    },
+    "paths": {
+      "root": "/Users/username/Scripts/sdui-data_v2",
+      "sdui": "/Users/username/Scripts/sdui-data_v2/SDUI",
+      "workspace": "/Users/username/Scripts/sdui-data_v2/workspace",
+      "templates": "/Users/username/Scripts/sdui-data_v2/workspace/templates",
+      "artifacts": "/Users/username/Scripts/sdui-data_v2/artifacts",
+      "tests": "/Users/username/Scripts/sdui-data_v2/tests"
+    }
+  }
+}

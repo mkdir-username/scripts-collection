@@ -29,7 +29,7 @@ from sdui_web_validator_improved import SDUIWebValidatorImproved
 class SDUIVisualValidator:
     """Визуальный валидатор SDUI контрактов с автоматическими скриншотами"""
 
-    def __init__(self, project_root: str = "/Users/username/Documents/front-middle-schema"):
+    def __init__(self, project_root: str = "/Users/username/Documents/FMS_GIT"):
         self.project_root = Path(project_root)
         self.screenshots_dir = self.project_root / "screenshots" / "validation"
         self.screenshots_dir.mkdir(parents=True, exist_ok=True)

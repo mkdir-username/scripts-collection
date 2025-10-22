@@ -1,0 +1,3537 @@
+{
+  "rootElement": {
+    "type": "ScrollWrapper",
+    "content": {
+      "axis": "vertical",
+      "content": {
+        "type": "ConstraintWrapper",
+        "content": {
+          "children": [
+            {
+              "size": {
+                "width": 100,
+                "height": 178
+              },
+              "tag": "image",
+              "constraints": [
+                {
+                  "reference": "superview",
+                  "constant": 20,
+                  "type": "right"
+                },
+                {
+                  "reference": "superview",
+                  "constant": 30,
+                  "type": "top"
+                }
+              ],
+              "content": {
+                "children": [
+                  {
+                    "content": {
+                      "shape": "rect",
+                      "ratio": 1.78,
+                      "url": "https://test-alfa-mobile.alfabank.ru/mobile/s3/static/salary-customer/1.png"
+                    },
+                    "type": "ImageView"
+                  }
+                ],
+                "axis": "horizontal",
+                "alignment": "center"
+              },
+              "type": "StackView"
+            },
+            {
+              "content": {
+                "shape": "rect",
+                "ratio": 1.77,
+                "url": "https://test-alfa-mobile.alfabank.ru/mobile/s3/static/salary-customer/360x640.png"
+              },
+              "tag": "bg",
+              "constraints": [
+                {
+                  "reference": "superview",
+                  "constant": 0,
+                  "type": "top"
+                }
+              ],
+              "type": "ImageView"
+            },
+            {
+              "constraints": [
+                {
+                  "type": "right",
+                  "constant": 0,
+                  "reference": "superview"
+                },
+                {
+                  "type": "top",
+                  "constant": 0,
+                  "reference": "superview"
+                },
+                {
+                  "type": "bottom",
+                  "constant": 0,
+                  "reference": "superview"
+                },
+                {
+                  "type": "left",
+                  "reference": "superview",
+                  "constant": 0
+                }
+              ],
+              "tag": "sw",
+              "type": "StackView",
+              "content": {
+                "axis": "vertical",
+                "children": [
+                  {
+                    "size": {
+                      "height": 30
+                    },
+                    "type": "Spacer"
+                  },
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "alignment": "fill",
+                      "axis": "vertical",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "vertical",
+                            "alignment": "fill",
+                            "children": [
+                              {
+                                "type": "Spacer",
+                                "size": {
+                                  "height": 32
+                                }
+                              },
+                              {
+                                "size": {
+                                  "width": -2,
+                                  "height": 40
+                                },
+                                "content": {
+                                  "children": [
+                                    {
+                                      "size": {
+                                        "width": -2
+                                      },
+                                      "type": "StackView",
+                                      "paddings": {
+                                        "right": "xs",
+                                        "bottom": "zero",
+                                        "left": "zero",
+                                        "top": "zero"
+                                      },
+                                      "content": {
+                                        "axis": "horizontal",
+                                        "children": [
+                                          {
+                                            "content": {
+                                              "horizontalAlignment": "left",
+                                              "text": {
+                                                "color": "textColorPrimary",
+                                                "maxLineCount": 1,
+                                                "value": "244 513 ₽",
+                                                "typography": "HeadlineLarge"
+                                              }
+                                            },
+                                            "type": "LabelView"
+                                          }
+                                        ],
+                                        "alignment": "center"
+                                      }
+                                    },
+                                    {
+                                      "size": {
+                                        "width": -2
+                                      },
+                                      "action": {
+                                        "type": "http",
+                                        "version": 2,
+                                        "request": {
+                                          "endpoint": "/mobile/api/v1/selery_update_balance2",
+                                          "type": "post",
+                                          "params": {}
+                                        },
+                                        "silent": true
+                                      },
+                                      "type": "StackView",
+                                      "content": {
+                                        "axis": "horizontal",
+                                        "children": [
+                                          {
+                                            "content": {
+                                              "icon": {
+                                                "name": "glyph_eye-off-medium_m",
+                                                "color": "graphicColorTertiary"
+                                              }
+                                            },
+                                            "type": "IconView"
+                                          }
+                                        ],
+                                        "alignment": "center"
+                                      }
+                                    },
+                                    {
+                                      "type": "Spacer"
+                                    }
+                                  ],
+                                  "axis": "horizontal",
+                                  "alignment": "center"
+                                },
+                                "type": "StackView"
+                              },
+                              {
+                                "type": "Spacer",
+                                "size": {
+                                  "height": 2
+                                }
+                              },
+                              {
+                                "size": {
+                                  "width": -2
+                                },
+                                "content": {
+                                  "children": [
+                                    {
+                                      "type": "TagView",
+                                      "paddings": {
+                                        "right": "zero",
+                                        "bottom": "zero",
+                                        "left": "zero",
+                                        "top": "zero"
+                                      },
+                                      "action": {
+                                        "url": "https://online.alfabank.ru/sdui_screen?endpoint=v1/average_salary_info&presentationType=SHEET&sheetState=ADAPTIVE",
+                                        "type": "deeplink",
+                                        "analytics": {
+                                          "label": "Information Button",
+                                          "screen": "MAIN_SCREEN",
+                                          "category": "Salary client privileges",
+                                          "action": "click",
+                                          "analyticsSystems": [
+                                            "snowplow",
+                                            "alfametric"
+                                          ],
+                                          "parameters": [
+                                            {
+                                              "id": "Screen name",
+                                              "dimension": 1,
+                                              "sensitive": false,
+                                              "value": "Главный экран"
+                                            },
+                                            {
+                                              "id": "Button id",
+                                              "dimension": 2,
+                                              "sensitive": false,
+                                              "value": "Средний доход"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "content": {
+                                        "title": {
+                                          "text": {
+                                            "color": "textColorSecondary",
+                                            "maxLineCount": 1,
+                                            "value": "Средний доход",
+                                            "typography": "ParagraphPrimarySmall"
+                                          }
+                                        },
+                                        "rightAddon": {
+                                          "leftPadding": "xxs",
+                                          "icon": {
+                                            "name": "glyph_information_circle_line_m",
+                                            "color": "graphicColorTertiary"
+                                          },
+                                          "rightPadding": "zero"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "Spacer"
+                                    }
+                                  ],
+                                  "axis": "horizontal",
+                                  "alignment": "center"
+                                },
+                                "type": "StackView"
+                              },
+                              {
+                                "type": "Spacer",
+                                "size": {
+                                  "height": 38
+                                }
+                              }
+                            ]
+                          },
+                          "paddings": {
+                            "top": "zero",
+                            "left": "l",
+                            "bottom": "zero",
+                            "right": "zero"
+                          },
+                          "hidden": false,
+                          "version": 1
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "Spacer",
+                    "size": {
+                      "height": 24
+                    }
+                  },
+                  {
+                    "content": {
+                      "corners": {
+                        "bottomRight": "zero",
+                        "bottomLeft": "zero",
+                        "topLeft": "xl",
+                        "topRight": "xl"
+                      },
+                      "axis": "vertical",
+                      "alignment": "fill",
+                      "backgroundColor": "backgroundColorPrimary",
+                      "children": [
+                        {
+                          "type": "BannerWrapper",
+                          "paddings": {
+                            "left": "m",
+                            "top": "xl",
+                            "right": "m",
+                            "bottom": "xs"
+                          },
+                          "content": {
+                            "backgroundColor": "backgroundColorSecondary",
+                            "content": {
+                              "type": "StackView",
+                              "paddings": {
+                                "left": "m",
+                                "top": "m",
+                                "right": "m",
+                                "bottom": "m"
+                              },
+                              "content": {
+                                "axis": "horizontal",
+                                "children": [
+                                  {
+                                    "type": "IconView",
+                                    "content": {
+                                      "icon": {
+                                        "url": "https://test-alfa-mobile.alfabank.ru/mobile/s3/static/salary-customer/play.png"
+                                      },
+                                      "size": "xsmall",
+                                      "shape": "noshape"
+                                    }
+                                  },
+                                  {
+                                    "content": {
+                                      "horizontalAlignment": "left",
+                                      "text": {
+                                        "typography": "ParagraphPrimaryMedium",
+                                        "value": "Всё о разделе\nМоя зарплата в видео",
+                                        "color": "textColorPrimary",
+                                        "maxLineCount": 2
+                                      }
+                                    },
+                                    "weight": 1,
+                                    "type": "LabelView",
+                                    "paddings": {
+                                      "top": "zero",
+                                      "bottom": "zero",
+                                      "right": "m",
+                                      "left": "m"
+                                    }
+                                  },
+                                  {
+                                    "type": "IconView",
+                                    "content": {
+                                      "icon": {
+                                        "color": "graphicColorTertiary",
+                                        "name": "glyph_chevron_right_shift_right_m"
+                                      },
+                                      "size": "xsmall",
+                                      "shape": "noshape"
+                                    }
+                                  }
+                                ],
+                                "distribution": "weighted",
+                                "alignment": "center"
+                              }
+                            }
+                          },
+                          "action": {
+                            "type": "sequence",
+                            "actions": [
+                              {
+                                "type": "deeplink",
+                                "url": "vi/video_banner",
+                                "analytics": {
+                                  "label": "Play video",
+                                  "screen": "MAIN_SCREEN",
+                                  "category": "Salary client privileges",
+                                  "action": "click",
+                                  "analyticsSystems": [
+                                    "snowplow",
+                                    "alfametric"
+                                  ],
+                                  "parameters": [
+                                    {
+                                      "id": "Screen name",
+                                      "dimension": 1,
+                                      "sensitive": false,
+                                      "value": "Главный экран"
+                                    }
+                                  ]
+                                },
+                                "version": 1
+                              },
+                              {
+                                "type": "setValue",
+                                "key": true,
+                                "source": false,
+                                "version": 1
+                              }
+                            ],
+                            "version": 1
+                          }
+                        },
+                        {
+                          "content": {
+                            "horizontalAlignment": "left",
+                            "text": {
+                              "color": "textColorPrimary",
+                              "maxLineCount": 1,
+                              "value": "Привилегии за зарплату",
+                              "typography": "HeadlineSmall"
+                            }
+                          },
+                          "paddings": {
+                            "right": "l",
+                            "bottom": "s",
+                            "left": "l",
+                            "top": "xl"
+                          },
+                          "type": "LabelView"
+                        },
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "horizontal",
+                            "alignment": "fill",
+                            "distribution": "weighted",
+                            "children": [
+                              {
+                                "type": "BannerWrapper",
+                                "weight": 1,
+                                "paddings": {
+                                  "left": "zero",
+                                  "right": "zero",
+                                  "top": "zero",
+                                  "bottom": "zero"
+                                },
+                                "content": {
+                                  "backgroundColor": "backgroundColorSecondary",
+                                  "content": {
+                                    "type": "StackView",
+                                    "paddings": {
+                                      "left": "m",
+                                      "right": "m",
+                                      "top": "m",
+                                      "bottom": "m"
+                                    },
+                                    "content": {
+                                      "children": [
+                                        {
+                                          "type": "IconView",
+                                          "content": {
+                                            "icon": {
+                                              "url": "https://test-alfa-mobile.alfabank.ru/mobile/s3/static/salary-customer/2.png"
+                                            },
+                                            "size": "xlarge",
+                                            "shape": "noshape"
+                                          }
+                                        },
+                                        {
+                                          "type": "Spacer",
+                                          "size": {
+                                            "height": 4
+                                          },
+                                          "content": {},
+                                          "hidden": false,
+                                          "version": 1
+                                        },
+                                        {
+                                          "content": {
+                                            "horizontalAlignment": "left",
+                                            "text": {
+                                              "typography": "ActionComponent",
+                                              "value": "Кэшбэк\nв топ-категории",
+                                              "color": "textColorPrimary",
+                                              "maxLineCount": 3
+                                            }
+                                          },
+                                          "type": "LabelView"
+                                        },
+                                        {
+                                          "type": "Spacer",
+                                          "size": {
+                                            "height": 4
+                                          },
+                                          "content": {},
+                                          "hidden": false,
+                                          "version": 1
+                                        },
+                                        {
+                                          "type": "LabelView",
+                                          "content": {
+                                            "horizontalAlignment": "left",
+                                            "text": {
+                                              "color": "textColorSecondary",
+                                              "maxLineCount": 3,
+                                              "value": "Каждый месяц\nновая",
+                                              "typography": "ParagraphSecondaryMedium"
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "type": "Spacer",
+                                          "content": {},
+                                          "hidden": false,
+                                          "version": 1
+                                        }
+                                      ],
+                                      "axis": "vertical",
+                                      "alignment": "fill"
+                                    }
+                                  }
+                                },
+                                "action": {
+                                  "type": "deeplink",
+                                  "url": "https://online.alfabank.ru/sdui_screen?endpoint=v1/сashback_in_the_top_category&presentationType=SHEET&sheetState=ADAPTIVE",
+                                  "analytics": {
+                                    "label": "Privilege Details",
+                                    "screen": "MAIN_SCREEN",
+                                    "category": "Salary client privileges",
+                                    "action": "click",
+                                    "analyticsSystems": [
+                                      "snowplow",
+                                      "alfametric"
+                                    ],
+                                    "parameters": [
+                                      {
+                                        "id": "Screen name",
+                                        "dimension": 1,
+                                        "sensitive": false,
+                                        "value": "Главный экран"
+                                      },
+                                      {
+                                        "id": "Button id",
+                                        "dimension": 2,
+                                        "sensitive": false,
+                                        "value": "Кэшбек в топ-категории"
+                                      }
+                                    ]
+                                  },
+                                  "version": 1
+                                }
+                              },
+                              {
+                                "type": "Spacer",
+                                "size": {
+                                  "width": 8
+                                },
+                                "content": {}
+                              },
+                              {
+                                "type": "BannerWrapper",
+                                "weight": 1,
+                                "paddings": {
+                                  "left": "zero",
+                                  "right": "zero",
+                                  "top": "zero",
+                                  "bottom": "zero"
+                                },
+                                "content": {
+                                  "backgroundColor": "backgroundColorSecondary",
+                                  "content": {
+                                    "type": "StackView",
+                                    "paddings": {
+                                      "left": "m",
+                                      "right": "m",
+                                      "top": "m",
+                                      "bottom": "m"
+                                    },
+                                    "content": {
+                                      "children": [
+                                        {
+                                          "type": "IconView",
+                                          "content": {
+                                            "icon": {
+                                              "url": "https://test-alfa-mobile.alfabank.ru/mobile/s3/static/salary-customer/7.png"
+                                            },
+                                            "size": "xlarge",
+                                            "shape": "noshape"
+                                          }
+                                        },
+                                        {
+                                          "type": "Spacer",
+                                          "size": {
+                                            "height": 4
+                                          },
+                                          "content": {},
+                                          "hidden": false,
+                                          "version": 1
+                                        },
+                                        {
+                                          "content": {
+                                            "horizontalAlignment": "left",
+                                            "text": {
+                                              "typography": "ActionComponent",
+                                              "value": "Бесплатная\nкредитка",
+                                              "color": "textColorPrimary",
+                                              "maxLineCount": 3
+                                            }
+                                          },
+                                          "type": "LabelView"
+                                        },
+                                        {
+                                          "type": "Spacer",
+                                          "size": {
+                                            "height": 4
+                                          },
+                                          "content": {},
+                                          "hidden": false,
+                                          "version": 1
+                                        },
+                                        {
+                                          "type": "LabelView",
+                                          "content": {
+                                            "horizontalAlignment": "left",
+                                            "text": {
+                                              "color": "textColorSecondary",
+                                              "maxLineCount": 3,
+                                              "value": "По предложению\nбанка",
+                                              "typography": "ParagraphSecondaryMedium"
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "type": "Spacer",
+                                          "content": {},
+                                          "hidden": false,
+                                          "version": 1
+                                        }
+                                      ],
+                                      "axis": "vertical",
+                                      "alignment": "fill"
+                                    }
+                                  }
+                                },
+                                "action": {
+                                  "type": "deeplink",
+                                  "url": "https://online.alfabank.ru/sdui_screen?endpoint=v1/free_credit_card&presentationType=SHEET&sheetState=ADAPTIVE",
+                                  "analytics": {
+                                    "label": "Privilege Details",
+                                    "screen": "MAIN_SCREEN",
+                                    "category": "Salary client privileges",
+                                    "action": "click",
+                                    "analyticsSystems": [
+                                      "snowplow",
+                                      "alfametric"
+                                    ],
+                                    "parameters": [
+                                      {
+                                        "id": "Screen name",
+                                        "dimension": 1,
+                                        "sensitive": false,
+                                        "value": "Главный экран"
+                                      },
+                                      {
+                                        "id": "Button id",
+                                        "dimension": 2,
+                                        "sensitive": false,
+                                        "value": "Бесплатная кредитка"
+                                      }
+                                    ]
+                                  },
+                                  "version": 1
+                                }
+                              }
+                            ]
+                          },
+                          "paddings": {
+                            "top": "zero",
+                            "left": "m",
+                            "bottom": "xs",
+                            "right": "m"
+                          },
+                          "hidden": false,
+                          "version": 1
+                        },
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "horizontal",
+                            "alignment": "fill",
+                            "distribution": "weighted",
+                            "children": [
+                              {
+                                "type": "BannerWrapper",
+                                "weight": 1,
+                                "paddings": {
+                                  "left": "zero",
+                                  "right": "zero",
+                                  "top": "zero",
+                                  "bottom": "zero"
+                                },
+                                "content": {
+                                  "backgroundColor": "backgroundColorSecondary",
+                                  "content": {
+                                    "type": "StackView",
+                                    "paddings": {
+                                      "left": "m",
+                                      "right": "m",
+                                      "top": "m",
+                                      "bottom": "m"
+                                    },
+                                    "content": {
+                                      "children": [
+                                        {
+                                          "type": "IconView",
+                                          "content": {
+                                            "icon": {
+                                              "url": "https://test-alfa-mobile.alfabank.ru/mobile/s3/static/salary-customer/4.png"
+                                            },
+                                            "size": "xlarge",
+                                            "shape": "noshape"
+                                          }
+                                        },
+                                        {
+                                          "type": "Spacer",
+                                          "size": {
+                                            "height": 4
+                                          },
+                                          "content": {},
+                                          "hidden": false,
+                                          "version": 1
+                                        },
+                                        {
+                                          "content": {
+                                            "horizontalAlignment": "left",
+                                            "text": {
+                                              "typography": "ActionComponent",
+                                              "value": "Бесплатные\nуведомления",
+                                              "color": "textColorPrimary",
+                                              "maxLineCount": 3
+                                            }
+                                          },
+                                          "type": "LabelView"
+                                        },
+                                        {
+                                          "type": "Spacer",
+                                          "content": {},
+                                          "hidden": false,
+                                          "version": 1
+                                        },
+                                        {
+                                          "type": "StackView",
+                                          "content": {
+                                            "axis": "horizontal",
+                                            "alignment": "fill",
+                                            "children": [
+                                              {
+                                                "type": "StackView",
+                                                "size": {
+                                                  "width": -2
+                                                },
+                                                "content": {
+                                                  "corners": {
+                                                    "topRight": "xl",
+                                                    "bottomLeft": "xl",
+                                                    "bottomRight": "xl",
+                                                    "topLeft": "xl"
+                                                  },
+                                                  "axis": "horizontal",
+                                                  "alignment": "center",
+                                                  "backgroundColor": "backgroundPrimary",
+                                                  "children": [
+                                                    {
+                                                      "type": "LabelView",
+                                                      "size": {
+                                                        "width": -2
+                                                      },
+                                                      "paddings": {
+                                                        "left": "xs",
+                                                        "right": "xs",
+                                                        "top": "xxxxs",
+                                                        "bottom": "xxxxs"
+                                                      },
+                                                      "content": {
+                                                        "horizontalAlignment": "left",
+                                                        "text": {
+                                                          "color": "textColorSecondary",
+                                                          "maxLineCount": 1,
+                                                          "value": "Не подключено",
+                                                          "typography": "ActionSecondaryMedium"
+                                                        }
+                                                      }
+                                                    }
+                                                  ]
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "axis": "vertical",
+                                      "alignment": "fill"
+                                    }
+                                  }
+                                },
+                                "action": {
+                                  "type": "deeplink",
+                                  "url": "https://online.alfabank.ru/sdui_screen?endpoint=v1/free_notifications_disabled&presentationType=SHEET&sheetState=ADAPTIVE",
+                                  "analytics": {
+                                    "label": "Privilege Details",
+                                    "screen": "MAIN_SCREEN",
+                                    "category": "Salary client privileges",
+                                    "action": "click",
+                                    "analyticsSystems": [
+                                      "snowplow",
+                                      "alfametric"
+                                    ],
+                                    "parameters": [
+                                      {
+                                        "id": "Screen name",
+                                        "dimension": 1,
+                                        "sensitive": false,
+                                        "value": "Главный экран"
+                                      },
+                                      {
+                                        "id": "Button id",
+                                        "dimension": 2,
+                                        "sensitive": false,
+                                        "value": "Бесплатные уведомления (не подключены)"
+                                      }
+                                    ]
+                                  },
+                                  "version": 1
+                                }
+                              },
+                              {
+                                "type": "Spacer",
+                                "size": {
+                                  "width": 8
+                                },
+                                "content": {}
+                              },
+                              {
+                                "type": "BannerWrapper",
+                                "weight": 1,
+                                "paddings": {
+                                  "left": "zero",
+                                  "right": "zero",
+                                  "top": "zero",
+                                  "bottom": "zero"
+                                },
+                                "content": {
+                                  "backgroundColor": "backgroundColorSecondary",
+                                  "content": {
+                                    "type": "StackView",
+                                    "paddings": {
+                                      "left": "m",
+                                      "right": "m",
+                                      "top": "m",
+                                      "bottom": "m"
+                                    },
+                                    "content": {
+                                      "children": [
+                                        {
+                                          "type": "IconView",
+                                          "content": {
+                                            "icon": {
+                                              "url": "https://test-alfa-mobile.alfabank.ru/mobile/s3/static/salary-customer/5.png"
+                                            },
+                                            "size": "xlarge",
+                                            "shape": "noshape"
+                                          }
+                                        },
+                                        {
+                                          "type": "Spacer",
+                                          "size": {
+                                            "height": 4
+                                          },
+                                          "content": {},
+                                          "hidden": false,
+                                          "version": 1
+                                        },
+                                        {
+                                          "content": {
+                                            "horizontalAlignment": "left",
+                                            "text": {
+                                              "typography": "ActionComponent",
+                                              "value": "0 ₽ за снятие\nналичных",
+                                              "color": "textColorPrimary",
+                                              "maxLineCount": 3
+                                            }
+                                          },
+                                          "type": "LabelView"
+                                        },
+                                        {
+                                          "type": "Spacer",
+                                          "size": {
+                                            "height": 4
+                                          },
+                                          "content": {},
+                                          "hidden": false,
+                                          "version": 1
+                                        },
+                                        {
+                                          "type": "LabelView",
+                                          "content": {
+                                            "horizontalAlignment": "left",
+                                            "text": {
+                                              "color": "textColorSecondary",
+                                              "maxLineCount": 3,
+                                              "value": "В любых\nбанкоматах",
+                                              "typography": "ParagraphSecondaryMedium"
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "type": "Spacer",
+                                          "content": {},
+                                          "hidden": false,
+                                          "version": 1
+                                        }
+                                      ],
+                                      "axis": "vertical",
+                                      "alignment": "fill"
+                                    }
+                                  }
+                                },
+                                "action": {
+                                  "type": "deeplink",
+                                  "url": "https://online.alfabank.ru/sdui_screen?endpoint=v1/0_for_cash_withdrawal&presentationType=SHEET&sheetState=ADAPTIVE",
+                                  "analytics": {
+                                    "label": "Privilege Details",
+                                    "screen": "MAIN_SCREEN",
+                                    "category": "Salary client privileges",
+                                    "action": "click",
+                                    "analyticsSystems": [
+                                      "snowplow",
+                                      "alfametric"
+                                    ],
+                                    "parameters": [
+                                      {
+                                        "id": "Screen name",
+                                        "dimension": 1,
+                                        "sensitive": false,
+                                        "value": "Главный экран"
+                                      },
+                                      {
+                                        "id": "Button id",
+                                        "dimension": 2,
+                                        "sensitive": false,
+                                        "value": "0 ₽ за снятие наличных"
+                                      }
+                                    ]
+                                  },
+                                  "version": 1
+                                }
+                              }
+                            ]
+                          },
+                          "paddings": {
+                            "top": "zero",
+                            "left": "m",
+                            "bottom": "xs",
+                            "right": "m"
+                          },
+                          "hidden": false,
+                          "version": 1
+                        },
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "horizontal",
+                            "alignment": "fill",
+                            "distribution": "weighted",
+                            "children": [
+                              {
+                                "type": "BannerWrapper",
+                                "weight": 1,
+                                "paddings": {
+                                  "left": "zero",
+                                  "right": "zero",
+                                  "top": "zero",
+                                  "bottom": "zero"
+                                },
+                                "content": {
+                                  "backgroundColor": "backgroundColorSecondary",
+                                  "content": {
+                                    "type": "StackView",
+                                    "paddings": {
+                                      "left": "m",
+                                      "right": "m",
+                                      "top": "m",
+                                      "bottom": "m"
+                                    },
+                                    "content": {
+                                      "children": [
+                                        {
+                                          "type": "IconView",
+                                          "content": {
+                                            "icon": {
+                                              "url": "https://test-alfa-mobile.alfabank.ru/mobile/s3/static/salary-customer/3.png"
+                                            },
+                                            "size": "xlarge",
+                                            "shape": "noshape"
+                                          }
+                                        },
+                                        {
+                                          "type": "Spacer",
+                                          "size": {
+                                            "height": 4
+                                          },
+                                          "content": {},
+                                          "hidden": false,
+                                          "version": 1
+                                        },
+                                        {
+                                          "content": {
+                                            "horizontalAlignment": "left",
+                                            "text": {
+                                              "typography": "ActionComponent",
+                                              "value": "Ставки до – 2%\nпо кредитам",
+                                              "color": "textColorPrimary",
+                                              "maxLineCount": 3
+                                            }
+                                          },
+                                          "type": "LabelView"
+                                        },
+                                        {
+                                          "type": "Spacer",
+                                          "size": {
+                                            "height": 4
+                                          },
+                                          "content": {},
+                                          "hidden": false,
+                                          "version": 1
+                                        },
+                                        {
+                                          "type": "LabelView",
+                                          "content": {
+                                            "horizontalAlignment": "left",
+                                            "text": {
+                                              "color": "textColorSecondary",
+                                              "maxLineCount": 3,
+                                              "value": "Рассчитываются\nиндивидуально",
+                                              "typography": "ParagraphSecondaryMedium"
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "type": "Spacer",
+                                          "content": {},
+                                          "hidden": false,
+                                          "version": 1
+                                        }
+                                      ],
+                                      "axis": "vertical",
+                                      "alignment": "fill"
+                                    }
+                                  }
+                                },
+                                "action": {
+                                  "type": "deeplink",
+                                  "url": "https://online.alfabank.ru/sdui_screen?endpoint=v1/rates_up_to_2_on_loans&presentationType=SHEET&sheetState=ADAPTIVE",
+                                  "analytics": {
+                                    "label": "Privilege Details",
+                                    "screen": "MAIN_SCREEN",
+                                    "category": "Salary client privileges",
+                                    "action": "click",
+                                    "analyticsSystems": [
+                                      "snowplow",
+                                      "alfametric"
+                                    ],
+                                    "parameters": [
+                                      {
+                                        "id": "Screen name",
+                                        "dimension": 1,
+                                        "sensitive": false,
+                                        "value": "Главный экран"
+                                      },
+                                      {
+                                        "id": "Button id",
+                                        "dimension": 2,
+                                        "sensitive": false,
+                                        "value": "Ставки до – 2% по кредитам"
+                                      }
+                                    ]
+                                  },
+                                  "version": 1
+                                }
+                              },
+                              {
+                                "type": "Spacer",
+                                "size": {
+                                  "width": 8
+                                },
+                                "content": {}
+                              },
+                              {
+                                "type": "BannerWrapper",
+                                "weight": 1,
+                                "paddings": {
+                                  "left": "zero",
+                                  "right": "zero",
+                                  "top": "zero",
+                                  "bottom": "zero"
+                                },
+                                "content": {
+                                  "backgroundColor": "backgroundColorSecondary",
+                                  "content": {
+                                    "type": "StackView",
+                                    "paddings": {
+                                      "left": "m",
+                                      "right": "m",
+                                      "top": "m",
+                                      "bottom": "m"
+                                    },
+                                    "content": {
+                                      "children": [
+                                        {
+                                          "type": "IconView",
+                                          "content": {
+                                            "icon": {
+                                              "url": "https://test-alfa-mobile.alfabank.ru/mobile/s3/static/salary-customer/6.png"
+                                            },
+                                            "size": "xlarge",
+                                            "shape": "noshape"
+                                          }
+                                        },
+                                        {
+                                          "type": "Spacer",
+                                          "size": {
+                                            "height": 4
+                                          },
+                                          "content": {},
+                                          "hidden": false,
+                                          "version": 1
+                                        },
+                                        {
+                                          "content": {
+                                            "horizontalAlignment": "left",
+                                            "text": {
+                                              "typography": "ActionComponent",
+                                              "value": "Бесплатное\nобслуживание",
+                                              "color": "textColorPrimary",
+                                              "maxLineCount": 3
+                                            }
+                                          },
+                                          "type": "LabelView"
+                                        },
+                                        {
+                                          "type": "Spacer",
+                                          "size": {
+                                            "height": 4
+                                          },
+                                          "content": {},
+                                          "hidden": false,
+                                          "version": 1
+                                        },
+                                        {
+                                          "type": "LabelView",
+                                          "content": {
+                                            "horizontalAlignment": "left",
+                                            "text": {
+                                              "color": "textColorSecondary",
+                                              "maxLineCount": 3,
+                                              "value": "Навсегда\nи без условий",
+                                              "typography": "ParagraphSecondaryMedium"
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "type": "Spacer",
+                                          "content": {},
+                                          "hidden": false,
+                                          "version": 1
+                                        }
+                                      ],
+                                      "axis": "vertical",
+                                      "alignment": "fill"
+                                    }
+                                  }
+                                },
+                                "action": {
+                                  "type": "deeplink",
+                                  "url": "https://online.alfabank.ru/sdui_screen?endpoint=v1/free_service&presentationType=SHEET&sheetState=ADAPTIVE",
+                                  "analytics": {
+                                    "label": "Privilege Details",
+                                    "screen": "MAIN_SCREEN",
+                                    "category": "Salary client privileges",
+                                    "action": "click",
+                                    "analyticsSystems": [
+                                      "snowplow",
+                                      "alfametric"
+                                    ],
+                                    "parameters": [
+                                      {
+                                        "id": "Screen name",
+                                        "dimension": 1,
+                                        "sensitive": false,
+                                        "value": "Главный экран"
+                                      },
+                                      {
+                                        "id": "Button id",
+                                        "dimension": 2,
+                                        "sensitive": false,
+                                        "value": "Бесплатное обслуживание"
+                                      }
+                                    ]
+                                  },
+                                  "version": 1
+                                }
+                              }
+                            ]
+                          },
+                          "paddings": {
+                            "top": "zero",
+                            "left": "m",
+                            "bottom": "xs",
+                            "right": "m"
+                          },
+                          "hidden": false,
+                          "version": 1
+                        },
+                        {
+                          "content": {
+                            "horizontalAlignment": "left",
+                            "text": {
+                              "color": "textColorPrimary",
+                              "maxLineCount": 1,
+                              "value": "Больше выгоды",
+                              "typography": "HeadlineSmall"
+                            }
+                          },
+                          "paddings": {
+                            "right": "l",
+                            "bottom": "s",
+                            "left": "l",
+                            "top": "xl"
+                          },
+                          "type": "LabelView"
+                        },
+                        {
+                          "type": "BannerWrapper",
+                          "content": {
+                            "backgroundColor": "backgroundColorSecondary",
+                            "content": {
+                              "type": "ConstraintWrapper",
+                              "content": {
+                                "children": [
+                                  {
+                                    "size": {
+                                      "height": 100,
+                                      "width": 100
+                                    },
+                                    "tag": "image",
+                                    "constraints": [
+                                      {
+                                        "reference": "superview",
+                                        "constant": 16,
+                                        "type": "right"
+                                      },
+                                      {
+                                        "reference": "superview",
+                                        "constant": 32,
+                                        "type": "bottom"
+                                      }
+                                    ],
+                                    "content": {
+                                      "children": [
+                                        {
+                                          "content": {
+                                            "shape": "rect",
+                                            "ratio": 1,
+                                            "url": "https://test-alfa-mobile.alfabank.ru/mobile/s3/static/salary-customer/16-alfa-smart.png"
+                                          },
+                                          "type": "ImageView"
+                                        }
+                                      ],
+                                      "axis": "horizontal",
+                                      "alignment": "center"
+                                    },
+                                    "type": "StackView"
+                                  },
+                                  {
+                                    "constraints": [
+                                      {
+                                        "type": "right",
+                                        "constant": 0,
+                                        "reference": "superview"
+                                      },
+                                      {
+                                        "type": "top",
+                                        "constant": 0,
+                                        "reference": "superview"
+                                      },
+                                      {
+                                        "type": "bottom",
+                                        "constant": 0,
+                                        "reference": "superview"
+                                      },
+                                      {
+                                        "type": "left",
+                                        "reference": "superview",
+                                        "constant": 0
+                                      }
+                                    ],
+                                    "tag": "sw",
+                                    "type": "StackView",
+                                    "content": {
+                                      "axis": "vertical",
+                                      "alignment": "fill",
+                                      "children": [
+                                        {
+                                          "content": {
+                                            "distribution": "weighted",
+                                            "alignment": "end",
+                                            "axis": "horizontal",
+                                            "children": [
+                                              {
+                                                "content": {
+                                                  "alignment": "center",
+                                                  "axis": "horizontal",
+                                                  "children": [
+                                                    {
+                                                      "type": "StackView",
+                                                      "content": {
+                                                        "axis": "vertical",
+                                                        "alignment": "fill",
+                                                        "children": [
+                                                          {
+                                                            "content": {
+                                                              "horizontalAlignment": "left",
+                                                              "text": {
+                                                                "typography": "ActionComponent",
+                                                                "value": "16 привилегий\nс уровнем Альфа-Смарт",
+                                                                "color": "textColorPrimary",
+                                                                "maxLineCount": 345
+                                                              }
+                                                            },
+                                                            "paddings": {
+                                                              "left": "zero",
+                                                              "right": "zero",
+                                                              "top": "zero",
+                                                              "bottom": "xs"
+                                                            },
+                                                            "type": "LabelView"
+                                                          },
+                                                          {
+                                                            "content": {
+                                                              "horizontalAlignment": "left",
+                                                              "text": {
+                                                                "typography": "ParagraphPrimarySmall",
+                                                                "value": "Со скидкой за зарплату\nв Альфа-Банке",
+                                                                "color": "textColorSecondary",
+                                                                "maxLineCount": 345
+                                                              }
+                                                            },
+                                                            "type": "LabelView"
+                                                          }
+                                                        ]
+                                                      }
+                                                    },
+                                                    {
+                                                      "type": "Spacer"
+                                                    }
+                                                  ]
+                                                },
+                                                "weight": 1,
+                                                "type": "StackView"
+                                              },
+                                              {
+                                                "content": {
+                                                  "alignment": "center",
+                                                  "axis": "horizontal",
+                                                  "children": [
+                                                    {
+                                                      "content": {
+                                                        "corners": {
+                                                          "topRight": "xl",
+                                                          "bottomLeft": "xl",
+                                                          "bottomRight": "xl",
+                                                          "topLeft": "xl"
+                                                        },
+                                                        "backgroundColor": "graphicColorPositive",
+                                                        "alignment": "center",
+                                                        "axis": "horizontal",
+                                                        "children": [
+                                                          {
+                                                            "paddings": {
+                                                              "left": "xs",
+                                                              "right": "xs",
+                                                              "top": "zero",
+                                                              "bottom": "zero"
+                                                            },
+                                                            "content": {
+                                                              "horizontalAlignment": "left",
+                                                              "text": {
+                                                                "color": "textColorPrimaryInverted",
+                                                                "maxLineCount": 1,
+                                                                "value": "Подключено",
+                                                                "typography": "ActionSecondaryLarge"
+                                                              }
+                                                            },
+                                                            "type": "LabelView"
+                                                          }
+                                                        ]
+                                                      },
+                                                      "size": {
+                                                        "width": -2
+                                                      },
+                                                      "type": "StackView"
+                                                    }
+                                                  ]
+                                                },
+                                                "size": {
+                                                  "width": -2
+                                                },
+                                                "type": "StackView"
+                                              }
+                                            ]
+                                          },
+                                          "size": {
+                                            "width": -1
+                                          },
+                                          "paddings": {
+                                            "left": "m",
+                                            "right": "m",
+                                            "top": "m",
+                                            "bottom": "zero"
+                                          },
+                                          "type": "StackView"
+                                        },
+                                        {
+                                          "type": "Spacer",
+                                          "size": {
+                                            "height": 16
+                                          }
+                                        },
+                                        {
+                                          "type": "ButtonView",
+                                          "content": {
+                                            "showProgressIcon": false,
+                                            "progressIconColor": "textColorPrimary",
+                                            "isEnabled": true,
+                                            "isTextsFill": false,
+                                            "height": 40,
+                                            "textLabels": {
+                                              "title": {
+                                                "defaultValue": {
+                                                  "type": "LabelView",
+                                                  "content": {
+                                                    "text": {
+                                                      "value": "Смотреть все",
+                                                      "color": "textColorPrimary",
+                                                      "typography": "ActionPrimarySmall",
+                                                      "maxLineCount": 1
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "action": {
+                                            "type": "deeplink",
+                                            "url": "https://online.alfabank.ru/sdui_screen?endpoint=v1/alfa_smart_lvl_test&presentationType=SHEET&sheetState=ADAPTIVE",
+                                            "analytics": {
+                                              "label": "Show level info",
+                                              "screen": "MAIN_SCREEN",
+                                              "category": "Salary client privileges",
+                                              "action": "click",
+                                              "analyticsSystems": [
+                                                "snowplow",
+                                                "alfametric"
+                                              ],
+                                              "parameters": [
+                                                {
+                                                  "id": "Screen name",
+                                                  "dimension": 1,
+                                                  "sensitive": false,
+                                                  "value": "Главный экран"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "appearance": {
+                                            "defaultValue": {
+                                              "backgroundColor": "backgroundColorPrimary",
+                                              "corners": {
+                                                "topLeft": 12,
+                                                "topRight": 12,
+                                                "bottomLeft": 12,
+                                                "bottomRight": 12
+                                              }
+                                            },
+                                            "type": "control"
+                                          },
+                                          "version": 2
+                                        },
+                                        {
+                                          "type": "Spacer",
+                                          "size": {
+                                            "height": 8
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          },
+                          "paddings": {
+                            "left": "m",
+                            "right": "m",
+                            "top": "zero",
+                            "bottom": "xs"
+                          }
+                        },
+                        {
+                          "type": "BannerWrapper",
+                          "paddings": {
+                            "left": "m",
+                            "right": "m",
+                            "top": "zero",
+                            "bottom": "xs"
+                          },
+                          "content": {
+                            "backgroundColor": "decorativeMutedColorOrange",
+                            "content": {
+                              "type": "StackView",
+                              "paddings": {
+                                "left": "m",
+                                "right": "m",
+                                "top": "m",
+                                "bottom": "m"
+                              },
+                              "content": {
+                                "children": [
+                                  {
+                                    "type": "IconView",
+                                    "content": {
+                                      "icon": {
+                                        "url": "https://test-alfa-mobile.alfabank.ru/mobile/s3/static/salary-customer/16-priveleges-sales.png"
+                                      },
+                                      "size": "large",
+                                      "shape": "noshape"
+                                    }
+                                  },
+                                  {
+                                    "type": "Spacer",
+                                    "size": {
+                                      "width": 16
+                                    }
+                                  },
+                                  {
+                                    "type": "StackView",
+                                    "paddings": {
+                                      "left": "zero",
+                                      "right": "zero",
+                                      "top": "zero",
+                                      "bottom": "zero"
+                                    },
+                                    "content": {
+                                      "children": [
+                                        {
+                                          "content": {
+                                            "horizontalAlignment": "left",
+                                            "text": {
+                                              "typography": "ActionComponent",
+                                              "value": "16 привилегий в наборе выше",
+                                              "color": "textColorPrimary",
+                                              "maxLineCount": 345
+                                            }
+                                          },
+                                          "paddings": {
+                                            "left": "zero",
+                                            "right": "zero",
+                                            "top": "zero",
+                                            "bottom": "zero"
+                                          },
+                                          "type": "LabelView"
+                                        },
+                                        {
+                                          "type": "Spacer",
+                                          "size": {
+                                            "height": 2
+                                          }
+                                        },
+                                        {
+                                          "type": "TextView",
+                                          "content": {
+                                            "leftText": {
+                                              "textContentKind": "composite",
+                                              "parts": [
+                                                {
+                                                  "value": "899 ₽ ",
+                                                  "typography": "ParagraphPrimarySmall",
+                                                  "color": "textColorSecondary"
+                                                },
+                                                {
+                                                  "value": "999 ₽",
+                                                  "typography": "ParagraphPrimarySmall",
+                                                  "color": "textColorTertiary",
+                                                  "textDecoration": "strikethrough"
+                                                },
+                                                {
+                                                  "value": " в месяц для зарплатных клиентов",
+                                                  "typography": "ParagraphPrimarySmall",
+                                                  "color": "textColorSecondary"
+                                                }
+                                              ]
+                                            },
+                                            "padding": {
+                                              "top": "zero",
+                                              "left": "zero",
+                                              "bottom": "zero",
+                                              "right": "zero"
+                                            }
+                                          }
+                                        }
+                                      ],
+                                      "axis": "vertical",
+                                      "alignment": "fill"
+                                    }
+                                  }
+                                ],
+                                "axis": "horizontal",
+                                "alignment": "center"
+                              }
+                            }
+                          },
+                          "action": {
+                            "type": "deeplink",
+                            "url": "https://online.alfabank.ru/sdui_screen?endpoint=v1/alfa_smart_increase_lvl_test&presentationType=SHEET&sheetState=ADAPTIVE",
+                            "analytics": {
+                              "label": "Promotion Offer",
+                              "screen": "MAIN_SCREEN",
+                              "category": "Salary client privileges",
+                              "action": "click",
+                              "analyticsSystems": [
+                                "snowplow",
+                                "alfametric"
+                              ],
+                              "parameters": [
+                                {
+                                  "id": "Screen name",
+                                  "dimension": 1,
+                                  "sensitive": false,
+                                  "value": "Главный экран"
+                                }
+                              ]
+                            },
+                            "version": 1
+                          }
+                        },
+                        {
+                          "content": {
+                            "alignment": "fill",
+                            "axis": "vertical",
+                            "children": [
+                              {
+                                "content": {
+                                  "alignment": "start",
+                                  "axis": "vertical",
+                                  "children": [
+                                    {
+                                      "content": {
+                                        "alignment": "center",
+                                        "axis": "horizontal",
+                                        "children": [
+                                          {
+                                            "content": {
+                                              "horizontalAlignment": "left",
+                                              "text": {
+                                                "color": "textColorPrimary",
+                                                "maxLineCount": 1,
+                                                "typography": "HeadlineSmall",
+                                                "value": "Подобрали для вас"
+                                              }
+                                            },
+                                            "type": "LabelView"
+                                          },
+                                          {
+                                            "type": "Spacer"
+                                          },
+                                          {
+                                            "action": {
+                                              "type": "deeplink",
+                                              "url": "https://online.alfabank.ru/sdui_screen?endpoint=v1/crm_offer_for_you_testt&presentationType=SHEET&sheetState=ADAPTIVE",
+                                              "analytics": {
+                                                "label": "Information Button",
+                                                "screen": "MAIN_SCREEN",
+                                                "category": "Salary client privileges",
+                                                "action": "click",
+                                                "analyticsSystems": [
+                                                  "snowplow",
+                                                  "alfametric"
+                                                ],
+                                                "parameters": [
+                                                  {
+                                                    "id": "Screen name",
+                                                    "dimension": 1,
+                                                    "sensitive": false,
+                                                    "value": "Главный экран"
+                                                  },
+                                                  {
+                                                    "id": "Button id",
+                                                    "dimension": 2,
+                                                    "sensitive": false,
+                                                    "value": "Подобрали для вас"
+                                                  }
+                                                ]
+                                              },
+                                              "version": 1
+                                            },
+                                            "content": {
+                                              "alignment": "center",
+                                              "axis": "horizontal",
+                                              "children": [
+                                                {
+                                                  "content": {
+                                                    "icon": {
+                                                      "color": "graphicColorTertiary",
+                                                      "name": "glyph_question-circle_s"
+                                                    }
+                                                  },
+                                                  "type": "IconView"
+                                                }
+                                              ]
+                                            },
+                                            "size": {
+                                              "width": -2
+                                            },
+                                            "type": "StackView"
+                                          }
+                                        ]
+                                      },
+                                      "size": {
+                                        "width": -2
+                                      },
+                                      "type": "StackView"
+                                    }
+                                  ]
+                                },
+                                "size": {
+                                  "width": -2
+                                },
+                                "type": "StackView"
+                              }
+                            ]
+                          },
+                          "paddings": {
+                            "right": "l",
+                            "bottom": "s",
+                            "left": "l",
+                            "top": "xl"
+                          },
+                          "type": "StackView"
+                        },
+                        {
+                          "type": "CarouselWrapper",
+                          "content": {
+                            "scaling": false,
+                            "transparency": false,
+                            "pageControlPosition": "bottom",
+                            "sideItemPlacement": "xs",
+                            "interItemSpacing": "xs",
+                            "gap": "m",
+                            "itemCollectionList": [
+                              {
+                                "type": "BannerWrapper",
+                                "paddings": {
+                                  "left": "zero",
+                                  "right": "zero",
+                                  "top": "zero",
+                                  "bottom": "zero"
+                                },
+                                "content": {
+                                  "backgroundColor": "decorativeMutedColorIndigo",
+                                  "content": {
+                                    "type": "ConstraintWrapper",
+                                    "content": {
+                                      "children": [
+                                        {
+                                          "size": {
+                                            "height": 132,
+                                            "width": 132
+                                          },
+                                          "tag": "image",
+                                          "constraints": [
+                                            {
+                                              "reference": "superview",
+                                              "constant": 0,
+                                              "type": "right"
+                                            },
+                                            {
+                                              "reference": "superview",
+                                              "constant": 72,
+                                              "type": "top"
+                                            }
+                                          ],
+                                          "content": {
+                                            "children": [
+                                              {
+                                                "content": {
+                                                  "shape": "rect",
+                                                  "ratio": 1,
+                                                  "url": "https://test-alfa-mobile.alfabank.ru/mobile/s3/static/salary-customer/13.png"
+                                                },
+                                                "type": "ImageView"
+                                              }
+                                            ],
+                                            "axis": "horizontal",
+                                            "alignment": "center"
+                                          },
+                                          "type": "StackView"
+                                        },
+                                        {
+                                          "constraints": [
+                                            {
+                                              "type": "right",
+                                              "constant": 0,
+                                              "reference": "superview"
+                                            },
+                                            {
+                                              "type": "top",
+                                              "constant": 0,
+                                              "reference": "superview"
+                                            },
+                                            {
+                                              "type": "left",
+                                              "reference": "superview",
+                                              "constant": 0
+                                            }
+                                          ],
+                                          "tag": "sw",
+                                          "type": "StackView",
+                                          "paddings": {
+                                            "top": "m",
+                                            "bottom": "m",
+                                            "left": "m",
+                                            "right": "m"
+                                          },
+                                          "content": {
+                                            "axis": "vertical",
+                                            "alignment": "fill",
+                                            "children": [
+                                              {
+                                                "content": {
+                                                  "distribution": "weighted",
+                                                  "alignment": "end",
+                                                  "axis": "horizontal",
+                                                  "children": [
+                                                    {
+                                                      "content": {
+                                                        "alignment": "center",
+                                                        "axis": "horizontal",
+                                                        "children": [
+                                                          {
+                                                            "type": "StackView",
+                                                            "content": {
+                                                              "axis": "vertical",
+                                                              "alignment": "fill",
+                                                              "children": [
+                                                                {
+                                                                  "content": {
+                                                                    "horizontalAlignment": "left",
+                                                                    "text": {
+                                                                      "typography": "ActionPrimaryLarge",
+                                                                      "value": "Альфа-Мобайл 0 ₽ первые 30 дней",
+                                                                      "color": "textColorPrimary",
+                                                                      "maxLineCount": 345
+                                                                    }
+                                                                  },
+                                                                  "paddings": {
+                                                                    "left": "zero",
+                                                                    "right": "zero",
+                                                                    "top": "zero",
+                                                                    "bottom": "xs"
+                                                                  },
+                                                                  "type": "LabelView"
+                                                                },
+                                                                {
+                                                                  "content": {
+                                                                    "horizontalAlignment": "left",
+                                                                    "text": {
+                                                                      "typography": "ParagraphSecondaryLarge",
+                                                                      "value": "Кэшбэк до 100% за первое пополнение",
+                                                                      "color": "textColorSecondary",
+                                                                      "maxLineCount": 345
+                                                                    }
+                                                                  },
+                                                                  "type": "LabelView"
+                                                                }
+                                                              ]
+                                                            }
+                                                          },
+                                                          {
+                                                            "type": "Spacer"
+                                                          }
+                                                        ]
+                                                      },
+                                                      "weight": 1,
+                                                      "type": "StackView"
+                                                    },
+                                                    {
+                                                      "content": {
+                                                        "alignment": "center",
+                                                        "axis": "horizontal",
+                                                        "children": [
+                                                          {
+                                                            "content": {
+                                                              "corners": {
+                                                                "topRight": "xl",
+                                                                "bottomLeft": "xl",
+                                                                "bottomRight": "xl",
+                                                                "topLeft": "xl"
+                                                              },
+                                                              "backgroundColor": "backgroundColorPrimary",
+                                                              "alignment": "center",
+                                                              "axis": "horizontal",
+                                                              "children": [
+                                                                {
+                                                                  "paddings": {
+                                                                    "left": "xs",
+                                                                    "right": "xs",
+                                                                    "top": "xxxxs",
+                                                                    "bottom": "xxxxs"
+                                                                  },
+                                                                  "content": {
+                                                                    "horizontalAlignment": "left",
+                                                                    "text": {
+                                                                      "color": "textColorPrimary",
+                                                                      "maxLineCount": 1,
+                                                                      "value": "Выгодная связь",
+                                                                      "typography": "ActionSecondaryLarge"
+                                                                    }
+                                                                  },
+                                                                  "type": "LabelView"
+                                                                }
+                                                              ]
+                                                            },
+                                                            "size": {
+                                                              "width": -2
+                                                            },
+                                                            "paddings": {
+                                                              "left": "xs",
+                                                              "right": "zero",
+                                                              "top": "zero",
+                                                              "bottom": "zero"
+                                                            },
+                                                            "type": "StackView"
+                                                          }
+                                                        ]
+                                                      },
+                                                      "size": {
+                                                        "width": -2
+                                                      },
+                                                      "type": "StackView"
+                                                    }
+                                                  ]
+                                                },
+                                                "size": {
+                                                  "width": -1
+                                                },
+                                                "type": "StackView"
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                },
+                                "action": {
+                                  "type": "deeplink",
+                                  "url": "https://online.alfabank.ru/sdui_screen?endpoint=v1/crm_offer_test&presentationType=SHEET&sheetState=ADAPTIVE",
+                                  "analytics": {
+                                    "label": "Offer details",
+                                    "screen": "MAIN_SCREEN",
+                                    "category": "Salary client privileges",
+                                    "action": "click",
+                                    "analyticsSystems": [
+                                      "snowplow",
+                                      "alfametric"
+                                    ],
+                                    "parameters": [
+                                      {
+                                        "id": "Screen name",
+                                        "dimension": 1,
+                                        "sensitive": false,
+                                        "value": "Главный экран"
+                                      },
+                                      {
+                                        "id": "title",
+                                        "dimension": 2,
+                                        "sensitive": false,
+                                        "value": "Альфа-Мобайл 0 ₽ первые 30 дней"
+                                      },
+                                      {
+                                        "id": "subtitle",
+                                        "dimension": 3,
+                                        "sensitive": false,
+                                        "value": "Кэшбэк до 100% за первое пополнение"
+                                      }
+                                    ]
+                                  },
+                                  "version": 1
+                                }
+                              },
+                              {
+                                "type": "BannerWrapper",
+                                "paddings": {
+                                  "left": "zero",
+                                  "right": "zero",
+                                  "top": "zero",
+                                  "bottom": "zero"
+                                },
+                                "content": {
+                                  "backgroundColor": "decorativeMutedColorIndigo",
+                                  "content": {
+                                    "type": "ConstraintWrapper",
+                                    "content": {
+                                      "children": [
+                                        {
+                                          "size": {
+                                            "height": 132,
+                                            "width": 132
+                                          },
+                                          "tag": "image",
+                                          "constraints": [
+                                            {
+                                              "reference": "superview",
+                                              "constant": 0,
+                                              "type": "right"
+                                            },
+                                            {
+                                              "reference": "superview",
+                                              "constant": 72,
+                                              "type": "top"
+                                            }
+                                          ],
+                                          "content": {
+                                            "children": [
+                                              {
+                                                "content": {
+                                                  "shape": "rect",
+                                                  "ratio": 1,
+                                                  "url": "https://test-alfa-mobile.alfabank.ru/mobile/s3/static/salary-customer/13.png"
+                                                },
+                                                "type": "ImageView"
+                                              }
+                                            ],
+                                            "axis": "horizontal",
+                                            "alignment": "center"
+                                          },
+                                          "type": "StackView"
+                                        },
+                                        {
+                                          "constraints": [
+                                            {
+                                              "type": "right",
+                                              "constant": 0,
+                                              "reference": "superview"
+                                            },
+                                            {
+                                              "type": "top",
+                                              "constant": 0,
+                                              "reference": "superview"
+                                            },
+                                            {
+                                              "type": "left",
+                                              "reference": "superview",
+                                              "constant": 0
+                                            }
+                                          ],
+                                          "tag": "sw",
+                                          "type": "StackView",
+                                          "paddings": {
+                                            "top": "m",
+                                            "bottom": "m",
+                                            "left": "m",
+                                            "right": "m"
+                                          },
+                                          "content": {
+                                            "axis": "vertical",
+                                            "alignment": "fill",
+                                            "children": [
+                                              {
+                                                "content": {
+                                                  "distribution": "weighted",
+                                                  "alignment": "end",
+                                                  "axis": "horizontal",
+                                                  "children": [
+                                                    {
+                                                      "content": {
+                                                        "alignment": "center",
+                                                        "axis": "horizontal",
+                                                        "children": [
+                                                          {
+                                                            "type": "StackView",
+                                                            "content": {
+                                                              "axis": "vertical",
+                                                              "alignment": "fill",
+                                                              "children": [
+                                                                {
+                                                                  "content": {
+                                                                    "horizontalAlignment": "left",
+                                                                    "text": {
+                                                                      "typography": "ActionPrimaryLarge",
+                                                                      "value": "Альфа-Мобайл 0 ₽ первые 30 дней",
+                                                                      "color": "textColorPrimary",
+                                                                      "maxLineCount": 345
+                                                                    }
+                                                                  },
+                                                                  "paddings": {
+                                                                    "left": "zero",
+                                                                    "right": "zero",
+                                                                    "top": "zero",
+                                                                    "bottom": "xs"
+                                                                  },
+                                                                  "type": "LabelView"
+                                                                },
+                                                                {
+                                                                  "content": {
+                                                                    "horizontalAlignment": "left",
+                                                                    "text": {
+                                                                      "typography": "ParagraphSecondaryLarge",
+                                                                      "value": "Кэшбэк до 100% за первое пополнение",
+                                                                      "color": "textColorSecondary",
+                                                                      "maxLineCount": 345
+                                                                    }
+                                                                  },
+                                                                  "type": "LabelView"
+                                                                }
+                                                              ]
+                                                            }
+                                                          },
+                                                          {
+                                                            "type": "Spacer"
+                                                          }
+                                                        ]
+                                                      },
+                                                      "weight": 1,
+                                                      "type": "StackView"
+                                                    },
+                                                    {
+                                                      "content": {
+                                                        "alignment": "center",
+                                                        "axis": "horizontal",
+                                                        "children": [
+                                                          {
+                                                            "content": {
+                                                              "corners": {
+                                                                "topRight": "xl",
+                                                                "bottomLeft": "xl",
+                                                                "bottomRight": "xl",
+                                                                "topLeft": "xl"
+                                                              },
+                                                              "backgroundColor": "backgroundColorPrimary",
+                                                              "alignment": "center",
+                                                              "axis": "horizontal",
+                                                              "children": [
+                                                                {
+                                                                  "paddings": {
+                                                                    "left": "xs",
+                                                                    "right": "xs",
+                                                                    "top": "xxxxs",
+                                                                    "bottom": "xxxxs"
+                                                                  },
+                                                                  "content": {
+                                                                    "horizontalAlignment": "left",
+                                                                    "text": {
+                                                                      "color": "textColorPrimary",
+                                                                      "maxLineCount": 1,
+                                                                      "value": "Выгодная связь",
+                                                                      "typography": "ActionSecondaryLarge"
+                                                                    }
+                                                                  },
+                                                                  "type": "LabelView"
+                                                                }
+                                                              ]
+                                                            },
+                                                            "size": {
+                                                              "width": -2
+                                                            },
+                                                            "paddings": {
+                                                              "left": "xs",
+                                                              "right": "zero",
+                                                              "top": "zero",
+                                                              "bottom": "zero"
+                                                            },
+                                                            "type": "StackView"
+                                                          }
+                                                        ]
+                                                      },
+                                                      "size": {
+                                                        "width": -2
+                                                      },
+                                                      "type": "StackView"
+                                                    }
+                                                  ]
+                                                },
+                                                "size": {
+                                                  "width": -1
+                                                },
+                                                "type": "StackView"
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                },
+                                "action": {
+                                  "type": "deeplink",
+                                  "url": "https://online.alfabank.ru/sdui_screen?endpoint=v1/crm_offer_test&presentationType=SHEET&sheetState=ADAPTIVE",
+                                  "analytics": {
+                                    "label": "Offer details",
+                                    "screen": "MAIN_SCREEN",
+                                    "category": "Salary client privileges",
+                                    "action": "click",
+                                    "analyticsSystems": [
+                                      "snowplow",
+                                      "alfametric"
+                                    ],
+                                    "parameters": [
+                                      {
+                                        "id": "Screen name",
+                                        "dimension": 1,
+                                        "sensitive": false,
+                                        "value": "Главный экран"
+                                      },
+                                      {
+                                        "id": "title",
+                                        "dimension": 2,
+                                        "sensitive": false,
+                                        "value": "Альфа-Мобайл 0 ₽ первые 30 дней"
+                                      },
+                                      {
+                                        "id": "subtitle",
+                                        "dimension": 3,
+                                        "sensitive": false,
+                                        "value": "Кэшбэк до 100% за первое пополнение"
+                                      }
+                                    ]
+                                  },
+                                  "version": 1
+                                }
+                              },
+                              {
+                                "type": "BannerWrapper",
+                                "paddings": {
+                                  "left": "zero",
+                                  "right": "zero",
+                                  "top": "zero",
+                                  "bottom": "zero"
+                                },
+                                "content": {
+                                  "backgroundColor": "decorativeMutedColorPurple",
+                                  "content": {
+                                    "type": "ConstraintWrapper",
+                                    "content": {
+                                      "children": [
+                                        {
+                                          "size": {
+                                            "height": 132,
+                                            "width": 132
+                                          },
+                                          "tag": "image",
+                                          "constraints": [
+                                            {
+                                              "reference": "superview",
+                                              "constant": 0,
+                                              "type": "right"
+                                            },
+                                            {
+                                              "reference": "superview",
+                                              "constant": 72,
+                                              "type": "top"
+                                            }
+                                          ],
+                                          "content": {
+                                            "children": [
+                                              {
+                                                "content": {
+                                                  "shape": "rect",
+                                                  "ratio": 1,
+                                                  "url": "https://test-alfa-mobile.alfabank.ru/mobile/s3/static/salary-customer/13.png"
+                                                },
+                                                "type": "ImageView"
+                                              }
+                                            ],
+                                            "axis": "horizontal",
+                                            "alignment": "center"
+                                          },
+                                          "type": "StackView"
+                                        },
+                                        {
+                                          "constraints": [
+                                            {
+                                              "type": "right",
+                                              "constant": 0,
+                                              "reference": "superview"
+                                            },
+                                            {
+                                              "type": "top",
+                                              "constant": 0,
+                                              "reference": "superview"
+                                            },
+                                            {
+                                              "type": "left",
+                                              "reference": "superview",
+                                              "constant": 0
+                                            }
+                                          ],
+                                          "tag": "sw",
+                                          "type": "StackView",
+                                          "paddings": {
+                                            "top": "m",
+                                            "bottom": "m",
+                                            "left": "m",
+                                            "right": "m"
+                                          },
+                                          "content": {
+                                            "axis": "vertical",
+                                            "alignment": "fill",
+                                            "children": [
+                                              {
+                                                "content": {
+                                                  "distribution": "weighted",
+                                                  "alignment": "end",
+                                                  "axis": "horizontal",
+                                                  "children": [
+                                                    {
+                                                      "content": {
+                                                        "alignment": "center",
+                                                        "axis": "horizontal",
+                                                        "children": [
+                                                          {
+                                                            "type": "StackView",
+                                                            "content": {
+                                                              "axis": "vertical",
+                                                              "alignment": "fill",
+                                                              "children": [
+                                                                {
+                                                                  "content": {
+                                                                    "horizontalAlignment": "left",
+                                                                    "text": {
+                                                                      "typography": "ActionPrimaryLarge",
+                                                                      "value": "Альфа-Мобайл 500 ₽ первые 10 дней",
+                                                                      "color": "textColorPrimary",
+                                                                      "maxLineCount": 345
+                                                                    }
+                                                                  },
+                                                                  "paddings": {
+                                                                    "left": "zero",
+                                                                    "right": "zero",
+                                                                    "top": "zero",
+                                                                    "bottom": "xs"
+                                                                  },
+                                                                  "type": "LabelView"
+                                                                },
+                                                                {
+                                                                  "content": {
+                                                                    "horizontalAlignment": "left",
+                                                                    "text": {
+                                                                      "typography": "ParagraphSecondaryLarge",
+                                                                      "value": "Кэшбэк до 50% за первое пополнение",
+                                                                      "color": "textColorSecondary",
+                                                                      "maxLineCount": 345
+                                                                    }
+                                                                  },
+                                                                  "type": "LabelView"
+                                                                }
+                                                              ]
+                                                            }
+                                                          },
+                                                          {
+                                                            "type": "Spacer"
+                                                          }
+                                                        ]
+                                                      },
+                                                      "weight": 1,
+                                                      "type": "StackView"
+                                                    },
+                                                    {
+                                                      "content": {
+                                                        "alignment": "center",
+                                                        "axis": "horizontal",
+                                                        "children": [
+                                                          {
+                                                            "content": {
+                                                              "corners": {
+                                                                "topRight": "xl",
+                                                                "bottomLeft": "xl",
+                                                                "bottomRight": "xl",
+                                                                "topLeft": "xl"
+                                                              },
+                                                              "backgroundColor": "backgroundColorPrimary",
+                                                              "alignment": "center",
+                                                              "axis": "horizontal",
+                                                              "children": [
+                                                                {
+                                                                  "paddings": {
+                                                                    "left": "xs",
+                                                                    "right": "xs",
+                                                                    "top": "xxxxs",
+                                                                    "bottom": "xxxxs"
+                                                                  },
+                                                                  "content": {
+                                                                    "horizontalAlignment": "left",
+                                                                    "text": {
+                                                                      "color": "textColorPrimary",
+                                                                      "maxLineCount": 1,
+                                                                      "value": "Не совсем выгодная связь",
+                                                                      "typography": "ActionSecondaryLarge"
+                                                                    }
+                                                                  },
+                                                                  "type": "LabelView"
+                                                                }
+                                                              ]
+                                                            },
+                                                            "size": {
+                                                              "width": -2
+                                                            },
+                                                            "paddings": {
+                                                              "left": "xs",
+                                                              "right": "zero",
+                                                              "top": "zero",
+                                                              "bottom": "zero"
+                                                            },
+                                                            "type": "StackView"
+                                                          }
+                                                        ]
+                                                      },
+                                                      "size": {
+                                                        "width": -2
+                                                      },
+                                                      "type": "StackView"
+                                                    }
+                                                  ]
+                                                },
+                                                "size": {
+                                                  "width": -1
+                                                },
+                                                "type": "StackView"
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                },
+                                "action": {
+                                  "type": "deeplink",
+                                  "url": "https://online.alfabank.ru/sdui_screen?endpoint=v1/crm_offer_test&presentationType=SHEET&sheetState=ADAPTIVE",
+                                  "analytics": {
+                                    "label": "Offer details",
+                                    "screen": "MAIN_SCREEN",
+                                    "category": "Salary client privileges",
+                                    "action": "click",
+                                    "analyticsSystems": [
+                                      "snowplow",
+                                      "alfametric"
+                                    ],
+                                    "parameters": [
+                                      {
+                                        "id": "Screen name",
+                                        "dimension": 1,
+                                        "sensitive": false,
+                                        "value": "Главный экран"
+                                      },
+                                      {
+                                        "id": "title",
+                                        "dimension": 2,
+                                        "sensitive": false,
+                                        "value": "Альфа-Мобайл 500 ₽ первые 10 дней"
+                                      },
+                                      {
+                                        "id": "subtitle",
+                                        "dimension": 3,
+                                        "sensitive": false,
+                                        "value": "Кэшбэк до 50% за первое пополнение"
+                                      }
+                                    ]
+                                  },
+                                  "version": 1
+                                }
+                              },
+                              {
+                                "type": "BannerWrapper",
+                                "paddings": {
+                                  "left": "zero",
+                                  "right": "zero",
+                                  "top": "zero",
+                                  "bottom": "zero"
+                                },
+                                "content": {
+                                  "backgroundColor": "decorativeMutedColorIndigo",
+                                  "content": {
+                                    "type": "ConstraintWrapper",
+                                    "content": {
+                                      "children": [
+                                        {
+                                          "size": {
+                                            "height": 132,
+                                            "width": 132
+                                          },
+                                          "tag": "image",
+                                          "constraints": [
+                                            {
+                                              "reference": "superview",
+                                              "constant": 0,
+                                              "type": "right"
+                                            },
+                                            {
+                                              "reference": "superview",
+                                              "constant": 72,
+                                              "type": "top"
+                                            }
+                                          ],
+                                          "content": {
+                                            "children": [
+                                              {
+                                                "content": {
+                                                  "shape": "rect",
+                                                  "ratio": 1,
+                                                  "url": "https://test-alfa-mobile.alfabank.ru/mobile/s3/static/salary-customer/13.png"
+                                                },
+                                                "type": "ImageView"
+                                              }
+                                            ],
+                                            "axis": "horizontal",
+                                            "alignment": "center"
+                                          },
+                                          "type": "StackView"
+                                        },
+                                        {
+                                          "constraints": [
+                                            {
+                                              "type": "right",
+                                              "constant": 0,
+                                              "reference": "superview"
+                                            },
+                                            {
+                                              "type": "top",
+                                              "constant": 0,
+                                              "reference": "superview"
+                                            },
+                                            {
+                                              "type": "left",
+                                              "reference": "superview",
+                                              "constant": 0
+                                            }
+                                          ],
+                                          "tag": "sw",
+                                          "type": "StackView",
+                                          "paddings": {
+                                            "top": "m",
+                                            "bottom": "m",
+                                            "left": "m",
+                                            "right": "m"
+                                          },
+                                          "content": {
+                                            "axis": "vertical",
+                                            "alignment": "fill",
+                                            "children": [
+                                              {
+                                                "content": {
+                                                  "distribution": "weighted",
+                                                  "alignment": "end",
+                                                  "axis": "horizontal",
+                                                  "children": [
+                                                    {
+                                                      "content": {
+                                                        "alignment": "center",
+                                                        "axis": "horizontal",
+                                                        "children": [
+                                                          {
+                                                            "type": "StackView",
+                                                            "content": {
+                                                              "axis": "vertical",
+                                                              "alignment": "fill",
+                                                              "children": [
+                                                                {
+                                                                  "content": {
+                                                                    "horizontalAlignment": "left",
+                                                                    "text": {
+                                                                      "typography": "ActionPrimaryLarge",
+                                                                      "value": "Альфа-Мобайл 1 000 ₽ первые 30 дней",
+                                                                      "color": "textColorPrimary",
+                                                                      "maxLineCount": 345
+                                                                    }
+                                                                  },
+                                                                  "paddings": {
+                                                                    "left": "zero",
+                                                                    "right": "zero",
+                                                                    "top": "zero",
+                                                                    "bottom": "xs"
+                                                                  },
+                                                                  "type": "LabelView"
+                                                                },
+                                                                {
+                                                                  "content": {
+                                                                    "horizontalAlignment": "left",
+                                                                    "text": {
+                                                                      "typography": "ParagraphSecondaryLarge",
+                                                                      "value": "Кэшбэк до 1% за первое пополнение",
+                                                                      "color": "textColorSecondary",
+                                                                      "maxLineCount": 345
+                                                                    }
+                                                                  },
+                                                                  "type": "LabelView"
+                                                                }
+                                                              ]
+                                                            }
+                                                          },
+                                                          {
+                                                            "type": "Spacer"
+                                                          }
+                                                        ]
+                                                      },
+                                                      "weight": 1,
+                                                      "type": "StackView"
+                                                    }
+                                                  ]
+                                                },
+                                                "size": {
+                                                  "width": -1
+                                                },
+                                                "type": "StackView"
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                },
+                                "action": {
+                                  "type": "deeplink",
+                                  "url": "https://online.alfabank.ru/sdui_screen?endpoint=v1/crm_offer_test&presentationType=SHEET&sheetState=ADAPTIVE",
+                                  "analytics": {
+                                    "label": "Offer details",
+                                    "screen": "MAIN_SCREEN",
+                                    "category": "Salary client privileges",
+                                    "action": "click",
+                                    "analyticsSystems": [
+                                      "snowplow",
+                                      "alfametric"
+                                    ],
+                                    "parameters": [
+                                      {
+                                        "id": "Screen name",
+                                        "dimension": 1,
+                                        "sensitive": false,
+                                        "value": "Главный экран"
+                                      },
+                                      {
+                                        "id": "title",
+                                        "dimension": 2,
+                                        "sensitive": false,
+                                        "value": "Альфа-Мобайл 1 000 ₽ первые 30 дней"
+                                      },
+                                      {
+                                        "id": "subtitle",
+                                        "dimension": 3,
+                                        "sensitive": false,
+                                        "value": "Кэшбэк до 1% за первое пополнение"
+                                      }
+                                    ]
+                                  },
+                                  "version": 1
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "content": {
+                            "horizontalAlignment": "left",
+                            "text": {
+                              "color": "textColorPrimary",
+                              "maxLineCount": 1,
+                              "value": "Зарплатные сервисы",
+                              "typography": "HeadlineSmall"
+                            }
+                          },
+                          "paddings": {
+                            "right": "l",
+                            "bottom": "s",
+                            "left": "l",
+                            "top": "xl"
+                          },
+                          "type": "LabelView"
+                        },
+                        {
+                          "type": "BannerWrapper",
+                          "paddings": {
+                            "left": "m",
+                            "right": "m",
+                            "top": "zero",
+                            "bottom": "xs"
+                          },
+                          "content": {
+                            "backgroundColor": "backgroundColorSecondary",
+                            "content": {
+                              "type": "StackView",
+                              "paddings": {
+                                "left": "m",
+                                "right": "m",
+                                "top": "m",
+                                "bottom": "m"
+                              },
+                              "content": {
+                                "children": [
+                                  {
+                                    "type": "IconView",
+                                    "content": {
+                                      "icon": {
+                                        "url": "https://test-alfa-mobile.alfabank.ru/mobile/s3/static/salary-customer/9.png"
+                                      },
+                                      "size": "large",
+                                      "shape": "noshape"
+                                    }
+                                  },
+                                  {
+                                    "type": "Spacer",
+                                    "size": {
+                                      "width": 16
+                                    }
+                                  },
+                                  {
+                                    "type": "StackView",
+                                    "content": {
+                                      "children": [
+                                        {
+                                          "content": {
+                                            "horizontalAlignment": "left",
+                                            "text": {
+                                              "typography": "ActionComponent",
+                                              "value": "Расчётные листы",
+                                              "color": "textColorPrimary",
+                                              "maxLineCount": 345
+                                            }
+                                          },
+                                          "type": "LabelView"
+                                        },
+                                        {
+                                          "type": "Spacer",
+                                          "size": {
+                                            "height": 2
+                                          }
+                                        },
+                                        {
+                                          "content": {
+                                            "horizontalAlignment": "left",
+                                            "text": {
+                                              "typography": "ParagraphPrimarySmall",
+                                              "value": "Подробно о начислениях\nи удержаниях каждый месяц",
+                                              "color": "textColorSecondary",
+                                              "maxLineCount": 345
+                                            }
+                                          },
+                                          "type": "LabelView"
+                                        }
+                                      ],
+                                      "axis": "vertical",
+                                      "alignment": "start"
+                                    }
+                                  }
+                                ],
+                                "axis": "horizontal",
+                                "alignment": "center"
+                              }
+                            }
+                          },
+                          "action": {
+                            "type": "deeplink",
+                            "url": "/multistep-route?fromModule=FORM&stepNumber=0&alias=payslip-multistep&version=2",
+                            "analytics": {
+                              "label": "Services",
+                              "screen": "MAIN_SCREEN",
+                              "category": "Salary client privileges",
+                              "action": "click",
+                              "analyticsSystems": [
+                                "snowplow",
+                                "alfametric"
+                              ],
+                              "parameters": [
+                                {
+                                  "id": "Screen name",
+                                  "dimension": 1,
+                                  "sensitive": false,
+                                  "value": "Главный экран"
+                                },
+                                {
+                                  "id": "Button id",
+                                  "dimension": 2,
+                                  "sensitive": false,
+                                  "value": "Расчётные листы"
+                                }
+                              ]
+                            },
+                            "version": 1
+                          }
+                        },
+                        {
+                          "type": "BannerWrapper",
+                          "paddings": {
+                            "left": "m",
+                            "right": "m",
+                            "top": "zero",
+                            "bottom": "xs"
+                          },
+                          "content": {
+                            "backgroundColor": "backgroundColorSecondary",
+                            "content": {
+                              "type": "StackView",
+                              "paddings": {
+                                "left": "m",
+                                "right": "m",
+                                "top": "m",
+                                "bottom": "m"
+                              },
+                              "content": {
+                                "children": [
+                                  {
+                                    "type": "ConstraintWrapper",
+                                    "size": {
+                                      "width": -2
+                                    },
+                                    "content": {
+                                      "children": [
+                                        {
+                                          "size": {
+                                            "width": -2
+                                          },
+                                          "tag": "image",
+                                          "content": {
+                                            "children": [
+                                              {
+                                                "type": "IconView",
+                                                "content": {
+                                                  "icon": {
+                                                    "url": "https://test-alfa-mobile.alfabank.ru/mobile/s3/static/salary-customer/10.png"
+                                                  },
+                                                  "size": "large",
+                                                  "shape": "noshape"
+                                                }
+                                              }
+                                            ],
+                                            "axis": "horizontal",
+                                            "alignment": "center"
+                                          },
+                                          "type": "StackView"
+                                        },
+                                        {
+                                          "constraints": [
+                                            {
+                                              "type": "right",
+                                              "constant": 3,
+                                              "reference": "image"
+                                            },
+                                            {
+                                              "type": "bottom",
+                                              "constant": -2,
+                                              "reference": "image"
+                                            },
+                                            {
+                                              "type": "left",
+                                              "reference": "image",
+                                              "constant": 3
+                                            }
+                                          ],
+                                          "tag": "label",
+                                          "type": "StackView",
+                                          "content": {
+                                            "corners": {
+                                              "topRight": "xs",
+                                              "bottomLeft": "xs",
+                                              "bottomRight": "xs",
+                                              "topLeft": "xs"
+                                            },
+                                            "backgroundColor": "decorativeColorCyan",
+                                            "axis": "vertical",
+                                            "children": [
+                                              {
+                                                "content": {
+                                                  "horizontalAlignment": "center",
+                                                  "text": {
+                                                    "typography": "ActionSecondarySmall",
+                                                    "value": "Скоро",
+                                                    "color": "textColorPrimaryInverted",
+                                                    "maxLineCount": 345
+                                                  }
+                                                },
+                                                "paddings": {
+                                                  "left": "zero",
+                                                  "right": "zero",
+                                                  "top": "zero",
+                                                  "bottom": "zero"
+                                                },
+                                                "type": "LabelView"
+                                              }
+                                            ],
+                                            "alignment": "center"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "type": "Spacer",
+                                    "size": {
+                                      "width": 16
+                                    }
+                                  },
+                                  {
+                                    "type": "StackView",
+                                    "content": {
+                                      "children": [
+                                        {
+                                          "content": {
+                                            "horizontalAlignment": "left",
+                                            "text": {
+                                              "typography": "ActionComponent",
+                                              "value": "Налоговый вычет",
+                                              "color": "textColorPrimary",
+                                              "maxLineCount": 345
+                                            }
+                                          },
+                                          "type": "LabelView"
+                                        },
+                                        {
+                                          "type": "Spacer",
+                                          "size": {
+                                            "height": 2
+                                          }
+                                        },
+                                        {
+                                          "content": {
+                                            "horizontalAlignment": "left",
+                                            "text": {
+                                              "typography": "ParagraphPrimarySmall",
+                                              "value": "Как вернуть деньги с НДФЛ за лечение, учёбу, спорт, ИИС",
+                                              "color": "textColorSecondary",
+                                              "maxLineCount": 345
+                                            }
+                                          },
+                                          "type": "LabelView"
+                                        }
+                                      ],
+                                      "axis": "vertical",
+                                      "alignment": "start"
+                                    }
+                                  }
+                                ],
+                                "axis": "horizontal",
+                                "alignment": "center"
+                              }
+                            }
+                          },
+                          "action": {
+                            "type": "deeplink",
+                            "url": "https://online.alfabank.ru/sdui_screen?endpoint=v1/tax_deduction&presentationType=SHEET&sheetState=ADAPTIVE",
+                            "analytics": {
+                              "label": "Services",
+                              "screen": "MAIN_SCREEN",
+                              "category": "Salary client privileges",
+                              "action": "click",
+                              "analyticsSystems": [
+                                "snowplow",
+                                "alfametric"
+                              ],
+                              "parameters": [
+                                {
+                                  "id": "Screen name",
+                                  "dimension": 1,
+                                  "sensitive": false,
+                                  "value": "Главный экран"
+                                },
+                                {
+                                  "id": "Button id",
+                                  "dimension": 2,
+                                  "sensitive": false,
+                                  "value": "Налоговый вычет"
+                                }
+                              ]
+                            },
+                            "version": 1
+                          }
+                        },
+                        {
+                          "type": "BannerWrapper",
+                          "paddings": {
+                            "left": "m",
+                            "right": "m",
+                            "top": "zero",
+                            "bottom": "xs"
+                          },
+                          "content": {
+                            "backgroundColor": "backgroundColorSecondary",
+                            "content": {
+                              "type": "StackView",
+                              "paddings": {
+                                "left": "m",
+                                "right": "m",
+                                "top": "m",
+                                "bottom": "m"
+                              },
+                              "content": {
+                                "children": [
+                                  {
+                                    "type": "ConstraintWrapper",
+                                    "size": {
+                                      "width": -2
+                                    },
+                                    "content": {
+                                      "children": [
+                                        {
+                                          "size": {
+                                            "width": -2
+                                          },
+                                          "tag": "image",
+                                          "content": {
+                                            "children": [
+                                              {
+                                                "type": "IconView",
+                                                "content": {
+                                                  "icon": {
+                                                    "url": "https://test-alfa-mobile.alfabank.ru/mobile/s3/static/salary-customer/8.png"
+                                                  },
+                                                  "size": "large",
+                                                  "shape": "noshape"
+                                                }
+                                              }
+                                            ],
+                                            "axis": "horizontal",
+                                            "alignment": "center"
+                                          },
+                                          "type": "StackView"
+                                        },
+                                        {
+                                          "constraints": [
+                                            {
+                                              "type": "right",
+                                              "constant": 3,
+                                              "reference": "image"
+                                            },
+                                            {
+                                              "type": "bottom",
+                                              "constant": -2,
+                                              "reference": "image"
+                                            },
+                                            {
+                                              "type": "left",
+                                              "reference": "image",
+                                              "constant": 3
+                                            }
+                                          ],
+                                          "tag": "label",
+                                          "type": "StackView",
+                                          "content": {
+                                            "corners": {
+                                              "topRight": "xs",
+                                              "bottomLeft": "xs",
+                                              "bottomRight": "xs",
+                                              "topLeft": "xs"
+                                            },
+                                            "backgroundColor": "decorativeColorCyan",
+                                            "axis": "vertical",
+                                            "children": [
+                                              {
+                                                "content": {
+                                                  "horizontalAlignment": "center",
+                                                  "text": {
+                                                    "typography": "ActionSecondarySmall",
+                                                    "value": "Скоро",
+                                                    "color": "textColorPrimaryInverted",
+                                                    "maxLineCount": 345
+                                                  }
+                                                },
+                                                "paddings": {
+                                                  "left": "zero",
+                                                  "right": "zero",
+                                                  "top": "zero",
+                                                  "bottom": "zero"
+                                                },
+                                                "type": "LabelView"
+                                              }
+                                            ],
+                                            "alignment": "center"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "type": "Spacer",
+                                    "size": {
+                                      "width": 16
+                                    }
+                                  },
+                                  {
+                                    "type": "StackView",
+                                    "content": {
+                                      "children": [
+                                        {
+                                          "content": {
+                                            "horizontalAlignment": "left",
+                                            "text": {
+                                              "typography": "ActionComponent",
+                                              "value": "Калькулятор отпускных",
+                                              "color": "textColorPrimary",
+                                              "maxLineCount": 345
+                                            }
+                                          },
+                                          "type": "LabelView"
+                                        },
+                                        {
+                                          "type": "Spacer",
+                                          "size": {
+                                            "height": 2
+                                          }
+                                        },
+                                        {
+                                          "content": {
+                                            "horizontalAlignment": "left",
+                                            "text": {
+                                              "typography": "ParagraphPrimarySmall",
+                                              "value": "Выгодно спланировать бюджет\nи подобрать даты отпуска",
+                                              "color": "textColorSecondary",
+                                              "maxLineCount": 345
+                                            }
+                                          },
+                                          "type": "LabelView"
+                                        }
+                                      ],
+                                      "axis": "vertical",
+                                      "alignment": "start"
+                                    }
+                                  }
+                                ],
+                                "axis": "horizontal",
+                                "alignment": "center"
+                              }
+                            }
+                          },
+                          "action": {
+                            "type": "deeplink",
+                            "url": "https://online.alfabank.ru/sdui_screen?endpoint=v1/vacation_calculator&presentationType=SHEET&sheetState=ADAPTIVE",
+                            "analytics": {
+                              "label": "Services",
+                              "screen": "MAIN_SCREEN",
+                              "category": "Salary client privileges",
+                              "action": "click",
+                              "analyticsSystems": [
+                                "snowplow",
+                                "alfametric"
+                              ],
+                              "parameters": [
+                                {
+                                  "id": "Screen name",
+                                  "dimension": 1,
+                                  "sensitive": false,
+                                  "value": "Главный экран"
+                                },
+                                {
+                                  "id": "Button id",
+                                  "dimension": 2,
+                                  "sensitive": false,
+                                  "value": "Калькулятор отпускных"
+                                }
+                              ]
+                            },
+                            "version": 1
+                          }
+                        },
+                        {
+                          "content": {
+                            "horizontalAlignment": "left",
+                            "text": {
+                              "color": "textColorPrimary",
+                              "maxLineCount": 1,
+                              "value": "Частые вопросы",
+                              "typography": "HeadlineSmall"
+                            }
+                          },
+                          "paddings": {
+                            "right": "l",
+                            "bottom": "s",
+                            "left": "l",
+                            "top": "xl"
+                          },
+                          "type": "LabelView"
+                        },
+                        {
+                          "type": "StackView",
+                          "paddings": {
+                            "left": "m",
+                            "right": "m",
+                            "top": "zero",
+                            "bottom": "zero"
+                          },
+                          "content": {
+                            "corners": {
+                              "topRight": "m",
+                              "bottomLeft": "m",
+                              "bottomRight": "m",
+                              "topLeft": "m"
+                            },
+                            "backgroundColor": "backgroundColorSecondary",
+                            "children": [
+                              {
+                                "type": "StackView",
+                                "content": {
+                                  "axis": "horizontal",
+                                  "children": [
+                                    {
+                                      "content": {
+                                        "horizontalAlignment": "left",
+                                        "text": {
+                                          "typography": "ParagraphPrimarySmall",
+                                          "value": "Какие данные есть в разделе\nМоя зарплата?",
+                                          "color": "textColorPrimary",
+                                          "maxLineCount": 2
+                                        }
+                                      },
+                                      "weight": 1,
+                                      "type": "LabelView",
+                                      "paddings": {
+                                        "top": "m",
+                                        "bottom": "xs",
+                                        "right": "m",
+                                        "left": "m"
+                                      }
+                                    },
+                                    {
+                                      "type": "IconView",
+                                      "paddings": {
+                                        "left": "zero",
+                                        "top": "zero",
+                                        "right": "m",
+                                        "bottom": "zero"
+                                      },
+                                      "content": {
+                                        "icon": {
+                                          "color": "graphicColorTertiary",
+                                          "name": "glyph_chevron_right_shift_right_m"
+                                        },
+                                        "size": "xsmall",
+                                        "shape": "noshape"
+                                      }
+                                    }
+                                  ],
+                                  "distribution": "weighted",
+                                  "alignment": "center"
+                                },
+                                "action": {
+                                  "type": "deeplink",
+                                  "url": "https://online.alfabank.ru/sdui_screen?endpoint=v1/faq/1",
+                                  "analytics": {
+                                    "label": "Open FAQ question",
+                                    "screen": "MAIN_SCREEN",
+                                    "category": "Salary client privileges",
+                                    "action": "click",
+                                    "analyticsSystems": [
+                                      "snowplow",
+                                      "alfametric"
+                                    ],
+                                    "parameters": [
+                                      {
+                                        "id": "Screen name",
+                                        "dimension": 1,
+                                        "sensitive": false,
+                                        "value": "Главный экран"
+                                      },
+                                      {
+                                        "id": "Button id",
+                                        "dimension": 2,
+                                        "sensitive": false,
+                                        "value": "Вопрос 1"
+                                      }
+                                    ]
+                                  }
+                                }
+                              },
+                              {
+                                "type": "StackView",
+                                "content": {
+                                  "axis": "horizontal",
+                                  "children": [
+                                    {
+                                      "content": {
+                                        "horizontalAlignment": "left",
+                                        "text": {
+                                          "typography": "ParagraphPrimarySmall",
+                                          "value": "Что делать, если работодатель\nзадерживает зарплату?",
+                                          "color": "textColorPrimary",
+                                          "maxLineCount": 2
+                                        }
+                                      },
+                                      "weight": 1,
+                                      "type": "LabelView",
+                                      "paddings": {
+                                        "top": "s",
+                                        "bottom": "xs",
+                                        "right": "m",
+                                        "left": "m"
+                                      }
+                                    },
+                                    {
+                                      "type": "IconView",
+                                      "paddings": {
+                                        "left": "zero",
+                                        "top": "zero",
+                                        "right": "m",
+                                        "bottom": "zero"
+                                      },
+                                      "content": {
+                                        "icon": {
+                                          "color": "graphicColorTertiary",
+                                          "name": "glyph_chevron_right_shift_right_m"
+                                        },
+                                        "size": "xsmall",
+                                        "shape": "noshape"
+                                      }
+                                    }
+                                  ],
+                                  "distribution": "weighted",
+                                  "alignment": "center"
+                                },
+                                "action": {
+                                  "type": "deeplink",
+                                  "url": "https://online.alfabank.ru/sdui_screen?endpoint=v1/faq/2",
+                                  "analytics": {
+                                    "label": "Open FAQ question",
+                                    "screen": "MAIN_SCREEN",
+                                    "category": "Salary client privileges",
+                                    "action": "click",
+                                    "analyticsSystems": [
+                                      "snowplow",
+                                      "alfametric"
+                                    ],
+                                    "parameters": [
+                                      {
+                                        "id": "Screen name",
+                                        "dimension": 1,
+                                        "sensitive": false,
+                                        "value": "Главный экран"
+                                      },
+                                      {
+                                        "id": "Button id",
+                                        "dimension": 2,
+                                        "sensitive": false,
+                                        "value": "Вопрос 2"
+                                      }
+                                    ]
+                                  }
+                                }
+                              },
+                              {
+                                "type": "StackView",
+                                "content": {
+                                  "axis": "horizontal",
+                                  "children": [
+                                    {
+                                      "content": {
+                                        "horizontalAlignment": "left",
+                                        "text": {
+                                          "typography": "ParagraphPrimarySmall",
+                                          "value": "Как будет работать зарплатная\nкарта, если я уволюсь?",
+                                          "color": "textColorPrimary",
+                                          "maxLineCount": 2
+                                        }
+                                      },
+                                      "weight": 1,
+                                      "type": "LabelView",
+                                      "paddings": {
+                                        "top": "s",
+                                        "bottom": "s",
+                                        "right": "m",
+                                        "left": "m"
+                                      }
+                                    },
+                                    {
+                                      "type": "IconView",
+                                      "paddings": {
+                                        "left": "zero",
+                                        "top": "zero",
+                                        "right": "m",
+                                        "bottom": "zero"
+                                      },
+                                      "content": {
+                                        "icon": {
+                                          "color": "graphicColorTertiary",
+                                          "name": "glyph_chevron_right_shift_right_m"
+                                        },
+                                        "size": "xsmall",
+                                        "shape": "noshape"
+                                      }
+                                    }
+                                  ],
+                                  "distribution": "weighted",
+                                  "alignment": "center"
+                                },
+                                "action": {
+                                  "type": "deeplink",
+                                  "url": "https://online.alfabank.ru/sdui_screen?endpoint=v1/faq/3",
+                                  "analytics": {
+                                    "label": "Open FAQ question",
+                                    "screen": "MAIN_SCREEN",
+                                    "category": "Salary client privileges",
+                                    "action": "click",
+                                    "analyticsSystems": [
+                                      "snowplow",
+                                      "alfametric"
+                                    ],
+                                    "parameters": [
+                                      {
+                                        "id": "Screen name",
+                                        "dimension": 1,
+                                        "sensitive": false,
+                                        "value": "Главный экран"
+                                      },
+                                      {
+                                        "id": "Button id",
+                                        "dimension": 2,
+                                        "sensitive": false,
+                                        "value": "Вопрос 3"
+                                      }
+                                    ]
+                                  }
+                                }
+                              },
+                              {
+                                "type": "Spacer",
+                                "size": {
+                                  "height": 8
+                                }
+                              },
+                              {
+                                "type": "ButtonView",
+                                "paddings": {
+                                  "right": "m",
+                                  "bottom": "zero",
+                                  "left": "m",
+                                  "top": "zero"
+                                },
+                                "content": {
+                                  "showProgressIcon": false,
+                                  "progressIconColor": "textColorPrimary",
+                                  "isEnabled": true,
+                                  "isTextsFill": false,
+                                  "height": 40,
+                                  "textLabels": {
+                                    "title": {
+                                      "defaultValue": {
+                                        "type": "LabelView",
+                                        "content": {
+                                          "text": {
+                                            "value": "Смотреть всё",
+                                            "color": "textColorPrimary",
+                                            "typography": "ActionPrimarySmall",
+                                            "maxLineCount": 1
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "action": {
+                                  "type": "deeplink",
+                                  "url": "https://online.alfabank.ru/sdui_screen?endpoint=v1/all_faq",
+                                  "analytics": {
+                                    "label": "FAQ button",
+                                    "screen": "MAIN_SCREEN",
+                                    "category": "Salary client privileges",
+                                    "action": "click",
+                                    "analyticsSystems": [
+                                      "snowplow",
+                                      "alfametric"
+                                    ],
+                                    "parameters": [
+                                      {
+                                        "id": "Screen name",
+                                        "dimension": 1,
+                                        "sensitive": false,
+                                        "value": "Главный экран"
+                                      }
+                                    ]
+                                  }
+                                },
+                                "appearance": {
+                                  "defaultValue": {
+                                    "backgroundColor": "backgroundColorPrimary",
+                                    "corners": {
+                                      "topLeft": 12,
+                                      "topRight": 12,
+                                      "bottomLeft": 12,
+                                      "bottomRight": 12
+                                    }
+                                  },
+                                  "type": "control"
+                                },
+                                "version": 2
+                              },
+                              {
+                                "type": "Spacer",
+                                "size": {
+                                  "height": 16
+                                }
+                              }
+                            ],
+                            "axis": "vertical",
+                            "alignment": "fill",
+                            "distribution": "weighted"
+                          }
+                        },
+                        {
+                          "type": "Spacer",
+                          "size": {
+                            "height": 24
+                          }
+                        }
+                      ]
+                    },
+                    "type": "StackView"
+                  }
+                ],
+                "alignment": "fill"
+              }
+            }
+          ]
+        }
+      },
+      "showAxisScrollIndicator": false
+    }
+  }
+}

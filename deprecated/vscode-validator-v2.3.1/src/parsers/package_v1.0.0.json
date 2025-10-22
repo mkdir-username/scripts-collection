@@ -1,0 +1,86 @@
+{
+  "name": "@vscode-validator/parsers",
+  "version": "1.0.0",
+  "description": "Modular parsers for JSON, Jinja2/Java templates, imports and variables",
+  "type": "module",
+  "main": "./index_v1.0.0.js",
+  "types": "./index_v1.0.0.d.ts",
+  "exports": {
+    ".": {
+      "import": "./index_v1.0.0.js",
+      "types": "./index_v1.0.0.d.ts"
+    },
+    "./json": {
+      "import": "./json-parser_v1.0.0.js",
+      "types": "./json-parser_v1.0.0.d.ts"
+    },
+    "./jinja": {
+      "import": "./jinja-parser_v1.0.0.js",
+      "types": "./jinja-parser_v1.0.0.d.ts"
+    },
+    "./import": {
+      "import": "./import-resolver_v1.0.0.js",
+      "types": "./import-resolver_v1.0.0.d.ts"
+    },
+    "./variable": {
+      "import": "./variable-replacer_v1.0.0.js",
+      "types": "./variable-replacer_v1.0.0.d.ts"
+    },
+    "./types": {
+      "import": "./types_v1.0.0.js",
+      "types": "./types_v1.0.0.d.ts"
+    }
+  },
+  "files": [
+    "*.js",
+    "*.d.ts",
+    "*.map",
+    "README_v1.0.0.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.parsers_v1.0.0.json",
+    "build:watch": "tsc -p tsconfig.parsers_v1.0.0.json --watch",
+    "test": "jest --config jest.config.parsers_v1.0.0.js",
+    "test:watch": "jest --config jest.config.parsers_v1.0.0.js --watch",
+    "test:coverage": "jest --config jest.config.parsers_v1.0.0.js --coverage",
+    "lint": "eslint *.ts",
+    "typecheck": "tsc -p tsconfig.parsers_v1.0.0.json --noEmit"
+  },
+  "keywords": [
+    "parser",
+    "json",
+    "jinja",
+    "template",
+    "import-resolver",
+    "variable-replacer",
+    "typescript",
+    "type-safe"
+  ],
+  "author": "TypeScript Pro Agent",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alfa-bank/vscode-validator.git",
+    "directory": "src/parsers"
+  },
+  "bugs": {
+    "url": "https://github.com/alfa-bank/vscode-validator/issues"
+  },
+  "homepage": "https://github.com/alfa-bank/vscode-validator#readme"
+}

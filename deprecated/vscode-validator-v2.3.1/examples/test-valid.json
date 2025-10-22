@@ -1,0 +1,15 @@
+{
+  "name": "TestComponent",
+  "type": "object",
+  "description": "Пример валидного JSON",
+  "properties": {
+    "text": {
+      "type": "string",
+      "default": "Hello World"
+    },
+    "count": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

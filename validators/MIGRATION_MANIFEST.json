@@ -1,6 +1,6 @@
 {
   "migration_date": "2025-09-27",
-  "source_directory": "/Users/username/Documents/front-middle-schema",
+  "source_directory": "/Users/username/Documents/FMS_GIT",
   "target_directory": "/Users/username/Scripts/validators",
   "files_migrated": {
     "v2.0.0": [
@@ -38,7 +38,7 @@
     ]
   },
   "symbolic_links": {
-    "/Users/username/Documents/front-middle-schema/sdui_web_validator_latest.py": "/Users/username/Scripts/validators/v2.0.0/sdui_web_validator_v2.0.0_advanced_lines.py"
+    "/Users/username/Documents/FMS_GIT/sdui_web_validator_latest.py": "/Users/username/Scripts/validators/v2.0.0/sdui_web_validator_v2.0.0_advanced_lines.py"
   },
   "created_files": [
     "README.md",

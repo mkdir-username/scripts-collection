@@ -1,0 +1,63 @@
+# Dependencies
+node_modules/
+venv/
+.venv/
+
+# Archives (старые версии)
+archive/
+deprecated/
+**/archive/
+
+# Workspace и временные файлы
+workspace/
+**/workspace/
+
+# Build artifacts
+dist/
+build/
+coverage/
+artifacts/
+
+# Logs
+*.log
+logs/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Package locks
+package-lock.json
+yarn.lock
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temp files
+*.tmp
+*.temp
+.tmp/
+.temp/
+
+# MD отчёты от агентов (НЕ для индексации)
+*REPORT*.md
+*SUMMARY*.md
+*CHANGELOG*.md
+*MIGRATION*.md
+*RELEASE_NOTES*.md
+*QUICKSTART*.md
+*_GUIDE*.md
+
+# Исключения: актуальные README
+!README.md
+!*/README.md
+

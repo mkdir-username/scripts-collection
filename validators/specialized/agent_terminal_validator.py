@@ -174,7 +174,7 @@ def comprehensive_validation(contract_path):
     print("\n2️⃣ Простая валидация")
     simple_result = subprocess.run([
         "python3",
-        "/Users/username/Documents/front-middle-schema/simple_validator.py",
+        "/Users/username/Documents/FMS_GIT/simple_validator.py",
         contract_path
     ], capture_output=True, text=True)
 

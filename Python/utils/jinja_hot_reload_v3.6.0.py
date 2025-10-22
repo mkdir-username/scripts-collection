@@ -1,185 +1,69 @@
 #!/usr/bin/env python3
 """
-Jinja Hot Reload v3.6.0 - Smart Context Fix Release
+Jinja2 Hot Reload Parser v3.6.0
+================================
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🎯 КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ В v3.6.0:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Автоматический парсер Jinja2-JSON контрактов с hot reload функциональностью.
+Используется для преобразования Jinja шаблонов в полные JSON контракты для SDUI.
 
-🔧 FIX #5: Smart Context для Pure Jinja2
-  ✅ Данные оборачиваются в {'data': ...} ДО вызова build_smart_context()
-  ✅ Smart mode теперь видит правильную структуру переменных
-  ✅ Исправлен баг "'None' has no attribute 'change'"
-  ✅ Pure Jinja2 шаблоны работают с реальными данными, а не стабами
+Workflow:
+---------
+1. Создаём Jinja-контракт: [JJ_PC]_contract.j2.json
+2. Создаём data файл (опционально): [data]_contract.json
+3. Запускаем парсер: python jinja_hot_reload_v3.6.0.py
+4. Получаем результат: [FULL_PC]_contract_web.json
+5. Используем в newclick-server-driven-ui
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🎯 КРИТИЧЕСКИЕ ИСПРАВЛЕНИЯ В v3.5.0:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Использование:
+--------------
+# Базовое использование (watch режим)
+python jinja_hot_reload_v3.6.0.py
 
-🔧 FIX #1: FileSystemLoader для Pure Jinja2
-  ✅ Добавлен parent directory в search paths при рендеринге Pure Jinja2
-  ✅ Исправлен поиск вложенных parts/ файлов
-  ✅ Теперь {% include 'parts/header.j2' %} работает корректно
+# Парсинг конкретного файла
+python jinja_hot_reload_v3.6.0.py --file /path/to/template.j2.json
 
-🔧 FIX #2: SDUI Import
-  ✅ Убран импорт несуществующего SDUIJinja2Extensions
-  ✅ Используется прямой импорт функций из sdui_jinja_extensions
-  ✅ Предотвращены ImportError при отсутствии модуля
+# Парсинг всех файлов в директории
+python jinja_hot_reload_v3.6.0.py --directory /path/to/templates
 
-🔧 FIX #3: SafeDebugUndefined
-  ✅ Создан класс SafeDebugUndefined с методом __format__
-  ✅ Заменен DebugUndefined в smart_mode
-  ✅ Предотвращены ошибки "object has no attribute '__format__'"
+# С кастомными data файлами
+python jinja_hot_reload_v3.6.0.py --data /path/to/data.json
 
-🔧 FIX #4: Custom Filters защита
-  ✅ Добавлена проверка isinstance(value, Undefined) в каждый фильтр
-  ✅ Предотвращены ошибки при undefined значениях
-  ✅ Безопасный fallback для всех фильтров
+# Debug режим
+python jinja_hot_reload_v3.6.0.py --debug
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📋 ВОЗМОЖНОСТИ v3.4.0:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Naming Convention:
+------------------
+- [JJ_*].j2.json - Jinja2 source template (input)
+- [data]_*.json - Data file with variables (optional)
+- [FULL_*]_web.json - Compiled full JSON contract (output)
 
-MODULE #10: Pure Jinja2 Template Support
-  🔥 Автоопределение чистых Jinja2 шаблонов (начинаются с {# комментария #})
-  🔥 Рендеринг Jinja2 ПЕРЕД парсингом JSON
-  🔥 Поддержка файлов с {% include %} директивами без валидного JSON
-  🔥 Правильная передача context как 'data' переменной
+Примеры:
+--------
+# Типичный workflow для FMS_GIT
+cd /Users/username/Documents/FMS_GIT/_JSON/WEB/payroll/1.0_main_screen/desktop/
+python ~/Scripts/Python/utils/jinja_hot_reload_v3.6.0.py
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📋 ВОЗМОЖНОСТИ v3.3.0:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# Файлы:
+# - [JJ_PC]_1.0_main_screen.j2.json (source)
+# - [data]_1.0_main_screen.json (variables)
+# - [FULL_PC]_1.0_main_screen_web.json (result)
 
-MODULE #1: FileSystemLoader Integration
-  📂 Поддержка загрузки шаблонов из файловой системы
-  📂 Автоматическое определение базовой директории
-  📂 Поиск шаблонов в parts/, components/, templates/
+Требования:
+-----------
+- Python 3.7+
+- jinja2: pip install jinja2
+- watchdog: pip install watchdog
 
-MODULE #2: Include/Import Support
-  🔗 Полная поддержка {% include %} директив
-  🔗 Полная поддержка {% import %} и {% from ... import %}
-  🔗 Автоматическое отслеживание всех include/import зависимостей
+Особенности:
+------------
+- Hot reload: автоматический парсинг при изменении файлов
+- Performance monitoring: отслеживание времени обработки
+- Error handling: подробные сообщения об ошибках
+- SDUI functions: поддержка кастомных SDUI функций (если доступны)
+- Multiple formats: поддержка .j2.json, .j2.java и других
 
-MODULE #3: Auto Re-rendering
-  🔄 Умный ре-рендеринг при изменении любого файла в цепочке
-  🔄 Каскадное обновление родительских файлов
-  🔄 Пакетная обработка множественных изменений
-
-MODULE #4: Custom Filters & Functions
-  🎨 now() - текущая дата/время
-  🎨 isoformat - ISO 8601 форматирование
-  🎨 formatCurrency - форматирование валюты
-  🎨 formatDate - форматирование дат
-  🎨 tojson - JSON сериализация
-  🎨 daysUntil - дни до даты
-
-MODULE #5: Enhanced Logging
-  📊 Детальное логирование обработки файлов
-  📊 Визуальные разделители событий
-  📊 Цветовая индикация статусов
-  📊 Debug режим с трассировкой
-
-MODULE #6: Dependency Graph Visualization
-  🌳 Построение графа зависимостей
-  🌳 Визуализация parent-child связей
-  🌳 Экспорт в DOT/PNG формат
-  🌳 Интерактивные отчеты
-
-MODULE #7: Template Caching
-  ⚡ Кэширование скомпилированных шаблонов
-  ⚡ Инвалидация при изменениях
-  ⚡ Ускорение повторного рендеринга
-
-MODULE #8: Error Recovery
-  🛡️ Graceful degradation при ошибках
-  🛡️ Сохранение частичных результатов
-  🛡️ Подробная диагностика ошибок
-
-MODULE #9: Performance Monitoring
-  ⏱️ Измерение времени обработки каждого файла
-  ⏱️ Статистика по всем операциям
-  ⏱️ Выявление узких мест
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📋 ПРЕДЫДУЩИЕ ВОЗМОЖНОСТИ (v3.2.4):
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-1. 📊 Отслеживание зависимостей parent-child файлов
-2. 🔄 Автоматический ре-рендеринг родительских файлов при изменении дочерних
-3. 🎯 Умная перезагрузка только когда изменились зависимости
-4. 🌐 Браузер перезагружается только один раз после обработки всех файлов
-5. 📥 Обработка импортов через комментарии file:///path/to/file
-6. 🧹 Удаление всех комментариев из итогового JSON
-7. 🧠 Интеллектуальное исправление JSON структуры
-8. 🔧 Автоматическое создание заглушек для undefined переменных
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🚀 ЗАПУСК:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-  python3 jinja_hot_reload_v3.5.0.py --smart          # Smart режим
-  python3 jinja_hot_reload_v3.5.0.py --smart --debug  # Smart + Debug
-  python3 jinja_hot_reload_v3.5.0.py --visualize      # С визуализацией графа
-  python3 jinja_hot_reload_v3.5.0.py --test           # Однократная обработка
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📦 CHANGELOG v3.5.0:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-[FIXED] 🔧 КРИТИЧЕСКИЕ ИСПРАВЛЕНИЯ:
-* FileSystemLoader для Pure Jinja2: добавлен parent directory в search paths (строка 1202-1213)
-* SDUI Import: убран несуществующий SDUIJinja2Extensions импорт (строка 166-179)
-* SafeDebugUndefined: создан класс с __format__ методом для smart_mode (строка 1009-1025)
-* Custom Filters: добавлена защита от Undefined значений во всех фильтрах (строка 534-617)
-
-[IMPROVED]
-* Улучшена обработка вложенных parts/ файлов в Pure Jinja2 шаблонах
-* Повышена стабильность работы с undefined переменными
-* Предотвращены ошибки форматирования в smart режиме
-* Более безопасная работа SDUI расширений
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📦 CHANGELOG v3.4.0:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-[ADDED]
-+ is_pure_jinja2_template() - детекция чистых Jinja2 шаблонов
-+ _process_pure_jinja2_file() - рендеринг ПЕРЕД парсингом JSON
-+ Поддержка файлов начинающихся с {# комментария #}
-+ Автоматическое оборачивание context в {'data': context}
-
-[FIXED]
-* Ошибка "Expecting property name" для файлов [JJ_PC] с {# комментариями #}
-* Ошибка "'data' is undefined" при рендеринге pure Jinja2 файлов
-* JSON парсинг теперь ПОСЛЕ рендеринга Jinja2 для pure templates
-* Правильная обработка файлов с {% include %} без валидного JSON до рендеринга
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📦 CHANGELOG v3.3.0:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-[ADDED]
-+ FileSystemLoader для поддержки {% include %} и {% import %}
-+ Автоматическое отслеживание include/import зависимостей
-+ Пользовательские фильтры: now(), formatCurrency, formatDate, daysUntil
-+ Визуализация дерева зависимостей в формате DOT/PNG
-+ Кэширование скомпилированных шаблонов
-+ Мониторинг производительности с детальной статистикой
-+ Graceful error recovery с сохранением частичных результатов
-+ Экспорт графа зависимостей в HTML
-
-[IMPROVED]
-* Улучшенная система логирования с временными метками
-* Оптимизированная обработка вложенных include/import
-* Более точное определение изменений в цепочке зависимостей
-* Расширенный debug режим с подробной трассировкой
-
-[FIXED]
-* Корректная обработка относительных путей в include/import
-* Предотвращение дублирования обработки при каскадных изменениях
-* Правильная инвалидация кэша при изменении зависимостей
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Автор: SDUI Team
+Версия: 3.6.0
 """
 
 import os
@@ -202,8 +86,14 @@ import logging
 
 try:
     from jinja2 import (
-        Environment, FileSystemLoader, Template,
-        TemplateSyntaxError, UndefinedError, StrictUndefined, DebugUndefined, Undefined
+        Environment,
+        FileSystemLoader,
+        Template,
+        TemplateSyntaxError,
+        UndefinedError,
+        StrictUndefined,
+        DebugUndefined,
+        Undefined,
     )
     from jinja2.exceptions import TemplateError, TemplateNotFound
     from watchdog.observers import Observer
@@ -218,13 +108,15 @@ except ImportError as e:
 sys.path.append(str(Path(__file__).parent))
 try:
     from sdui_to_jinja2_transformer import SDUIToJinja2Transformer
+
     # Импортируем функции напрямую, если модуль существует
     try:
         from sdui_jinja_extensions import (
             register_sdui_filters,
             register_sdui_functions,
-            register_sdui_tests
+            register_sdui_tests,
         )
+
         SDUI_FUNCTIONS_AVAILABLE = True
     except (ImportError, AttributeError):
         SDUI_FUNCTIONS_AVAILABLE = False
@@ -238,8 +130,8 @@ except ImportError:
 
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S'
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
 )
 logger = logging.getLogger(__name__)
 
@@ -247,6 +139,7 @@ logger = logging.getLogger(__name__)
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # MODULE #9: Performance Monitoring
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 
 class PerformanceMonitor:
     """Мониторинг производительности обработки файлов"""
@@ -279,11 +172,11 @@ class PerformanceMonitor:
         for op_name, durations in self.timings.items():
             if durations:
                 stats[op_name] = {
-                    'count': len(durations),
-                    'total': sum(durations),
-                    'average': sum(durations) / len(durations),
-                    'min': min(durations),
-                    'max': max(durations),
+                    "count": len(durations),
+                    "total": sum(durations),
+                    "average": sum(durations) / len(durations),
+                    "min": min(durations),
+                    "max": max(durations),
                 }
 
         return stats
@@ -313,6 +206,7 @@ class PerformanceMonitor:
 # MODULE #8: Error Recovery
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+
 class ErrorRecoveryManager:
     """Управление ошибками с graceful degradation"""
 
@@ -333,10 +227,10 @@ class ErrorRecoveryManager:
             Результат восстановления или None
         """
         error_info = {
-            'timestamp': datetime.now(),
-            'error_type': type(error).__name__,
-            'error_message': str(error),
-            'context': context
+            "timestamp": datetime.now(),
+            "error_type": type(error).__name__,
+            "error_message": str(error),
+            "context": context,
         }
 
         self.error_history.append(error_info)
@@ -351,31 +245,37 @@ class ErrorRecoveryManager:
 
         return None
 
-    def _recover_template_not_found(self, error: TemplateNotFound, context: Dict) -> Optional[str]:
+    def _recover_template_not_found(
+        self, error: TemplateNotFound, context: Dict
+    ) -> Optional[str]:
         """Восстановление при отсутствующем шаблоне"""
         logger.warning(f"   ⚠️ Шаблон не найден: {error.name}")
         logger.warning(f"   🔧 Используется заглушка")
 
         # Возвращаем пустой JSON объект как заглушку
-        return '{}'
+        return "{}"
 
-    def _recover_syntax_error(self, error: TemplateSyntaxError, context: Dict) -> Optional[str]:
+    def _recover_syntax_error(
+        self, error: TemplateSyntaxError, context: Dict
+    ) -> Optional[str]:
         """Восстановление при синтаксической ошибке"""
         logger.warning(f"   ⚠️ Синтаксическая ошибка: {error.message}")
         logger.warning(f"   🔧 Попытка использовать исходный контент")
 
         # Возвращаем исходный контент если он есть
-        return context.get('original_content')
+        return context.get("original_content")
 
-    def _recover_json_error(self, error: json.JSONDecodeError, context: Dict) -> Optional[str]:
+    def _recover_json_error(
+        self, error: json.JSONDecodeError, context: Dict
+    ) -> Optional[str]:
         """Восстановление при ошибке парсинга JSON"""
         logger.warning(f"   ⚠️ JSON ошибка на строке {error.lineno}: {error.msg}")
 
         # Попытка исправить распространенные ошибки
-        content = context.get('content', '')
+        content = context.get("content", "")
 
         # Удаление trailing commas
-        fixed = re.sub(r',(\s*[}\]])', r'\1', content)
+        fixed = re.sub(r",(\s*[}\]])", r"\1", content)
 
         try:
             json.loads(fixed)
@@ -394,7 +294,7 @@ class ErrorRecoveryManager:
         # Группировка по типам
         error_types = defaultdict(int)
         for err in self.error_history:
-            error_types[err['error_type']] += 1
+            error_types[err["error_type"]] += 1
 
         summary += "По типам:\n"
         for err_type, count in sorted(error_types.items()):
@@ -407,6 +307,7 @@ class ErrorRecoveryManager:
 # MODULE #7: Template Caching
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+
 class TemplateCacheManager:
     """Кэширование скомпилированных шаблонов"""
 
@@ -417,7 +318,9 @@ class TemplateCacheManager:
         self.hits = 0
         self.misses = 0
 
-    def get_template(self, file_path: Path, jinja_env: Environment) -> Optional[Template]:
+    def get_template(
+        self, file_path: Path, jinja_env: Environment
+    ) -> Optional[Template]:
         """
         Получить шаблон из кэша или скомпилировать новый
 
@@ -445,7 +348,7 @@ class TemplateCacheManager:
             logger.debug(f"   🔄 Кэш MISS: {file_path.name}")
 
         try:
-            with open(file_path, 'r', encoding='utf-8') as f:
+            with open(file_path, "r", encoding="utf-8") as f:
                 content = f.read()
 
             template = jinja_env.from_string(content)
@@ -483,17 +386,18 @@ class TemplateCacheManager:
         hit_rate = (self.hits / total * 100) if total > 0 else 0
 
         return {
-            'hits': self.hits,
-            'misses': self.misses,
-            'total': total,
-            'hit_rate': hit_rate,
-            'cached_items': len(self.cache)
+            "hits": self.hits,
+            "misses": self.misses,
+            "total": total,
+            "hit_rate": hit_rate,
+            "cached_items": len(self.cache),
         }
 
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # MODULE #6: Dependency Graph Visualization
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 
 class DependencyGraphVisualizer:
     """Визуализация графа зависимостей"""
@@ -509,8 +413,8 @@ class DependencyGraphVisualizer:
     def export_dot(self, output_path: Path):
         """Экспорт в DOT формат для Graphviz"""
         dot_content = ["digraph Dependencies {"]
-        dot_content.append('  rankdir=LR;')
-        dot_content.append('  node [shape=box, style=filled, fillcolor=lightblue];')
+        dot_content.append("  rankdir=LR;")
+        dot_content.append("  node [shape=box, style=filled, fillcolor=lightblue];")
 
         # Генерация узлов и связей
         node_ids = {}
@@ -526,15 +430,17 @@ class DependencyGraphVisualizer:
                 if child not in node_ids:
                     node_ids[child] = f"node{node_counter}"
                     node_counter += 1
-                    dot_content.append(f'  {node_ids[child]} [label="{child.name}", fillcolor=lightgreen];')
+                    dot_content.append(
+                        f'  {node_ids[child]} [label="{child.name}", fillcolor=lightgreen];'
+                    )
 
-                dot_content.append(f'  {node_ids[parent]} -> {node_ids[child]};')
+                dot_content.append(f"  {node_ids[parent]} -> {node_ids[child]};")
 
-        dot_content.append('}')
+        dot_content.append("}")
 
         # Сохранение
-        with open(output_path, 'w', encoding='utf-8') as f:
-            f.write('\n'.join(dot_content))
+        with open(output_path, "w", encoding="utf-8") as f:
+            f.write("\n".join(dot_content))
 
         logger.info(f"   📊 Граф экспортирован: {output_path.name}")
 
@@ -567,12 +473,14 @@ class DependencyGraphVisualizer:
         for parent, children in sorted(self.graph.items()):
             graph_html_parts.append(f'        <div class="node">📄 {parent.name}')
             for child in sorted(children):
-                graph_html_parts.append(f'            <div class="child">↳ {child.name}</div>')
-            graph_html_parts.append('        </div>')
+                graph_html_parts.append(
+                    f'            <div class="child">↳ {child.name}</div>'
+                )
+            graph_html_parts.append("        </div>")
 
-        html_content = html_template.format(graph_html='\n'.join(graph_html_parts))
+        html_content = html_template.format(graph_html="\n".join(graph_html_parts))
 
-        with open(output_path, 'w', encoding='utf-8') as f:
+        with open(output_path, "w", encoding="utf-8") as f:
             f.write(html_content)
 
         logger.info(f"   📊 HTML граф экспортирован: {output_path.name}")
@@ -581,6 +489,7 @@ class DependencyGraphVisualizer:
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # MODULE #4: Custom Filters & Functions
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 
 class CustomJinjaFilters:
     """Пользовательские фильтры и функции для Jinja2"""
@@ -603,7 +512,7 @@ class CustomJinjaFilters:
         return str(dt)
 
     @staticmethod
-    def format_currency(amount: float, currency: str = '₽') -> str:
+    def format_currency(amount: float, currency: str = "₽") -> str:
         """
         Форматирование суммы в валюту
         Пример: 125000 -> ₽ 125 000,00
@@ -612,13 +521,13 @@ class CustomJinjaFilters:
         if isinstance(amount, Undefined):
             return f"{currency} 0,00"
         try:
-            formatted = f"{float(amount):,.2f}".replace(',', ' ').replace('.', ',')
+            formatted = f"{float(amount):,.2f}".replace(",", " ").replace(".", ",")
             return f"{currency} {formatted}"
         except (ValueError, TypeError):
             return f"{currency} 0,00"
 
     @staticmethod
-    def format_date(date_str: str, format: str = '%d %B %Y') -> str:
+    def format_date(date_str: str, format: str = "%d %B %Y") -> str:
         """
         Форматирование даты в читаемый вид
         Пример: 2025-10-15 -> 15 октября 2025
@@ -629,19 +538,28 @@ class CustomJinjaFilters:
 
         # Словарь месяцев на русском
         months_ru = {
-            1: 'января', 2: 'февраля', 3: 'марта', 4: 'апреля',
-            5: 'мая', 6: 'июня', 7: 'июля', 8: 'августа',
-            9: 'сентября', 10: 'октября', 11: 'ноября', 12: 'декабря'
+            1: "января",
+            2: "февраля",
+            3: "марта",
+            4: "апреля",
+            5: "мая",
+            6: "июня",
+            7: "июля",
+            8: "августа",
+            9: "сентября",
+            10: "октября",
+            11: "ноября",
+            12: "декабря",
         }
 
         try:
             if isinstance(date_str, str):
-                dt = datetime.fromisoformat(date_str.replace('Z', '+00:00'))
+                dt = datetime.fromisoformat(date_str.replace("Z", "+00:00"))
             else:
                 dt = date_str
 
             day = dt.day
-            month = months_ru.get(dt.month, dt.strftime('%B'))
+            month = months_ru.get(dt.month, dt.strftime("%B"))
             year = dt.year
 
             return f"{day} {month} {year}"
@@ -659,7 +577,7 @@ class CustomJinjaFilters:
 
         try:
             if isinstance(date_str, str):
-                target_date = datetime.fromisoformat(date_str.replace('Z', '+00:00'))
+                target_date = datetime.fromisoformat(date_str.replace("Z", "+00:00"))
             else:
                 target_date = date_str
 
@@ -671,18 +589,19 @@ class CustomJinjaFilters:
     @staticmethod
     def register_filters(jinja_env: Environment):
         """Регистрация всех фильтров в Jinja2 окружении"""
-        jinja_env.filters['isoformat'] = CustomJinjaFilters.isoformat
-        jinja_env.filters['formatCurrency'] = CustomJinjaFilters.format_currency
-        jinja_env.filters['formatDate'] = CustomJinjaFilters.format_date
-        jinja_env.filters['daysUntil'] = CustomJinjaFilters.days_until
+        jinja_env.filters["isoformat"] = CustomJinjaFilters.isoformat
+        jinja_env.filters["formatCurrency"] = CustomJinjaFilters.format_currency
+        jinja_env.filters["formatDate"] = CustomJinjaFilters.format_date
+        jinja_env.filters["daysUntil"] = CustomJinjaFilters.days_until
 
         # Глобальные функции
-        jinja_env.globals['now'] = CustomJinjaFilters.now
+        jinja_env.globals["now"] = CustomJinjaFilters.now
 
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # MODULE #2: Include/Import Dependency Tracker
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 
 class IncludeImportTracker:
     """Отслеживание зависимостей через {% include %} и {% import %}"""
@@ -690,7 +609,9 @@ class IncludeImportTracker:
     def __init__(self, debug: bool = False):
         self.debug = debug
         self.include_pattern = re.compile(r"{%\s*include\s+['\"]([^'\"]+)['\"]\s*%}")
-        self.import_pattern = re.compile(r"{%\s*(?:import|from)\s+['\"]([^'\"]+)['\"]\s*")
+        self.import_pattern = re.compile(
+            r"{%\s*(?:import|from)\s+['\"]([^'\"]+)['\"]\s*"
+        )
 
     def extract_dependencies(self, content: str) -> Set[str]:
         """
@@ -724,6 +645,7 @@ class IncludeImportTracker:
 # LEGACY MODULES (из v3.2.4)
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+
 class SmartJSONFixer:
     """Интеллектуальный фиксер JSON структуры"""
 
@@ -755,34 +677,36 @@ class SmartJSONFixer:
 
     def _fix_trailing_commas(self, content: str) -> str:
         """Удаляет trailing запятые перед ] и }"""
-        pattern1 = r',(\s*)\}'
+        pattern1 = r",(\s*)\}"
         if re.search(pattern1, content):
-            content = re.sub(pattern1, r'\1}', content)
+            content = re.sub(pattern1, r"\1}", content)
             self.fixes_applied.append("Удалены trailing запятые перед }")
 
-        pattern2 = r',(\s*)\]'
+        pattern2 = r",(\s*)\]"
         if re.search(pattern2, content):
-            content = re.sub(pattern2, r'\1]', content)
+            content = re.sub(pattern2, r"\1]", content)
             self.fixes_applied.append("Удалены trailing запятые перед ]")
 
         return content
 
     def _fix_missing_commas(self, content: str) -> str:
         """Добавляет отсутствующие запятые между элементами"""
-        pattern1 = r'\}(\s*)\{'
+        pattern1 = r"\}(\s*)\{"
         matches = re.findall(pattern1, content)
         if matches:
-            content = re.sub(pattern1, r'},\1{', content)
-            self.fixes_applied.append(f"Добавлены {len(matches)} запятых между объектами")
+            content = re.sub(pattern1, r"},\1{", content)
+            self.fixes_applied.append(
+                f"Добавлены {len(matches)} запятых между объектами"
+            )
 
         return content
 
     def _fix_empty_values(self, content: str) -> str:
         """Заменяет пустые значения на null"""
         patterns = [
-            (r':\s*,', ': null,', 'после двоеточия перед запятой'),
-            (r':\s*\}', ': null}', 'после двоеточия перед }'),
-            (r':\s*\]', ': null]', 'после двоеточия перед ]'),
+            (r":\s*,", ": null,", "после двоеточия перед запятой"),
+            (r":\s*\}", ": null}", "после двоеточия перед }"),
+            (r":\s*\]", ": null]", "после двоеточия перед ]"),
         ]
 
         for pattern, replacement, desc in patterns:
@@ -795,7 +719,7 @@ class SmartJSONFixer:
 
     def _normalize_whitespace(self, content: str) -> str:
         """Нормализует пробелы (убирает лишние)"""
-        content = re.sub(r'\s{2,}', ' ', content)
+        content = re.sub(r"\s{2,}", " ", content)
         return content
 
 
@@ -806,6 +730,7 @@ class SafeDebugUndefined(DebugUndefined):
 
     Предотвращает ошибки: 'DebugUndefined' object has no attribute '__format__'
     """
+
     def __format__(self, format_spec):
         """Безопасное форматирование undefined значений"""
         # Возвращаем отладочное представление с указанным форматом
@@ -820,7 +745,9 @@ class SafeDebugUndefined(DebugUndefined):
     def __str__(self):
         """Строковое представление"""
         if self._undefined_hint:
-            return f"{{{{ {self._undefined_name} [UNDEFINED: {self._undefined_hint}] }}}}"
+            return (
+                f"{{{{ {self._undefined_name} [UNDEFINED: {self._undefined_hint}] }}}}"
+            )
         return f"{{{{ {self._undefined_name} [UNDEFINED] }}}}"
 
 
@@ -831,25 +758,29 @@ class SmartJinja2ContextBuilder:
         self.debug = debug
         self.auto_vars = {}
 
-    def extract_undefined_vars(self, template_str: str, context: Dict[str, Any]) -> Set[str]:
+    def extract_undefined_vars(
+        self, template_str: str, context: Dict[str, Any]
+    ) -> Set[str]:
         """Извлекает все undefined переменные из шаблона"""
         patterns = [
-            r'\{\{\s*([a-zA-Z_][a-zA-Z0-9_\.]*)\s*\}\}',
-            r'\{%\s*if\s+([a-zA-Z_][a-zA-Z0-9_\.]*)',
-            r'\{%\s*for\s+\w+\s+in\s+([a-zA-Z_][a-zA-Z0-9_\.]*)',
+            r"\{\{\s*([a-zA-Z_][a-zA-Z0-9_\.]*)\s*\}\}",
+            r"\{%\s*if\s+([a-zA-Z_][a-zA-Z0-9_\.]*)",
+            r"\{%\s*for\s+\w+\s+in\s+([a-zA-Z_][a-zA-Z0-9_\.]*)",
         ]
 
         all_vars = set()
         for pattern in patterns:
             matches = re.findall(pattern, template_str)
             for match in matches:
-                root_var = match.split('.')[0].split('[')[0]
+                root_var = match.split(".")[0].split("[")[0]
                 if root_var not in context:
                     all_vars.add(root_var)
 
         return all_vars
 
-    def build_smart_context(self, template_str: str, base_context: Dict[str, Any]) -> Dict[str, Any]:
+    def build_smart_context(
+        self, template_str: str, base_context: Dict[str, Any]
+    ) -> Dict[str, Any]:
         """Строит умный контекст с заглушками для undefined переменных"""
         undefined_vars = self.extract_undefined_vars(template_str, base_context)
 
@@ -867,15 +798,15 @@ class SmartJinja2ContextBuilder:
 
     def _create_smart_stub(self, var_name: str, template_str: str) -> Any:
         """Создает умную заглушку на основе контекста использования"""
-        pattern_for = r'\{%\s*for\s+\w+\s+in\s+' + re.escape(var_name)
+        pattern_for = r"\{%\s*for\s+\w+\s+in\s+" + re.escape(var_name)
         if re.search(pattern_for, template_str):
             return []
 
-        pattern_if = r'\{%\s*if\s+' + re.escape(var_name)
+        pattern_if = r"\{%\s*if\s+" + re.escape(var_name)
         if re.search(pattern_if, template_str):
             return False
 
-        pattern_attr = re.escape(var_name) + r'\.\w+'
+        pattern_attr = re.escape(var_name) + r"\.\w+"
         if re.search(pattern_attr, template_str):
             return defaultdict(lambda: None)
 
@@ -890,7 +821,9 @@ class JSONCommentImportProcessor:
         self.processed_files = set()
         self.imported_files = []
 
-    def process_imports(self, content: str, base_path: Path) -> Tuple[str, int, List[Path]]:
+    def process_imports(
+        self, content: str, base_path: Path
+    ) -> Tuple[str, int, List[Path]]:
         """
         Обрабатывает импорты в комментариях и удаляет все комментарии
 
@@ -904,15 +837,19 @@ class JSONCommentImportProcessor:
         content_with_imports, import_count = processed
 
         # Удаляем комментарии
-        cleaned = re.sub(r'(?:^|\s)//[^\n]*', '', content_with_imports, flags=re.MULTILINE)
-        cleaned = re.sub(r'/\*.*?\*/', '', cleaned, flags=re.DOTALL)
-        cleaned = re.sub(r'\n\s*\n\s*\n', '\n\n', cleaned)
+        cleaned = re.sub(
+            r"(?:^|\s)//[^\n]*", "", content_with_imports, flags=re.MULTILINE
+        )
+        cleaned = re.sub(r"/\*.*?\*/", "", cleaned, flags=re.DOTALL)
+        cleaned = re.sub(r"\n\s*\n\s*\n", "\n\n", cleaned)
 
         return cleaned, import_count, self.imported_files.copy()
 
-    def _process_imports_recursive(self, content: str, base_path: Path, count: int) -> Tuple[str, int]:
+    def _process_imports_recursive(
+        self, content: str, base_path: Path, count: int
+    ) -> Tuple[str, int]:
         """Рекурсивная обработка импортов"""
-        import_pattern = r'//[^\n]*?\(file:///(.*?)\)[^\n]*'
+        import_pattern = r"//[^\n]*?\(file:///(.*?)\)[^\n]*"
         matches = list(re.finditer(import_pattern, content))
 
         if not matches:
@@ -924,10 +861,10 @@ class JSONCommentImportProcessor:
             file_url = match.group(1)
             decoded_path = unquote(file_url)
 
-            if '#' in decoded_path:
-                decoded_path = decoded_path.split('#')[0]
+            if "#" in decoded_path:
+                decoded_path = decoded_path.split("#")[0]
 
-            import_file = Path('/' + decoded_path)
+            import_file = Path("/" + decoded_path)
 
             if import_file in self.processed_files:
                 continue
@@ -937,7 +874,7 @@ class JSONCommentImportProcessor:
                 continue
 
             try:
-                with open(import_file, 'r', encoding='utf-8') as f:
+                with open(import_file, "r", encoding="utf-8") as f:
                     imported_content = f.read()
 
                 self.processed_files.add(import_file)
@@ -948,20 +885,20 @@ class JSONCommentImportProcessor:
                     imported_content, import_file.parent, count
                 )
 
-                before_text = result[:match.start()].rstrip()
-                after_text = result[match.end():].lstrip()
+                before_text = result[: match.start()].rstrip()
+                after_text = result[match.end() :].lstrip()
 
-                needs_comma_before = before_text and before_text[-1] not in '[{,'
-                needs_comma_after = after_text and after_text[0] not in ']},'
+                needs_comma_before = before_text and before_text[-1] not in "[{,"
+                needs_comma_after = after_text and after_text[0] not in "]},"
 
-                replacement = ''
+                replacement = ""
                 if needs_comma_before:
-                    replacement = ','
-                replacement += '\n' + imported_content.strip()
+                    replacement = ","
+                replacement += "\n" + imported_content.strip()
                 if needs_comma_after:
-                    replacement += ','
+                    replacement += ","
 
-                result = result[:match.start()] + replacement + result[match.end():]
+                result = result[: match.start()] + replacement + result[match.end() :]
 
             except Exception as e:
                 logger.error(f"   ❌ Ошибка импорта {import_file.name}: {e}")
@@ -979,7 +916,9 @@ class EnhancedJinjaJsonPreprocessor:
         self.json_fixer = SmartJSONFixer(debug) if smart_mode else None
         self.import_processor = JSONCommentImportProcessor(debug)
 
-    def clean_mixed_syntax(self, content: str, source_file: Path = None) -> Tuple[str, Dict[str, str], List[Path]]:
+    def clean_mixed_syntax(
+        self, content: str, source_file: Path = None
+    ) -> Tuple[str, Dict[str, str], List[Path]]:
         """
         Очищает смешанный Jinja2/JSON синтаксис с умными исправлениями
         Returns: (очищенный контент, словарь замен, список импортированных файлов)
@@ -990,20 +929,24 @@ class EnhancedJinjaJsonPreprocessor:
 
         # Обрабатываем импорты через комментарии
         if source_file:
-            content, import_count, imported_files = self.import_processor.process_imports(content, source_file.parent)
+            content, import_count, imported_files = (
+                self.import_processor.process_imports(content, source_file.parent)
+            )
             if import_count > 0:
-                logger.info(f"   📥 Обработано импортов через комментарии: {import_count}")
+                logger.info(
+                    f"   📥 Обработано импортов через комментарии: {import_count}"
+                )
         else:
-            content = re.sub(r'(?:^|\s)//[^\n]*', '', content, flags=re.MULTILINE)
-            content = re.sub(r'/\*.*?\*/', '', content, flags=re.DOTALL)
+            content = re.sub(r"(?:^|\s)//[^\n]*", "", content, flags=re.MULTILINE)
+            content = re.sub(r"/\*.*?\*/", "", content, flags=re.DOTALL)
 
         # Паттерны Jinja2
         patterns = [
-            (r'\{%\s*if\s+[^%]+%\}.*?\{%\s*endif\s*%\}', 'JINJA_IF'),
-            (r'\{%\s*for\s+[^%]+%\}.*?\{%\s*endfor\s*%\}', 'JINJA_FOR'),
-            (r'\{%\s*set\s+[^%]+%\}', 'JINJA_SET'),
-            (r'\{%[^}]+%\}', 'JINJA_TAG'),
-            (r'\{\{[^}]+\}\}', 'JINJA_VAR'),
+            (r"\{%\s*if\s+[^%]+%\}.*?\{%\s*endif\s*%\}", "JINJA_IF"),
+            (r"\{%\s*for\s+[^%]+%\}.*?\{%\s*endfor\s*%\}", "JINJA_FOR"),
+            (r"\{%\s*set\s+[^%]+%\}", "JINJA_SET"),
+            (r"\{%[^}]+%\}", "JINJA_TAG"),
+            (r"\{\{[^}]+\}\}", "JINJA_VAR"),
         ]
 
         cleaned = content
@@ -1015,20 +958,20 @@ class EnhancedJinjaJsonPreprocessor:
                 counter += 1
                 key = f"__{block_type}_{counter}__"
                 replacements[key] = match.group()
-                cleaned = cleaned[:match.start()] + cleaned[match.end():]
+                cleaned = cleaned[: match.start()] + cleaned[match.end() :]
 
         # Базовая очистка
-        while ',,' in cleaned:
-            cleaned = cleaned.replace(',,', ',')
+        while ",," in cleaned:
+            cleaned = cleaned.replace(",,", ",")
 
-        cleaned = re.sub(r',\s*\]', ']', cleaned)
-        cleaned = re.sub(r',\s*\}', '}', cleaned)
-        cleaned = re.sub(r'\[\s*,', '[', cleaned)
-        cleaned = re.sub(r'\{\s*,', '{', cleaned)
-        cleaned = re.sub(r',\s*:', ':', cleaned)
-        cleaned = re.sub(r':\s*,', ': null,', cleaned)
-        cleaned = re.sub(r':\s*\}', ': null}', cleaned)
-        cleaned = re.sub(r':\s*\]', ': null]', cleaned)
+        cleaned = re.sub(r",\s*\]", "]", cleaned)
+        cleaned = re.sub(r",\s*\}", "}", cleaned)
+        cleaned = re.sub(r"\[\s*,", "[", cleaned)
+        cleaned = re.sub(r"\{\s*,", "{", cleaned)
+        cleaned = re.sub(r",\s*:", ":", cleaned)
+        cleaned = re.sub(r":\s*,", ": null,", cleaned)
+        cleaned = re.sub(r":\s*\}", ": null}", cleaned)
+        cleaned = re.sub(r":\s*\]", ": null]", cleaned)
 
         # Smart режим
         if self.smart_mode and self.json_fixer:
@@ -1049,27 +992,29 @@ class EnhancedJinjaJsonPreprocessor:
         """
         # Проверка 1: Начинается с Jinja2 комментария
         stripped = content.strip()
-        if stripped.startswith('{#'):
+        if stripped.startswith("{#"):
             if self.debug:
                 logger.debug("   🔍 Обнаружен Jinja2 комментарий в начале файла")
             return True
 
         # Проверка 2: Наличие директив include/import
         first_part = content[:500]
-        has_includes = bool(re.search(r'\{%\s*include\s+', first_part, re.IGNORECASE))
-        has_imports = bool(re.search(r'\{%\s*(?:import|from)\s+', first_part, re.IGNORECASE))
+        has_includes = bool(re.search(r"\{%\s*include\s+", first_part, re.IGNORECASE))
+        has_imports = bool(
+            re.search(r"\{%\s*(?:import|from)\s+", first_part, re.IGNORECASE)
+        )
 
         if has_includes or has_imports:
             # Проверка 3: Попытка parse как JSON
-            test_content = re.sub(r'\{#.*?#\}', '', content, flags=re.DOTALL)
-            test_content = re.sub(r'\{%.*?%\}', '', test_content, flags=re.DOTALL)
-            test_content = re.sub(r'\{\{.*?\}\}', '', test_content, flags=re.DOTALL)
+            test_content = re.sub(r"\{#.*?#\}", "", content, flags=re.DOTALL)
+            test_content = re.sub(r"\{%.*?%\}", "", test_content, flags=re.DOTALL)
+            test_content = re.sub(r"\{\{.*?\}\}", "", test_content, flags=re.DOTALL)
 
             try:
                 json.loads(test_content)
                 return False  # Mixed JSON+Jinja2
             except:
-                return True   # Pure Jinja2
+                return True  # Pure Jinja2
 
         return False
 
@@ -1078,15 +1023,34 @@ class EnhancedJinjaJsonPreprocessor:
 # ГЛАВНЫЙ КЛАСС: JinjaHotReloaderV35
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+
 class JinjaHotReloaderV35(FileSystemEventHandler):
     """Hot Reload v3.5.0 - Critical Fixes Release"""
 
-    SUPPORTED_EXTENSIONS = {'.json', '.jinja', '.j2', '.json.jinja', '.json.j2', '.j2.java', '.jinja.java', '.java'}
+    SUPPORTED_EXTENSIONS = {
+        ".json",
+        ".jinja",
+        ".j2",
+        ".json.jinja",
+        ".json.j2",
+        ".j2.java",
+        ".jinja.java",
+        ".java",
+    }
 
-    def __init__(self, watch_dir: str = None, debug: bool = False,
-                 browser_reload: bool = True, smart_mode: bool = False,
-                 visualize: bool = False):
-        self.watch_dir = Path(watch_dir) if watch_dir else Path('/Users/username/Documents/front-middle-schema/.JSON')
+    def __init__(
+        self,
+        watch_dir: str = None,
+        debug: bool = False,
+        browser_reload: bool = True,
+        smart_mode: bool = False,
+        visualize: bool = False,
+    ):
+        self.watch_dir = (
+            Path(watch_dir)
+            if watch_dir
+            else Path("/Users/username/Documents/FMS_GIT/_JSON")
+        )
         self.debug = debug
         self.browser_reload = browser_reload
         self.smart_mode = smart_mode
@@ -1098,8 +1062,8 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
         # Определяем базовые директории для поиска шаблонов
         self.template_search_paths = [
             str(self.watch_dir),
-            str(self.watch_dir / 'WEB'),
-            str(self.watch_dir / 'ANDROID'),
+            str(self.watch_dir / "WEB"),
+            str(self.watch_dir / "ANDROID"),
         ]
 
         # MODULE #2: Include/Import Tracker
@@ -1113,7 +1077,7 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
         if smart_mode:
             self.jinja_env = Environment(
                 loader=FileSystemLoader(self.template_search_paths),
-                undefined=SafeDebugUndefined  # Используем SafeDebugUndefined вместо DebugUndefined
+                undefined=SafeDebugUndefined,  # Используем SafeDebugUndefined вместо DebugUndefined
             )
         else:
             self.jinja_env = Environment(
@@ -1140,7 +1104,9 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
         self.context_builder = SmartJinja2ContextBuilder(debug) if smart_mode else None
 
         # SDUI трансформер
-        self.sdui_transformer = SDUIToJinja2Transformer() if SDUIToJinja2Transformer else None
+        self.sdui_transformer = (
+            SDUIToJinja2Transformer() if SDUIToJinja2Transformer else None
+        )
 
         # FIX #2: Регистрация SDUI функций напрямую
         if SDUI_FUNCTIONS_AVAILABLE:
@@ -1152,37 +1118,51 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
                 logger.warning(f"⚠️ Не удалось зарегистрировать SDUI расширения: {e}")
 
         # Валидатор
-        self.validator_path = Path('/Users/username/Documents/front-middle-schema/sdui_web_validator_v3.0.0.py')
+        self.validator_path = Path(
+            "/Users/username/Scripts/validators/v3.0.0/sdui_web_validator_v3.0.0.py"
+        )
 
         # Вывод информации о конфигурации
         logger.info("━" * 80)
         logger.info("🚀 Jinja Hot Reload v3.5.0 - CRITICAL FIXES RELEASE")
         logger.info("━" * 80)
         logger.info(f"📁 Директория наблюдения: {self.watch_dir}")
-        logger.info(f"🔍 SDUI поддержка: {'✅ Включена' if self.sdui_transformer else '❌ Отключена'}")
-        logger.info(f"🌐 Перезагрузка браузера: {'✅ Включена (Vivaldi:9090)' if self.browser_reload else '❌ Отключена'}")
-        logger.info(f"🧠 Smart режим: {'✅ Включен (SafeDebugUndefined)' if self.smart_mode else '❌ Отключен'}")
-        logger.info(f"📊 FileSystemLoader: ✅ Включен ({len(self.template_search_paths)} путей)")
+        logger.info(
+            f"🔍 SDUI поддержка: {'✅ Включена' if self.sdui_transformer else '❌ Отключена'}"
+        )
+        logger.info(
+            f"🌐 Перезагрузка браузера: {'✅ Включена (Vivaldi:9090)' if self.browser_reload else '❌ Отключена'}"
+        )
+        logger.info(
+            f"🧠 Smart режим: {'✅ Включен (SafeDebugUndefined)' if self.smart_mode else '❌ Отключен'}"
+        )
+        logger.info(
+            f"📊 FileSystemLoader: ✅ Включен ({len(self.template_search_paths)} путей)"
+        )
         logger.info(f"🔗 Include/Import трекинг: ✅ Включен")
         logger.info(f"🎨 Кастомные фильтры: ✅ Включены (с защитой от Undefined)")
         logger.info(f"💾 Template Cache: ✅ Включен")
         logger.info(f"🛡️ Error Recovery: ✅ Включен")
         logger.info(f"⏱️ Performance Monitor: ✅ Включен")
-        logger.info(f"🌳 Визуализация: {'✅ Включена' if self.visualize else '❌ Отключена'}")
-        logger.info(f"📄 Поддерживаемые расширения: {', '.join(self.SUPPORTED_EXTENSIONS)}")
+        logger.info(
+            f"🌳 Визуализация: {'✅ Включена' if self.visualize else '❌ Отключена'}"
+        )
+        logger.info(
+            f"📄 Поддерживаемые расширения: {', '.join(self.SUPPORTED_EXTENSIONS)}"
+        )
         logger.info("━" * 80)
 
     def is_jj_file(self, file_path: Path) -> bool:
         """Проверяет, является ли файл [JJ_] файлом"""
-        if not file_path.name.startswith('[JJ_'):
+        if not file_path.name.startswith("[JJ_"):
             return False
 
         if file_path.suffix in self.SUPPORTED_EXTENSIONS:
             return True
 
-        name_parts = file_path.name.split('.')
+        name_parts = file_path.name.split(".")
         if len(name_parts) >= 3:
-            compound_ext = '.' + '.'.join(name_parts[-2:])
+            compound_ext = "." + ".".join(name_parts[-2:])
             if compound_ext in self.SUPPORTED_EXTENSIONS:
                 return True
 
@@ -1204,11 +1184,11 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
         jj_name = jj_file.name
 
         # Ищем паттерн _vX.Y.Z
-        version_match = re.search(r'_v(\d+\.\d+\.\d+)', jj_name)
+        version_match = re.search(r"_v(\d+\.\d+\.\d+)", jj_name)
         version = f"_v{version_match.group(1)}" if version_match else ""
 
         # Извлекаем базовое имя (между [JJ_*] и версией/расширением)
-        base_match = re.search(r'\[JJ_[^\]]+\]_(.+?)(?:_v\d+\.\d+\.\d+)?\.', jj_name)
+        base_match = re.search(r"\[JJ_[^\]]+\]_(.+?)(?:_v\d+\.\d+\.\d+)?\.", jj_name)
         base_name = base_match.group(1) if base_match else ""
 
         while current_dir != current_dir.parent:
@@ -1216,7 +1196,9 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
             if base_name and version:
                 versioned_data = current_dir / f"[data]_{base_name}{version}.json"
                 if versioned_data.exists():
-                    logger.info(f"📁 Найден версионный data файл: {versioned_data.name}")
+                    logger.info(
+                        f"📁 Найден версионный data файл: {versioned_data.name}"
+                    )
                     return versioned_data
 
             # Приоритет 2: [data]_{base}.json
@@ -1228,7 +1210,7 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
 
             # Приоритет 3: любой [data]*.json
             for file in current_dir.iterdir():
-                if file.is_file() and file.name.startswith('[data'):
+                if file.is_file() and file.name.startswith("[data"):
                     logger.info(f"📁 Найден data файл: {file.name}")
                     return file
 
@@ -1236,7 +1218,9 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
 
         return None
 
-    def resolve_template_path(self, template_name: str, parent_file: Path) -> Optional[Path]:
+    def resolve_template_path(
+        self, template_name: str, parent_file: Path
+    ) -> Optional[Path]:
         """
         Разрешает путь к шаблону относительно родительского файла
 
@@ -1268,7 +1252,7 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
             parent_file: Родительский файл
             content: Содержимое файла для анализа
         """
-        self.perf_monitor.start_operation('update_dependencies')
+        self.perf_monitor.start_operation("update_dependencies")
 
         # Удаляем старые зависимости этого родителя
         for child_files in self.dependency_map.values():
@@ -1286,17 +1270,21 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
                 self.dep_graph.add_dependency(parent_file, child_path)
 
                 if self.debug:
-                    logger.debug(f"   📊 Зависимость: {child_path.name} ← {parent_file.name}")
+                    logger.debug(
+                        f"   📊 Зависимость: {child_path.name} ← {parent_file.name}"
+                    )
             else:
                 logger.warning(f"   ⚠️ Не удалось разрешить путь: {template_name}")
 
-        self.perf_monitor.end_operation('update_dependencies')
+        self.perf_monitor.end_operation("update_dependencies")
 
     def get_parents_for_file(self, file_path: Path) -> Set[Path]:
         """Возвращает все родительские файлы, которые импортируют данный файл"""
         return self.dependency_map.get(file_path, set())
 
-    def _process_pure_jinja2_file(self, file_path: Path, context: Dict[str, Any]) -> Dict[str, Any]:
+    def _process_pure_jinja2_file(
+        self, file_path: Path, context: Dict[str, Any]
+    ) -> Dict[str, Any]:
         """
         Обрабатывает чистые Jinja2 шаблоны (начинаются с {# комментария #})
 
@@ -1307,7 +1295,7 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
         """
         logger.info("   🔥 Обнаружен PURE JINJA2 шаблон → рендеринг перед парсингом")
 
-        self.perf_monitor.start_operation('render_pure_jinja2')
+        self.perf_monitor.start_operation("render_pure_jinja2")
 
         try:
             # FIX #1: Добавляем parent directory в search paths для поиска вложенных parts/ файлов
@@ -1343,7 +1331,9 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
                     fixed, fixes = self.preprocessor.json_fixer.fix_json(rendered)
                     try:
                         json_obj = json.loads(fixed)
-                        logger.info(f"   ✅ Автоисправление успешно: {', '.join(fixes)}")
+                        logger.info(
+                            f"   ✅ Автоисправление успешно: {', '.join(fixes)}"
+                        )
                         return json_obj
                     except:
                         pass
@@ -1357,7 +1347,7 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
             logger.error(f"   ❌ Ошибка Jinja2: {e}")
             return {}
         finally:
-            self.perf_monitor.end_operation('render_pure_jinja2')
+            self.perf_monitor.end_operation("render_pure_jinja2")
 
     def process_jj_file(self, file_path: Path):
         """Обрабатывает [JJ_] файл со всеми новыми возможностями v3.5.0"""
@@ -1372,7 +1362,7 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
         self.last_process_time[file_path] = current_time
         self.processing_files.add(file_path)
 
-        self.perf_monitor.start_operation('process_jj_file')
+        self.perf_monitor.start_operation("process_jj_file")
 
         try:
             logger.info("")
@@ -1381,7 +1371,7 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
             logger.info("─" * 80)
 
             # 1. Читаем файл
-            with open(file_path, 'r', encoding='utf-8') as f:
+            with open(file_path, "r", encoding="utf-8") as f:
                 original_content = f.read()
 
             # 2. Обновляем карту зависимостей (MODULE #2)
@@ -1400,18 +1390,20 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
 
                 if data_file:
                     try:
-                        with open(data_file, 'r', encoding='utf-8') as f:
+                        with open(data_file, "r", encoding="utf-8") as f:
                             raw_context = json.load(f)
                         logger.info(f"   ✅ Загружены данные из: {data_file.name}")
                     except Exception as e:
                         logger.error(f"   ❌ Ошибка загрузки данных: {e}")
 
                 # FIX #5: СНАЧАЛА оборачиваем в {'data': ...}
-                context = {'data': raw_context}
+                context = {"data": raw_context}
 
                 # FIX #5: ПОТОМ вызываем smart mode (он увидит 'data' и не создаст стаб)
                 if self.smart_mode and self.context_builder:
-                    context = self.context_builder.build_smart_context(original_content, context)
+                    context = self.context_builder.build_smart_context(
+                        original_content, context
+                    )
 
                 # Обрабатываем через новый метод (context уже обёрнут, не нужна дополнительная обёртка)
                 json_obj = self._process_pure_jinja2_file(file_path, context)
@@ -1428,8 +1420,8 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
                 logger.info("   📋 Тип файла: MIXED JSON+JINJA2")
 
                 # 3. Обрабатываем импорты через комментарии (legacy)
-                cleaned_content, jinja_blocks, legacy_imported_files = self.preprocessor.clean_mixed_syntax(
-                    original_content, file_path
+                cleaned_content, jinja_blocks, legacy_imported_files = (
+                    self.preprocessor.clean_mixed_syntax(original_content, file_path)
                 )
 
                 # Обновляем зависимости для legacy импортов
@@ -1444,11 +1436,14 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
                     # MODULE #8: Error Recovery
                     logger.error(f"❌ JSON ошибка на строке {e.lineno}: {e.msg}")
 
-                    recovery_result = self.error_manager.handle_error(e, {
-                        'file': file_path,
-                        'content': cleaned_content,
-                        'original_content': original_content
-                    })
+                    recovery_result = self.error_manager.handle_error(
+                        e,
+                        {
+                            "file": file_path,
+                            "content": cleaned_content,
+                            "original_content": original_content,
+                        },
+                    )
 
                     if recovery_result:
                         cleaned_content = recovery_result
@@ -1460,21 +1455,23 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
                             return
                     else:
                         if self.debug:
-                            debug_path = file_path.with_name(f"{file_path.stem}_debug_cleaned.json")
-                            with open(debug_path, 'w', encoding='utf-8') as f:
+                            debug_path = file_path.with_name(
+                                f"{file_path.stem}_debug_cleaned.txt"
+                            )
+                            with open(debug_path, "w", encoding="utf-8") as f:
                                 f.write(cleaned_content)
                             logger.info(f"   📝 Debug файл: {debug_path.name}")
                         return
 
                 # 5. Конвертация для WEB
-                if 'ANDROID' in str(file_path):
+                if "ANDROID" in str(file_path):
                     logger.info("   🔄 Конвертация Android → WEB")
                     json_obj = self._convert_to_web(json_obj)
 
                 # 6. SDUI трансформация
                 if self.sdui_transformer:
                     json_str = json.dumps(json_obj, ensure_ascii=False)
-                    if '${' in json_str or '"type": "if"' in json_str:
+                    if "${" in json_str or '"type": "if"' in json_str:
                         logger.info("   🔄 Преобразование SDUI → Jinja2")
                         json_str = self.sdui_transformer.transform(json_str)
                         json_obj = json.loads(json_str)
@@ -1485,7 +1482,7 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
 
                 if data_file:
                     try:
-                        with open(data_file, 'r', encoding='utf-8') as f:
+                        with open(data_file, "r", encoding="utf-8") as f:
                             context = json.load(f)
                         logger.info(f"   ✅ Загружены данные из: {data_file.name}")
                     except Exception as e:
@@ -1493,14 +1490,18 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
 
                 # 8. Рендеринг через Jinja2 с FileSystemLoader (MODULE #1)
                 json_str = json.dumps(json_obj, ensure_ascii=False)
-                json_str = re.sub(r'\$\{([^}]+)\}', r'{{ \1 }}', json_str)
+                json_str = re.sub(r"\$\{([^}]+)\}", r"{{ \1 }}", json_str)
 
                 # Smart режим - умный контекст
                 if self.smart_mode and self.context_builder:
-                    context = self.context_builder.build_smart_context(json_str, context)
+                    context = self.context_builder.build_smart_context(
+                        json_str, context
+                    )
 
                     if self.context_builder.auto_vars:
-                        logger.info(f"   🧠 Создано заглушек: {len(self.context_builder.auto_vars)}")
+                        logger.info(
+                            f"   🧠 Создано заглушек: {len(self.context_builder.auto_vars)}"
+                        )
 
                 try:
                     # MODULE #7: Используем кэш шаблонов
@@ -1508,7 +1509,7 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
                     temp_template_name = f"_temp_{file_path.stem}.j2"
                     temp_template_path = file_path.parent / temp_template_name
 
-                    with open(temp_template_path, 'w', encoding='utf-8') as f:
+                    with open(temp_template_path, "w", encoding="utf-8") as f:
                         f.write(json_str)
 
                     try:
@@ -1516,13 +1517,17 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
                         parent_dir = str(file_path.parent)
                         if parent_dir not in self.template_search_paths:
                             self.template_search_paths.insert(0, parent_dir)
-                            self.jinja_env.loader = FileSystemLoader(self.template_search_paths)
+                            self.jinja_env.loader = FileSystemLoader(
+                                self.template_search_paths
+                            )
 
                         template = self.jinja_env.get_template(temp_template_name)
                         rendered = template.render(**context)
                         result_obj = json.loads(rendered)
 
-                        logger.info(f"   ✅ Рендеринг Jinja2 успешен (с include/import поддержкой)")
+                        logger.info(
+                            f"   ✅ Рендеринг Jinja2 успешен (с include/import поддержкой)"
+                        )
 
                     finally:
                         # Удаляем временный файл
@@ -1532,11 +1537,14 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
                 except TemplateNotFound as e:
                     # MODULE #8: Error Recovery
                     logger.warning(f"⚠️ Шаблон не найден: {e.name}")
-                    recovery_result = self.error_manager.handle_error(e, {
-                        'file': file_path,
-                        'template_name': e.name,
-                        'original_content': json_str
-                    })
+                    recovery_result = self.error_manager.handle_error(
+                        e,
+                        {
+                            "file": file_path,
+                            "template_name": e.name,
+                            "original_content": json_str,
+                        },
+                    )
 
                     if recovery_result:
                         result_obj = json.loads(recovery_result)
@@ -1555,21 +1563,23 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
             file_name = file_path.name
             for ext in sorted(self.SUPPORTED_EXTENSIONS, key=len, reverse=True):
                 if file_name.endswith(ext):
-                    file_stem = file_name[:-len(ext)]
+                    file_stem = file_name[: -len(ext)]
                     break
             else:
                 file_stem = file_path.stem
 
-            if file_stem.startswith('[JJ_'):
-                platform = file_stem[4:file_stem.find(']')]
-                full_name = f"[FULL_{platform}]{file_stem[file_stem.find(']')+1:]}_web.json"
+            if file_stem.startswith("[JJ_"):
+                platform = file_stem[4 : file_stem.find("]")]
+                full_name = (
+                    f"[FULL_{platform}]{file_stem[file_stem.find(']')+1:]}_web.json"
+                )
             else:
                 full_name = f"[FULL_{file_stem}]_web.json"
 
             output_path = file_path.parent / full_name
 
             # 10. Сохраняем
-            with open(output_path, 'w', encoding='utf-8') as f:
+            with open(output_path, "w", encoding="utf-8") as f:
                 json.dump(result_obj, f, indent=2, ensure_ascii=False)
 
             logger.info("")
@@ -1586,39 +1596,42 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
             logger.error("┄" * 80)
 
             # MODULE #8: Error Recovery
-            self.error_manager.handle_error(e, {'file': file_path})
+            self.error_manager.handle_error(e, {"file": file_path})
 
             if self.debug:
                 import traceback
+
                 traceback.print_exc()
         finally:
             self.processing_files.discard(file_path)
-            self.perf_monitor.end_operation('process_jj_file')
+            self.perf_monitor.end_operation("process_jj_file")
 
     def _convert_to_web(self, component: Dict[str, Any]) -> Dict[str, Any]:
         """Простая конвертация Android → WEB"""
         MAPPING = {
-            'ScrollView': 'ScrollWrapper',
-            'ConstraintLayout': 'ConstraintWrapper',
-            'LinearLayout': 'StackView',
-            'TextView': 'LabelView',
-            'Button': 'ButtonView',
-            'Image': 'ImageView',
-            'Icon': 'IconView',
-            'Card': 'BannerWrapper',
+            "ScrollView": "ScrollWrapper",
+            "ConstraintLayout": "ConstraintWrapper",
+            "LinearLayout": "StackView",
+            "TextView": "LabelView",
+            "Button": "ButtonView",
+            "Image": "ImageView",
+            "Icon": "IconView",
+            "Card": "BannerWrapper",
         }
 
         if not isinstance(component, dict):
             return component
 
-        if 'type' in component and component['type'] in MAPPING:
-            component['type'] = MAPPING[component['type']]
+        if "type" in component and component["type"] in MAPPING:
+            component["type"] = MAPPING[component["type"]]
 
-        if 'content' in component and isinstance(component['content'], dict):
-            component['content'] = self._convert_to_web(component['content'])
+        if "content" in component and isinstance(component["content"], dict):
+            component["content"] = self._convert_to_web(component["content"])
 
-        if 'children' in component and isinstance(component['children'], list):
-            component['children'] = [self._convert_to_web(c) for c in component['children']]
+        if "children" in component and isinstance(component["children"], list):
+            component["children"] = [
+                self._convert_to_web(c) for c in component["children"]
+            ]
 
         return component
 
@@ -1629,7 +1642,7 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
                 [sys.executable, str(self.validator_path), str(file_path)],
                 capture_output=True,
                 text=True,
-                timeout=10
+                timeout=10,
             )
 
             if result.returncode == 0:
@@ -1642,7 +1655,7 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
     def reload_browser(self):
         """Перезагрузка Vivaldi:9090"""
         try:
-            applescript = '''
+            applescript = """
             tell application "Vivaldi"
                 activate
                 set allWindows to every window
@@ -1658,13 +1671,13 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
                 end repeat
                 return "Not found"
             end tell
-            '''
+            """
 
             result = subprocess.run(
-                ['osascript', '-e', applescript],
+                ["osascript", "-e", applescript],
                 capture_output=True,
                 text=True,
-                timeout=5
+                timeout=5,
             )
 
             if result.returncode == 0 and "Reloaded" in result.stdout:
@@ -1694,7 +1707,9 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
 
             # Обрабатываем все родительские файлы
             for parent_file in parent_files:
-                logger.info(f"   ↻ Перерендеринг родительского файла: {parent_file.name}")
+                logger.info(
+                    f"   ↻ Перерендеринг родительского файла: {parent_file.name}"
+                )
                 self.template_cache.invalidate(parent_file)
                 self.process_jj_file(parent_file)
 
@@ -1711,7 +1726,7 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
             if self.browser_reload:
                 self.reload_browser()
 
-        elif path.name.startswith('[data'):
+        elif path.name.startswith("[data"):
             logger.info(f"🔄 Обновлен data файл: {path.name}")
 
             # Обрабатываем все связанные файлы
@@ -1756,11 +1771,11 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
             logger.info("━" * 80)
 
             # Экспорт в DOT формат
-            dot_path = self.watch_dir / 'dependency_graph.dot'
+            dot_path = self.watch_dir / "dependency_graph.dot"
             self.dep_graph.export_dot(dot_path)
 
             # Экспорт в HTML
-            html_path = self.watch_dir / 'dependency_graph.html'
+            html_path = self.watch_dir / "dependency_graph.html"
             self.dep_graph.export_html(html_path)
 
         # Выводим статистику по зависимостям
@@ -1776,7 +1791,7 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
 
         # MODULE #7: Статистика кэша
         cache_stats = self.template_cache.get_statistics()
-        if cache_stats['total'] > 0:
+        if cache_stats["total"] > 0:
             logger.info("")
             logger.info("━" * 80)
             logger.info("💾 Статистика кэша шаблонов:")
@@ -1829,51 +1844,47 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
 # ГЛАВНАЯ ФУНКЦИЯ
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+
 def main():
     """Главная функция"""
     parser = argparse.ArgumentParser(
-        description='Jinja Hot Reload v3.5.0 - Critical Fixes Release'
+        description="Jinja Hot Reload v3.5.0 - Critical Fixes Release"
     )
 
     parser.add_argument(
-        '--path',
-        default='/Users/username/Documents/front-middle-schema/.JSON',
-        help='Директория для наблюдения'
+        "--path",
+        default="/Users/username/Documents/FMS_GIT/_JSON",
+        help="Директория для наблюдения",
+    )
+
+    parser.add_argument("--debug", action="store_true", help="Режим отладки")
+
+    parser.add_argument(
+        "--test", action="store_true", help="Однократная обработка без наблюдения"
     )
 
     parser.add_argument(
-        '--debug',
-        action='store_true',
-        help='Режим отладки'
+        "--no-browser-reload",
+        action="store_true",
+        help="Отключить автоматическую перезагрузку браузера",
     )
 
     parser.add_argument(
-        '--test',
-        action='store_true',
-        help='Однократная обработка без наблюдения'
+        "--smart",
+        action="store_true",
+        help="🧠 Включить интеллектуальный режим исправления ошибок",
     )
 
     parser.add_argument(
-        '--no-browser-reload',
-        action='store_true',
-        help='Отключить автоматическую перезагрузку браузера'
-    )
-
-    parser.add_argument(
-        '--smart',
-        action='store_true',
-        help='🧠 Включить интеллектуальный режим исправления ошибок'
-    )
-
-    parser.add_argument(
-        '--visualize',
-        action='store_true',
-        help='🌳 Включить визуализацию графа зависимостей'
+        "--visualize",
+        action="store_true",
+        help="🌳 Включить визуализацию графа зависимостей",
     )
 
     args = parser.parse_args()
 
-    print("""
+    print(
+        """
     ╔══════════════════════════════════════════════════╗
     ║     Jinja Hot Reload v3.5.0                     ║
     ║     🔧 CRITICAL FIXES RELEASE                   ║
@@ -1882,14 +1893,15 @@ def main():
     ║     ✅ SafeDebugUndefined                       ║
     ║     ✅ Custom Filters Protection                ║
     ╚══════════════════════════════════════════════════╝
-    """)
+    """
+    )
 
     reloader = JinjaHotReloaderV35(
         watch_dir=args.path,
         debug=args.debug,
         browser_reload=not args.no_browser_reload,
         smart_mode=args.smart,
-        visualize=args.visualize
+        visualize=args.visualize,
     )
 
     if args.test:
@@ -1899,5 +1911,5 @@ def main():
         reloader.watch()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

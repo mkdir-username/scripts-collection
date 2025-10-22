@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Путь к директории с файлами
-DRAFT_DIR="/Users/username/Documents/front-middle-schema/.JSON/draft"
+DRAFT_DIR="/Users/username/Documents/FMS_GIT/_JSON/draft"
 
 # Путь к Python-скрипту
 PY_SCRIPT="/Users/username/Scripts/validators/v3.0.0/sdui_web_validator_v3.0.0_simple.py"
 
 # Путь к родительской директории (для cd)
-PARENT_DIR="/Users/username/Documents/front-middle-schema/.JSON"
+PARENT_DIR="/Users/username/Documents/FMS_GIT/_JSON"
 
 # Переходим в родительскую директорию
 cd "$PARENT_DIR" || { echo "Ошибка: Не удалось перейти в директорию $PARENT_DIR"; exit 1; }

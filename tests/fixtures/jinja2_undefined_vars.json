@@ -1,9 +1,0 @@
-{
-  "type": "TextView",
-  "text": "Hello {{ undefined_variable }}",
-  "subtitle": "{{ another_undefined | default('N/A') }}",
-  "metadata": {
-    "timestamp": "{{ current_time }}",
-    "user": "{{ user_id | default('anonymous') }}"
-  }
-}

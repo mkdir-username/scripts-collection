@@ -11,7 +11,7 @@ from datetime import datetime
 from typing import Dict, List, Tuple
 
 # Конфигурация путей
-SOURCE_DIR = Path("/Users/username/Documents/front-middle-schema")
+SOURCE_DIR = Path("/Users/username/Documents/FMS_GIT")
 TARGET_DIR = Path("/Users/username/Scripts/validators")
 
 # Карта миграции файлов

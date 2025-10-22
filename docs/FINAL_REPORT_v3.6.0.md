@@ -206,7 +206,7 @@ render_context = context
 
 ### Test Command:
 ```bash
-cd /Users/username/Documents/front-middle-schema/.JSON/WEB/payroll/1.0_main_screen/desktop
+cd /Users/username/Documents/FMS_GIT/_JSON/WEB/payroll/1.0_main_screen/desktop
 python3 /Users/username/Scripts/Python/utils/jinja_hot_reload_v3.6.0.py --smart --test --debug
 ```
 

@@ -1,0 +1,13 @@
+{
+  "name": "{{ component_name }}",
+  "type": "object",
+  "description": "Пример Jinja2 шаблона",
+  "properties": {
+    {% for prop in properties %}
+    "{{ prop.name }}": {
+      "type": "{{ prop.type }}",
+      "default": {{ prop.default | tojson }}
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  }
+}

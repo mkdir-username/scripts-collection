@@ -1,4 +1,4 @@
-JSON_DIR = "/Users/username/Documents/front-middle-schema/.JSON"
+JSON_DIR = "/Users/username/Documents/FMS_GIT/_JSON"
 SALARY_LIST = f"{JSON_DIR}/salary-list"
 PAYROLL = f"{JSON_DIR}/payroll"
 

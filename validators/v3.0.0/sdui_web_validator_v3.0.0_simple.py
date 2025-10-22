@@ -130,7 +130,7 @@ class SDUIWebValidator:
     def __init__(self):
         # Ищем путь к схемам
         possible_paths = [
-            Path('/Users/username/Documents/front-middle-schema'),
+            Path('/Users/username/Documents/FMS_GIT'),
             Path.home() / 'Documents' / 'front-middle-schema',
             Path(__file__).parent.parent.parent.parent / 'Documents' / 'front-middle-schema',
         ]

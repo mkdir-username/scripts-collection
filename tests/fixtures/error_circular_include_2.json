@@ -1,4 +1,0 @@
-{
-  "type": "TextView",
-  "nested": {% include 'error_circular_include.json' %}
-}
