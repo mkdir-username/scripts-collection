@@ -1,1 +1,0 @@
-/Users/username/Scripts/Bash/smart-kill_v1.0.0.sh

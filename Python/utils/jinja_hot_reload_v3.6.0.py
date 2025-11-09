@@ -951,14 +951,15 @@ class EnhancedJinjaJsonPreprocessor:
 
         cleaned = content
 
-        # Удаляем Jinja2 блоки для проверки JSON
+        # Заменяем Jinja2 блоки на плейсхолдеры для проверки JSON
         for pattern, block_type in patterns:
             matches = list(re.finditer(pattern, cleaned, re.DOTALL | re.MULTILINE))
             for match in reversed(matches):
                 counter += 1
                 key = f"__{block_type}_{counter}__"
                 replacements[key] = match.group()
-                cleaned = cleaned[: match.start()] + cleaned[match.end() :]
+                # ВАЖНО: заменяем, а не удаляем, чтобы потом восстановить
+                cleaned = cleaned[: match.start()] + key + cleaned[match.end() :]
 
         # Базовая очистка
         while ",," in cleaned:
@@ -1177,45 +1178,94 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
         2. [data]_{base}.json - базовый файл без версии
         3. [data]*.json - любой data файл в директории
         """
+        logger.info(f"   🔍 Поиск data файла для: {jj_file.name}")
+        if self.debug:
+            logger.debug(f"   📂 Текущая директория: {jj_file.parent}")
+        
         current_dir = jj_file.parent
 
         # Извлекаем базовое имя и версию из JJ файла
         # [JJ_PC]_1.0_main_screen_v2.0.0.j2 -> (1.0_main_screen, v2.0.0)
+        # [JJ_PC] empty_screen.json -> (empty_screen, "")
         jj_name = jj_file.name
 
         # Ищем паттерн _vX.Y.Z
         version_match = re.search(r"_v(\d+\.\d+\.\d+)", jj_name)
         version = f"_v{version_match.group(1)}" if version_match else ""
 
-        # Извлекаем базовое имя (между [JJ_*] и версией/расширением)
-        base_match = re.search(r"\[JJ_[^\]]+\]_(.+?)(?:_v\d+\.\d+\.\d+)?\.", jj_name)
-        base_name = base_match.group(1) if base_match else ""
+        # Извлекаем базовое имя и разделитель (поддерживаем оба варианта: подчёркивание и пробел)
+        # Паттерн: [JJ_*] затем разделитель (_ или пробел) затем имя до расширения
+        # Извлекаем всё до расширения (.json, .j2.json, .j2 и т.д.)
+        # Сначала находим позицию расширения
+        ext_match = re.search(r"\.(json|j2|j2\.json)$", jj_name)
+        if ext_match:
+            # Извлекаем разделитель и имя до расширения
+            pattern = r"\[JJ_[^\]]+\]([_\s]+)(.+?)(?=\.(?:json|j2|j2\.json)$)"
+            base_match = re.search(pattern, jj_name)
+            if base_match:
+                separator = base_match.group(1)  # Сохраняем разделитель (пробел или подчёркивание)
+                base_name = base_match.group(2)
+                # Убираем промежуточные расширения из имени (например, .j2 из 1.0_main_screen.j2)
+                base_name = re.sub(r"\.(j2|jinja)$", "", base_name)
+                logger.info(f"   📝 Извлечено: разделитель='{separator}', базовое имя='{base_name}', версия='{version}'")
+            else:
+                separator = " "
+                base_name = ""
+                if self.debug:
+                    logger.debug(f"   ⚠️ Не удалось извлечь базовое имя из: {jj_name}")
+        else:
+            # Fallback: пробуем найти без явного разделителя (для совместимости)
+            base_match = re.search(r"\[JJ_[^\]]+\]([_\s]+)(.+?)(?:_v\d+\.\d+\.\d+)?\.", jj_name)
+            if base_match:
+                separator = base_match.group(1) if len(base_match.group(1)) > 0 else " "
+                base_name = base_match.group(2)
+                if self.debug:
+                    logger.debug(f"   📝 Извлечено (fallback): разделитель='{separator}', базовое имя='{base_name}'")
+            else:
+                separator = " "
+                base_name = ""
+                if self.debug:
+                    logger.debug(f"   ⚠️ Не удалось извлечь базовое имя (fallback): {jj_name}")
 
-        while current_dir != current_dir.parent:
-            # Приоритет 1: [data]_{base}_v{X}.{Y}.{Z}.json
+        iteration = 0
+        # Используем абсолютные пути для корректного сравнения
+        current_dir_abs = current_dir.resolve()
+        while current_dir_abs != current_dir_abs.parent:
+            logger.info(f"   🔍 Итерация {iteration}: проверка директории {current_dir_abs}")
+            
+            # Приоритет 1: [data]{separator}{base}{version}.json
             if base_name and version:
-                versioned_data = current_dir / f"[data]_{base_name}{version}.json"
+                versioned_data = current_dir_abs / f"[data]{separator}{base_name}{version}.json"
+                if self.debug:
+                    logger.debug(f"   🔍 Проверка версионного файла: {versioned_data.name} (существует: {versioned_data.exists()})")
                 if versioned_data.exists():
                     logger.info(
                         f"📁 Найден версионный data файл: {versioned_data.name}"
                     )
                     return versioned_data
 
-            # Приоритет 2: [data]_{base}.json
+            # Приоритет 2: [data]{separator}{base}.json
             if base_name:
-                base_data = current_dir / f"[data]_{base_name}.json"
+                base_data = current_dir_abs / f"[data]{separator}{base_name}.json"
+                logger.info(f"   🔍 Проверка базового файла: {base_data.name} (существует: {base_data.exists()})")
                 if base_data.exists():
                     logger.info(f"📁 Найден базовый data файл: {base_data.name}")
                     return base_data
 
             # Приоритет 3: любой [data]*.json
-            for file in current_dir.iterdir():
+            if self.debug:
+                logger.debug(f"   🔍 Поиск любого [data]*.json файла в {current_dir_abs}")
+            for file in current_dir_abs.iterdir():
                 if file.is_file() and file.name.startswith("[data"):
                     logger.info(f"📁 Найден data файл: {file.name}")
                     return file
 
-            current_dir = current_dir.parent
+            current_dir_abs = current_dir_abs.parent
+            iteration += 1
 
+        if self.debug:
+            logger.debug(f"   ⚠️ Data файл не найден после проверки {iteration} директорий")
+        
         return None
 
     def resolve_template_path(
@@ -1485,12 +1535,34 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
                         with open(data_file, "r", encoding="utf-8") as f:
                             context = json.load(f)
                         logger.info(f"   ✅ Загружены данные из: {data_file.name}")
+                        logger.info(f"   📊 Ключи данных: {list(context.keys())}")
+                        if self.debug:
+                            logger.debug(f"   📊 Содержимое данных: {json.dumps(context, ensure_ascii=False, indent=2)}")
                     except Exception as e:
                         logger.error(f"   ❌ Ошибка загрузки данных: {e}")
+                        if self.debug:
+                            import traceback
+                            logger.debug(traceback.format_exc())
+                else:
+                    logger.warning(f"   ⚠️ Data файл не найден для: {file_path.name}")
+                    if self.debug:
+                        logger.debug(f"   🔍 Путь поиска: {file_path.parent}")
 
                 # 8. Рендеринг через Jinja2 с FileSystemLoader (MODULE #1)
                 json_str = json.dumps(json_obj, ensure_ascii=False)
                 json_str = re.sub(r"\$\{([^}]+)\}", r"{{ \1 }}", json_str)
+                
+                # Восстанавливаем Jinja переменные из плейсхолдеров
+                if jinja_blocks:
+                    logger.info(f"   🔄 Восстанавливаем {len(jinja_blocks)} Jinja блоков из плейсхолдеров")
+                    restored_count = 0
+                    for placeholder, original_value in jinja_blocks.items():
+                        if placeholder in json_str:
+                            json_str = json_str.replace(placeholder, original_value)
+                            restored_count += 1
+                            if self.debug:
+                                logger.debug(f"   🔄 Восстановлен: {placeholder} -> {original_value[:50]}")
+                    logger.info(f"   ✅ Восстановлено {restored_count} из {len(jinja_blocks)} блоков")
 
                 # Smart режим - умный контекст
                 if self.smart_mode and self.context_builder:
@@ -1522,7 +1594,27 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
                             )
 
                         template = self.jinja_env.get_template(temp_template_name)
+                        
+                        # Логируем контекст перед рендерингом
+                        logger.info(f"   📊 Контекст для рендеринга: {list(context.keys()) if context else 'пустой'}")
+                        if context and self.debug:
+                            logger.debug(f"   📊 Значения контекста: {json.dumps(context, ensure_ascii=False, indent=2)}")
+                        
                         rendered = template.render(**context)
+                        
+                        # Проверяем, что переменные подставились (игнорируем случаи, где {{ и }} могут быть частью данных)
+                        if re.search(r'\{\{[^}]*[a-zA-Z_][^}]*\}\}', rendered):
+                            logger.warning(f"   ⚠️ В результате рендеринга остались необработанные переменные Jinja!")
+                            if self.debug:
+                                matches = re.findall(r'\{\{[^}]+\}\}', rendered)
+                                logger.debug(f"   Найдено: {matches[:5]}")
+                        else:
+                            logger.info(f"   ✅ Все переменные Jinja обработаны")
+                        
+                        # Проверяем, что переменные подставились
+                        if self.debug:
+                            logger.debug(f"   📊 Результат рендеринга (первые 500 символов): {rendered[:500]}")
+                        
                         result_obj = json.loads(rendered)
 
                         logger.info(
