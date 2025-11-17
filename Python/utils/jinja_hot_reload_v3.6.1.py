@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Jinja2 Hot Reload Parser v3.6.0
+Jinja2 Hot Reload Parser v3.6.1
 ================================
 
 Автоматический парсер Jinja2-JSON контрактов с hot reload функциональностью.
@@ -63,7 +63,7 @@ python ~/Scripts/Python/utils/jinja_hot_reload_v3.6.0.py
 - Multiple formats: поддержка .j2.json, .j2.java и других
 
 Автор: SDUI Team
-Версия: 3.6.0
+Версия: 3.6.1 - Исправлена обработка несуществующих импортов
 """
 
 import os
@@ -843,6 +843,14 @@ class JSONCommentImportProcessor:
         cleaned = re.sub(r"/\*.*?\*/", "", cleaned, flags=re.DOTALL)
         cleaned = re.sub(r"\n\s*\n\s*\n", "\n\n", cleaned)
 
+        # ИСПРАВЛЕНИЕ v3.6.1: Дополнительная нормализация запятых после удаления комментариев
+        # Убираем лишние запятые, которые могли остаться
+        cleaned = re.sub(r',(\s*),+', ',', cleaned)  # Двойные запятые ,, → ,
+        cleaned = re.sub(r'\[(\s*),', '[', cleaned)  # Запятая после [ → удалить
+        cleaned = re.sub(r',(\s*)\]', ']', cleaned)  # Запятая перед ] → удалить
+        cleaned = re.sub(r'\{(\s*),', '{', cleaned)  # Запятая после { → удалить
+        cleaned = re.sub(r',(\s*)\}', '}', cleaned)  # Запятая перед } → удалить
+
         return cleaned, import_count, self.imported_files.copy()
 
     def _process_imports_recursive(
@@ -871,6 +879,27 @@ class JSONCommentImportProcessor:
 
             if not import_file.exists():
                 logger.warning(f"   ⚠️ Файл импорта не найден: {import_file}")
+
+                # ИСПРАВЛЕНИЕ v3.6.1: Удаляем комментарий с несуществующим импортом
+                # и корректируем окружающие запятые для валидного JSON
+                before_text = result[: match.start()].rstrip()
+                after_text = result[match.end() :].lstrip()
+
+                # Логика удаления запятых:
+                # 1. Если до комментария была запятая
+                if before_text.endswith(','):
+                    # Проверяем, что идёт после комментария
+                    if after_text and after_text[0] not in ']}':
+                        # После есть элементы массива - оставляем запятую
+                        result = before_text + '\n' + after_text
+                    else:
+                        # После закрывающая скобка - убираем trailing запятую
+                        result = before_text[:-1].rstrip() + '\n' + after_text
+                else:
+                    # До не было запятой - просто удаляем комментарий
+                    result = before_text + '\n' + after_text
+
+                # Не увеличиваем счётчик импортов
                 continue
 
             try:
@@ -959,7 +988,29 @@ class EnhancedJinjaJsonPreprocessor:
                 key = f"__{block_type}_{counter}__"
                 replacements[key] = match.group()
                 # ВАЖНО: заменяем, а не удаляем, чтобы потом восстановить
-                cleaned = cleaned[: match.start()] + key + cleaned[match.end() :]
+                # ИСПРАВЛЕНИЕ v3.6.1: JINJA_VAR заключаем в кавычки для валидного JSON
+                # НО только если переменная НЕ находится уже внутри строки
+                if block_type == "JINJA_VAR":
+                    # Проверяем, находится ли переменная внутри строки JSON
+                    before = cleaned[: match.start()]
+                    after = cleaned[match.end() :]
+
+                    # Считаем кавычки перед переменной, чтобы определить, внутри ли строки
+                    # Убираем экранированные кавычки
+                    before_clean = before.replace('\\"', '')
+                    # Считаем кавычки
+                    quote_count = before_clean.count('"')
+                    # Если нечётное количество - переменная внутри строки
+                    inside_string = (quote_count % 2) == 1
+
+                    if inside_string:
+                        # Переменная внутри строки JSON, не добавляем кавычки
+                        cleaned = cleaned[: match.start()] + key + cleaned[match.end() :]
+                    else:
+                        # Переменная вне строки, добавляем кавычки
+                        cleaned = cleaned[: match.start()] + f'"{key}"' + cleaned[match.end() :]
+                else:
+                    cleaned = cleaned[: match.start()] + key + cleaned[match.end() :]
 
         # Базовая очистка
         while ",," in cleaned:
@@ -1026,7 +1077,7 @@ class EnhancedJinjaJsonPreprocessor:
 
 
 class JinjaHotReloaderV35(FileSystemEventHandler):
-    """Hot Reload v3.5.0 - Critical Fixes Release"""
+    """Hot Reload v3.6.1 - Fixed Missing Import Handling"""
 
     SUPPORTED_EXTENSIONS = {
         ".json",
@@ -1125,7 +1176,7 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
 
         # Вывод информации о конфигурации
         logger.info("━" * 80)
-        logger.info("🚀 Jinja Hot Reload v3.5.0 - CRITICAL FIXES RELEASE")
+        logger.info("🚀 Jinja Hot Reload v3.6.1 - FIXED MISSING IMPORTS")
         logger.info("━" * 80)
         logger.info(f"📁 Директория наблюдения: {self.watch_dir}")
         logger.info(
@@ -1940,7 +1991,7 @@ class JinjaHotReloaderV35(FileSystemEventHandler):
 def main():
     """Главная функция"""
     parser = argparse.ArgumentParser(
-        description="Jinja Hot Reload v3.5.0 - Critical Fixes Release"
+        description="Jinja Hot Reload v3.6.1 - Fixed Missing Import Handling"
     )
 
     parser.add_argument(
@@ -1978,12 +2029,11 @@ def main():
     print(
         """
     ╔══════════════════════════════════════════════════╗
-    ║     Jinja Hot Reload v3.5.0                     ║
-    ║     🔧 CRITICAL FIXES RELEASE                   ║
-    ║     ✅ FileSystemLoader Fix                     ║
-    ║     ✅ SDUI Import Fix                          ║
-    ║     ✅ SafeDebugUndefined                       ║
-    ║     ✅ Custom Filters Protection                ║
+    ║     Jinja Hot Reload v3.6.1                     ║
+    ║     🔧 FIXED MISSING IMPORTS HANDLING           ║
+    ║     ✅ Missing file import cleanup              ║
+    ║     ✅ Comma normalization                      ║
+    ║     ✅ Valid JSON generation                    ║
     ╚══════════════════════════════════════════════════╝
     """
     )
