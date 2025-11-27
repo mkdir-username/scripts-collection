@@ -1,0 +1,1767 @@
+{
+  "type": "StackView",
+  "content": {
+    "axis": "vertical",
+    "spacing": "zero",
+    "children": [
+      {
+        "type": "StackView",
+        "content": {
+          "axis": "vertical",
+          "spacing": "zero",
+          "children": [
+            {
+              "type": "StackView",
+              "content": {
+                "axis": "horizontal",
+                "spacing": "l",
+                "children": [
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "zero",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "horizontal",
+                            "spacing": "s",
+                            "children": []
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "zero",
+                      "children": [
+                        {
+                          "type": "LabelView",
+                          "content": {
+                            "text": {
+                              "value": "Всё о разделе Моя зарплата за 30 секунд"
+                            },
+                            "style": "primary"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "zero",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "horizontal",
+                            "spacing": "s",
+                            "children": [
+                              {
+                                "type": "StackView",
+                                "content": {
+                                  "axis": "vertical",
+                                  "spacing": "zero",
+                                  "children": [
+                                    {
+                                      "type": "IconView",
+                                      "content": {
+                                        "image": {
+                                          "type": "remote",
+                                          "url": "https://placeholder.com/icon.png"
+                                        },
+                                        "size": "m"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "StackView",
+        "content": {
+          "axis": "horizontal",
+          "spacing": "zero",
+          "children": [
+            {
+              "type": "StackView",
+              "content": {
+                "axis": "horizontal",
+                "spacing": "zero",
+                "children": [
+                  {
+                    "type": "LabelView",
+                    "content": {
+                      "text": {
+                        "value": "Привилегии за зарплату"
+                      },
+                      "style": "primary"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "StackView",
+        "content": {
+          "axis": "horizontal",
+          "spacing": "xxl",
+          "children": [
+            {
+              "type": "StackView",
+              "content": {
+                "axis": "vertical",
+                "spacing": "s",
+                "children": [
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "zero",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "vertical",
+                            "spacing": "zero",
+                            "children": []
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "zero",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "horizontal",
+                            "spacing": "zero",
+                            "children": [
+                              {
+                                "type": "LabelView",
+                                "content": {
+                                  "text": {
+                                    "value": "Кэшбэк\nв топ-категории"
+                                  },
+                                  "style": "primary"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "zero",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "horizontal",
+                            "spacing": "zero",
+                            "children": [
+                              {
+                                "type": "LabelView",
+                                "content": {
+                                  "text": {
+                                    "value": "Каждый месяц\nновая"
+                                  },
+                                  "style": "primary"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "StackView",
+              "content": {
+                "axis": "vertical",
+                "spacing": "s",
+                "children": [
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "zero",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "vertical",
+                            "spacing": "zero",
+                            "children": []
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "zero",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "horizontal",
+                            "spacing": "zero",
+                            "children": [
+                              {
+                                "type": "LabelView",
+                                "content": {
+                                  "text": {
+                                    "value": "Бесплатная\nкредитка"
+                                  },
+                                  "style": "primary"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "zero",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "horizontal",
+                            "spacing": "zero",
+                            "children": [
+                              {
+                                "type": "LabelView",
+                                "content": {
+                                  "text": {
+                                    "value": "По предложению\nбанка"
+                                  },
+                                  "style": "primary"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "StackView",
+        "content": {
+          "axis": "horizontal",
+          "spacing": "xxl",
+          "children": [
+            {
+              "type": "StackView",
+              "content": {
+                "axis": "vertical",
+                "spacing": "s",
+                "children": [
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "zero",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "vertical",
+                            "spacing": "zero",
+                            "children": []
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "zero",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "horizontal",
+                            "spacing": "zero",
+                            "children": [
+                              {
+                                "type": "LabelView",
+                                "content": {
+                                  "text": {
+                                    "value": "Бесплатные\nуведомления"
+                                  },
+                                  "style": "primary"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "zero",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "horizontal",
+                            "spacing": "zero",
+                            "children": [
+                              {
+                                "type": "LabelView",
+                                "content": {
+                                  "text": {
+                                    "value": "Пуши подключены\nза 0 ₽ в месяц"
+                                  },
+                                  "style": "primary"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "StackView",
+              "content": {
+                "axis": "vertical",
+                "spacing": "s",
+                "children": [
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "zero",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "vertical",
+                            "spacing": "zero",
+                            "children": []
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "zero",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "horizontal",
+                            "spacing": "zero",
+                            "children": [
+                              {
+                                "type": "LabelView",
+                                "content": {
+                                  "text": {
+                                    "value": "За снятие\nналичных"
+                                  },
+                                  "style": "primary"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "zero",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "horizontal",
+                            "spacing": "zero",
+                            "children": [
+                              {
+                                "type": "LabelView",
+                                "content": {
+                                  "text": {
+                                    "value": "В любых\nбанкоматах"
+                                  },
+                                  "style": "primary"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "StackView",
+        "content": {
+          "axis": "horizontal",
+          "spacing": "xxl",
+          "children": [
+            {
+              "type": "StackView",
+              "content": {
+                "axis": "vertical",
+                "spacing": "s",
+                "children": [
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "zero",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "vertical",
+                            "spacing": "zero",
+                            "children": []
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "zero",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "horizontal",
+                            "spacing": "zero",
+                            "children": [
+                              {
+                                "type": "LabelView",
+                                "content": {
+                                  "text": {
+                                    "value": "Ставки до –2% по кредитам"
+                                  },
+                                  "style": "primary"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "zero",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "horizontal",
+                            "spacing": "zero",
+                            "children": [
+                              {
+                                "type": "LabelView",
+                                "content": {
+                                  "text": {
+                                    "value": "Рассчитываются\nиндивидуально"
+                                  },
+                                  "style": "primary"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "StackView",
+              "content": {
+                "axis": "vertical",
+                "spacing": "s",
+                "children": [
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "zero",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "vertical",
+                            "spacing": "zero",
+                            "children": []
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "zero",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "horizontal",
+                            "spacing": "zero",
+                            "children": [
+                              {
+                                "type": "LabelView",
+                                "content": {
+                                  "text": {
+                                    "value": "Бесплатное\nобслуживание"
+                                  },
+                                  "style": "primary"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "zero",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "horizontal",
+                            "spacing": "zero",
+                            "children": [
+                              {
+                                "type": "LabelView",
+                                "content": {
+                                  "text": {
+                                    "value": "Навсегда\nи без условий"
+                                  },
+                                  "style": "primary"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "StackView",
+        "content": {
+          "axis": "horizontal",
+          "spacing": "zero",
+          "children": [
+            {
+              "type": "StackView",
+              "content": {
+                "axis": "horizontal",
+                "spacing": "zero",
+                "children": [
+                  {
+                    "type": "LabelView",
+                    "content": {
+                      "text": {
+                        "value": "Привилегии вашего уровня"
+                      },
+                      "style": "primary"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "StackView",
+        "content": {
+          "axis": "vertical",
+          "spacing": "zero",
+          "children": [
+            {
+              "type": "StackView",
+              "content": {
+                "axis": "vertical",
+                "spacing": "zero",
+                "children": [
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "vertical",
+                      "spacing": "s",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "vertical",
+                            "spacing": "xxl",
+                            "children": [
+                              {
+                                "type": "StackView",
+                                "content": {
+                                  "axis": "horizontal",
+                                  "spacing": "xxl",
+                                  "children": [
+                                    {
+                                      "type": "StackView",
+                                      "content": {
+                                        "axis": "vertical",
+                                        "spacing": "s",
+                                        "children": [
+                                          {
+                                            "type": "StackView",
+                                            "content": {
+                                              "axis": "horizontal",
+                                              "spacing": "zero",
+                                              "children": [
+                                                {
+                                                  "type": "LabelView",
+                                                  "content": {
+                                                    "text": {
+                                                      "value": "9 привилегий\nна уровне Альфа‑Смарт"
+                                                    },
+                                                    "style": "primary"
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          {
+                                            "type": "StackView",
+                                            "content": {
+                                              "axis": "horizontal",
+                                              "spacing": "zero",
+                                              "children": [
+                                                {
+                                                  "type": "LabelView",
+                                                  "content": {
+                                                    "text": {
+                                                      "value": "Кэшбэк 5 000 ₽ в месяц\nи бесплатные уведомления"
+                                                    },
+                                                    "style": "primary"
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "type": "StackView",
+                                      "content": {
+                                        "axis": "horizontal",
+                                        "spacing": "zero",
+                                        "children": [
+                                          {
+                                            "type": "StackView",
+                                            "content": {
+                                              "axis": "horizontal",
+                                              "spacing": "zero",
+                                              "children": [
+                                                {
+                                                  "type": "StackView",
+                                                  "content": {
+                                                    "axis": "horizontal",
+                                                    "spacing": "zero",
+                                                    "children": [
+                                                      {
+                                                        "type": "StackView",
+                                                        "content": {
+                                                          "axis": "horizontal",
+                                                          "spacing": "zero",
+                                                          "children": [
+                                                            {
+                                                              "type": "LabelView",
+                                                              "content": {
+                                                                "text": {
+                                                                  "value": "Подключено"
+                                                                },
+                                                                "style": "primary"
+                                                              }
+                                                            }
+                                                          ]
+                                                        }
+                                                      }
+                                                    ]
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "type": "StackView",
+                                "content": {
+                                  "axis": "horizontal",
+                                  "spacing": "s",
+                                  "children": [
+                                    {
+                                      "type": "StackView",
+                                      "content": {
+                                        "axis": "horizontal",
+                                        "spacing": "zero",
+                                        "children": [
+                                          {
+                                            "type": "StackView",
+                                            "content": {
+                                              "axis": "vertical",
+                                              "spacing": "zero",
+                                              "children": [
+                                                {
+                                                  "type": "StackView",
+                                                  "content": {
+                                                    "axis": "horizontal",
+                                                    "spacing": "zero",
+                                                    "children": [
+                                                      {
+                                                        "type": "StackView",
+                                                        "content": {
+                                                          "axis": "horizontal",
+                                                          "spacing": "zero",
+                                                          "children": [
+                                                            {
+                                                              "type": "LabelView",
+                                                              "content": {
+                                                                "text": {
+                                                                  "value": "Смотреть все"
+                                                                },
+                                                                "style": "primary"
+                                                              }
+                                                            }
+                                                          ]
+                                                        }
+                                                      }
+                                                    ]
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "StackView",
+        "content": {
+          "axis": "vertical",
+          "spacing": "zero",
+          "children": [
+            {
+              "type": "StackView",
+              "content": {
+                "axis": "vertical",
+                "spacing": "zero",
+                "children": [
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "l",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "horizontal",
+                            "spacing": "zero",
+                            "children": [
+                              {
+                                "type": "StackView",
+                                "content": {
+                                  "axis": "vertical",
+                                  "spacing": "zero",
+                                  "children": []
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "vertical",
+                            "spacing": "s",
+                            "children": [
+                              {
+                                "type": "StackView",
+                                "content": {
+                                  "axis": "horizontal",
+                                  "spacing": "zero",
+                                  "children": [
+                                    {
+                                      "type": "LabelView",
+                                      "content": {
+                                        "text": {
+                                          "value": "15 привилегий в наборе выше"
+                                        },
+                                        "style": "primary"
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "type": "StackView",
+                                "content": {
+                                  "axis": "horizontal",
+                                  "spacing": "zero",
+                                  "children": [
+                                    {
+                                      "type": "LabelView",
+                                      "content": {
+                                        "text": {
+                                          "value": "299 ₽ 399 ₽ в месяц для зарплатных клиентов"
+                                        },
+                                        "style": "primary"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "StackView",
+        "content": {
+          "axis": "horizontal",
+          "spacing": "l",
+          "children": [
+            {
+              "type": "StackView",
+              "content": {
+                "axis": "horizontal",
+                "spacing": "zero",
+                "children": [
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "zero",
+                      "children": [
+                        {
+                          "type": "LabelView",
+                          "content": {
+                            "text": {
+                              "value": "Подобрали для вас"
+                            },
+                            "style": "primary"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "StackView",
+              "content": {
+                "axis": "horizontal",
+                "spacing": "zero",
+                "children": [
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "s",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "vertical",
+                            "spacing": "zero",
+                            "children": [
+                              {
+                                "type": "IconView",
+                                "content": {
+                                  "image": {
+                                    "type": "remote",
+                                    "url": "https://placeholder.com/icon.png"
+                                  },
+                                  "size": "m"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "StackView",
+        "content": {
+          "axis": "vertical",
+          "spacing": "zero",
+          "children": [
+            {
+              "type": "StackView",
+              "content": {
+                "axis": "vertical",
+                "spacing": "zero",
+                "children": [
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "xxl",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "vertical",
+                            "spacing": "s",
+                            "children": [
+                              {
+                                "type": "StackView",
+                                "content": {
+                                  "axis": "horizontal",
+                                  "spacing": "zero",
+                                  "children": [
+                                    {
+                                      "type": "LabelView",
+                                      "content": {
+                                        "text": {
+                                          "value": "Альфа-Мобайл за 0 ₽ первые 30 дней"
+                                        },
+                                        "style": "primary"
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "type": "StackView",
+                                "content": {
+                                  "axis": "horizontal",
+                                  "spacing": "zero",
+                                  "children": [
+                                    {
+                                      "type": "LabelView",
+                                      "content": {
+                                        "text": {
+                                          "value": "Безлимитный интернет бесплатно и навсегда"
+                                        },
+                                        "style": "primary"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "StackView",
+        "content": {
+          "axis": "horizontal",
+          "spacing": "zero",
+          "children": [
+            {
+              "type": "StackView",
+              "content": {
+                "axis": "horizontal",
+                "spacing": "zero",
+                "children": [
+                  {
+                    "type": "LabelView",
+                    "content": {
+                      "text": {
+                        "value": "Зарплатные сервисы"
+                      },
+                      "style": "primary"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "StackView",
+        "content": {
+          "axis": "vertical",
+          "spacing": "zero",
+          "children": [
+            {
+              "type": "StackView",
+              "content": {
+                "axis": "vertical",
+                "spacing": "zero",
+                "children": [
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "l",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "horizontal",
+                            "spacing": "zero",
+                            "children": [
+                              {
+                                "type": "StackView",
+                                "content": {
+                                  "axis": "vertical",
+                                  "spacing": "zero",
+                                  "children": []
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "vertical",
+                            "spacing": "s",
+                            "children": [
+                              {
+                                "type": "StackView",
+                                "content": {
+                                  "axis": "horizontal",
+                                  "spacing": "zero",
+                                  "children": [
+                                    {
+                                      "type": "LabelView",
+                                      "content": {
+                                        "text": {
+                                          "value": "Расчётные листы"
+                                        },
+                                        "style": "primary"
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "type": "StackView",
+                                "content": {
+                                  "axis": "horizontal",
+                                  "spacing": "zero",
+                                  "children": [
+                                    {
+                                      "type": "LabelView",
+                                      "content": {
+                                        "text": {
+                                          "value": "Подробно о начислениях и удержаниях каждый месяц"
+                                        },
+                                        "style": "primary"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "StackView",
+        "content": {
+          "axis": "vertical",
+          "spacing": "zero",
+          "children": [
+            {
+              "type": "StackView",
+              "content": {
+                "axis": "vertical",
+                "spacing": "zero",
+                "children": [
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "l",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "vertical",
+                            "spacing": "s",
+                            "children": [
+                              {
+                                "type": "StackView",
+                                "content": {
+                                  "axis": "horizontal",
+                                  "spacing": "zero",
+                                  "children": [
+                                    {
+                                      "type": "StackView",
+                                      "content": {
+                                        "axis": "vertical",
+                                        "spacing": "zero",
+                                        "children": []
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "type": "StackView",
+                                "content": {
+                                  "axis": "horizontal",
+                                  "spacing": "zero",
+                                  "children": [
+                                    {
+                                      "type": "StackView",
+                                      "content": {
+                                        "axis": "horizontal",
+                                        "spacing": "zero",
+                                        "children": [
+                                          {
+                                            "type": "StackView",
+                                            "content": {
+                                              "axis": "horizontal",
+                                              "spacing": "zero",
+                                              "children": [
+                                                {
+                                                  "type": "StackView",
+                                                  "content": {
+                                                    "axis": "horizontal",
+                                                    "spacing": "zero",
+                                                    "children": [
+                                                      {
+                                                        "type": "LabelView",
+                                                        "content": {
+                                                          "text": {
+                                                            "value": "Скоро"
+                                                          },
+                                                          "style": "primary"
+                                                        }
+                                                      }
+                                                    ]
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "vertical",
+                            "spacing": "s",
+                            "children": [
+                              {
+                                "type": "StackView",
+                                "content": {
+                                  "axis": "horizontal",
+                                  "spacing": "zero",
+                                  "children": [
+                                    {
+                                      "type": "LabelView",
+                                      "content": {
+                                        "text": {
+                                          "value": "Налоговый вычет"
+                                        },
+                                        "style": "primary"
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "type": "StackView",
+                                "content": {
+                                  "axis": "horizontal",
+                                  "spacing": "zero",
+                                  "children": [
+                                    {
+                                      "type": "LabelView",
+                                      "content": {
+                                        "text": {
+                                          "value": "Как вернуть деньги с НДФЛ за лечение, учёбу, спорт, ИИС"
+                                        },
+                                        "style": "primary"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "StackView",
+        "content": {
+          "axis": "vertical",
+          "spacing": "zero",
+          "children": [
+            {
+              "type": "StackView",
+              "content": {
+                "axis": "vertical",
+                "spacing": "zero",
+                "children": [
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "l",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "vertical",
+                            "spacing": "s",
+                            "children": [
+                              {
+                                "type": "StackView",
+                                "content": {
+                                  "axis": "horizontal",
+                                  "spacing": "zero",
+                                  "children": [
+                                    {
+                                      "type": "StackView",
+                                      "content": {
+                                        "axis": "vertical",
+                                        "spacing": "zero",
+                                        "children": []
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "type": "StackView",
+                                "content": {
+                                  "axis": "horizontal",
+                                  "spacing": "zero",
+                                  "children": [
+                                    {
+                                      "type": "StackView",
+                                      "content": {
+                                        "axis": "horizontal",
+                                        "spacing": "zero",
+                                        "children": [
+                                          {
+                                            "type": "StackView",
+                                            "content": {
+                                              "axis": "horizontal",
+                                              "spacing": "zero",
+                                              "children": [
+                                                {
+                                                  "type": "StackView",
+                                                  "content": {
+                                                    "axis": "horizontal",
+                                                    "spacing": "zero",
+                                                    "children": [
+                                                      {
+                                                        "type": "LabelView",
+                                                        "content": {
+                                                          "text": {
+                                                            "value": "Скоро"
+                                                          },
+                                                          "style": "primary"
+                                                        }
+                                                      }
+                                                    ]
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "vertical",
+                            "spacing": "s",
+                            "children": [
+                              {
+                                "type": "StackView",
+                                "content": {
+                                  "axis": "horizontal",
+                                  "spacing": "zero",
+                                  "children": [
+                                    {
+                                      "type": "LabelView",
+                                      "content": {
+                                        "text": {
+                                          "value": "Калькулятор отпускных"
+                                        },
+                                        "style": "primary"
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "type": "StackView",
+                                "content": {
+                                  "axis": "horizontal",
+                                  "spacing": "zero",
+                                  "children": [
+                                    {
+                                      "type": "LabelView",
+                                      "content": {
+                                        "text": {
+                                          "value": "Выгодно спланировать бюджет и подобрать даты отпуска"
+                                        },
+                                        "style": "primary"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "StackView",
+        "content": {
+          "axis": "horizontal",
+          "spacing": "zero",
+          "children": [
+            {
+              "type": "StackView",
+              "content": {
+                "axis": "horizontal",
+                "spacing": "zero",
+                "children": [
+                  {
+                    "type": "LabelView",
+                    "content": {
+                      "text": {
+                        "value": "Частые вопросы"
+                      },
+                      "style": "primary"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "StackView",
+        "content": {
+          "axis": "vertical",
+          "spacing": "zero",
+          "children": [
+            {
+              "type": "StackView",
+              "content": {
+                "axis": "horizontal",
+                "spacing": "l",
+                "children": [
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "zero",
+                      "children": [
+                        {
+                          "type": "LabelView",
+                          "content": {
+                            "text": {
+                              "value": "Какие данные есть в разделе Моя зарплата?"
+                            },
+                            "style": "primary"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "zero",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "horizontal",
+                            "spacing": "s",
+                            "children": [
+                              {
+                                "type": "StackView",
+                                "content": {
+                                  "axis": "vertical",
+                                  "spacing": "zero",
+                                  "children": [
+                                    {
+                                      "type": "IconView",
+                                      "content": {
+                                        "image": {
+                                          "type": "remote",
+                                          "url": "https://placeholder.com/icon.png"
+                                        },
+                                        "size": "m"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "StackView",
+              "content": {
+                "axis": "horizontal",
+                "spacing": "l",
+                "children": [
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "zero",
+                      "children": [
+                        {
+                          "type": "LabelView",
+                          "content": {
+                            "text": {
+                              "value": "Что делать, если работодатель задерживает зарплату?"
+                            },
+                            "style": "primary"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "zero",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "horizontal",
+                            "spacing": "s",
+                            "children": [
+                              {
+                                "type": "StackView",
+                                "content": {
+                                  "axis": "vertical",
+                                  "spacing": "zero",
+                                  "children": [
+                                    {
+                                      "type": "IconView",
+                                      "content": {
+                                        "image": {
+                                          "type": "remote",
+                                          "url": "https://placeholder.com/icon.png"
+                                        },
+                                        "size": "m"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "StackView",
+              "content": {
+                "axis": "horizontal",
+                "spacing": "l",
+                "children": [
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "zero",
+                      "children": [
+                        {
+                          "type": "LabelView",
+                          "content": {
+                            "text": {
+                              "value": "Как будет работать зарплатная карта, если я уволюсь?"
+                            },
+                            "style": "primary"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "zero",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "horizontal",
+                            "spacing": "s",
+                            "children": [
+                              {
+                                "type": "StackView",
+                                "content": {
+                                  "axis": "vertical",
+                                  "spacing": "zero",
+                                  "children": [
+                                    {
+                                      "type": "IconView",
+                                      "content": {
+                                        "image": {
+                                          "type": "remote",
+                                          "url": "https://placeholder.com/icon.png"
+                                        },
+                                        "size": "m"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "StackView",
+              "content": {
+                "axis": "horizontal",
+                "spacing": "s",
+                "children": [
+                  {
+                    "type": "StackView",
+                    "content": {
+                      "axis": "horizontal",
+                      "spacing": "zero",
+                      "children": [
+                        {
+                          "type": "StackView",
+                          "content": {
+                            "axis": "vertical",
+                            "spacing": "zero",
+                            "children": [
+                              {
+                                "type": "StackView",
+                                "content": {
+                                  "axis": "horizontal",
+                                  "spacing": "zero",
+                                  "children": [
+                                    {
+                                      "type": "StackView",
+                                      "content": {
+                                        "axis": "horizontal",
+                                        "spacing": "zero",
+                                        "children": [
+                                          {
+                                            "type": "LabelView",
+                                            "content": {
+                                              "text": {
+                                                "value": "Смотреть всё"
+                                              },
+                                              "style": "primary"
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
