@@ -31,10 +31,22 @@ from pathlib import Path
 from typing import Optional, Dict, Any, List, Tuple, Callable
 
 # === CONFIGURATION ===
+# Load from ~/.env if exists
+env_file = Path.home() / ".env"
+if env_file.exists():
+    for line in env_file.read_text().splitlines():
+        line = line.strip()
+        if line and not line.startswith("#") and "=" in line:
+            key, val = line.split("=", 1)
+            key = key.replace("export ", "").strip()
+            val = val.strip().strip('"').strip("'")
+            if key == "FIGMA_TOKEN":
+                os.environ[key] = val
+                break
+
 FIGMA_TOKEN = os.getenv("FIGMA_TOKEN")
 if not FIGMA_TOKEN:
-    print("❌ FIGMA_TOKEN env variable required", file=sys.stderr)
-    print("   export FIGMA_TOKEN='your_token'", file=sys.stderr)
+    print("❌ FIGMA_TOKEN not found in ~/.env", file=sys.stderr)
     sys.exit(1)
 
 CACHE_DIR = Path.home() / ".sdui_export_cache"
