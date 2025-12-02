@@ -1,0 +1,135 @@
+{
+  "type": "StackView",
+  "content": {
+    "axis": "vertical",
+    "spacing": "zero",
+    "alignment": "start",
+    "distribution": "default",
+    "children": [
+      {
+        "paddings": {
+          "top": "xss",
+          "bottom": "xss",
+          "left": "m",
+          "right": "m"
+        },
+        "type": "StackView",
+        "content": {
+          "axis": "horizontal",
+          "spacing": "l",
+          "alignment": "center",
+          "distribution": "default",
+          "children": [
+            {
+              "type": "StackView",
+              "content": {
+                "axis": "horizontal",
+                "spacing": "s",
+                "alignment": "center",
+                "distribution": "default",
+                "children": [
+                  {
+                    "paddings": {
+                      "top": "zero",
+                      "bottom": "zero",
+                      "left": "s",
+                      "right": "s"
+                    },
+                    "appearance": {
+                      "backgroundColor": "#f2f3f5",
+                      "corners": {
+                        "topLeft": 6,
+                        "topRight": 6,
+                        "bottomLeft": 6,
+                        "bottomRight": 6
+                      }
+                    },
+                    "type": "TagView",
+                    "content": {
+                      "title": {
+                        "text": {
+                          "textContentKind": "plain",
+                          "value": "Tag",
+                          "typography": "CaptionMedium",
+                          "color": "textColorPrimary"
+                        }
+                      },
+                      "backgroundColor": "#f2f3f5"
+                    }
+                  },
+                  {
+                    "paddings": {
+                      "top": "zero",
+                      "bottom": "zero",
+                      "left": "s",
+                      "right": "s"
+                    },
+                    "appearance": {
+                      "backgroundColor": "#f2f3f5",
+                      "corners": {
+                        "topLeft": 6,
+                        "topRight": 6,
+                        "bottomLeft": 6,
+                        "bottomRight": 6
+                      }
+                    },
+                    "type": "TagView",
+                    "content": {
+                      "title": {
+                        "text": {
+                          "textContentKind": "plain",
+                          "value": "Tag",
+                          "typography": "CaptionMedium",
+                          "color": "textColorPrimary"
+                        }
+                      },
+                      "backgroundColor": "#f2f3f5"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "StackView",
+              "content": {
+                "axis": "horizontal",
+                "spacing": "l",
+                "alignment": "center",
+                "distribution": "default",
+                "children": [
+                  {
+                    "type": "ButtonView",
+                    "version": 2,
+                    "content": {
+                      "preset": "primaryRectangleShape",
+                      "title": "Action"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "StackView",
+              "content": {
+                "axis": "horizontal",
+                "spacing": "l",
+                "alignment": "center",
+                "distribution": "default",
+                "children": [
+                  {
+                    "type": "ButtonView",
+                    "version": 2,
+                    "content": {
+                      "preset": "primaryRectangleShape",
+                      "title": "Action"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

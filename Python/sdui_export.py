@@ -1,23 +1,16 @@
 #!/usr/bin/env python3
 """
-SDUI Export Tool v6.1 Hybrid (Complete Architecture + Enhanced Parsing)
+SDUI Export Tool v6.3 (Smart Versioning + Human-Readable Names)
 ========================================================================
-Combines best features from v5.1 (architectural reference) + v6.0 (current).
-
-Changes in v6.1:
-- [ARCH] Added TagView component builder + registry entry
-- [ARCH] StackView now merges base layout properties (paddings/appearance)
-- [LOGIC] Explicit warnings for unknown component types
-- [SCHEMA] Fixed LabelView $unwrap violation (TextContent flattening)
-- [SCHEMA] Strict integer typing for corners
-- [LOGIC] Fuzzy layer name parsing (ignores emojis, case-insensitive)
-- [NET] Extended retry with Retry-After header support (up to 3 min wait)
-- [NET] Local cache system for reduced API calls
+Changes in v6.3:
+- [FEAT] Smart File Naming: Uses Figma layer name for output filename
+- [FEAT] Versioning: If content differs from existing file, creates a new timestamped file
+- [LOGIC] Skips writing if content is identical to existing file
+- [ARCH] Includes v6.2 fixes (TagView schema, directory auto-creation)
 
 Previous versions:
-- v6.0: Architectural fixes, fuzzy parsing, extended retry
-- v5.2: Initial retry mechanism + cache system
-- v5.1: Architectural reference with complete component set
+- v6.2: Default paths, directory creation
+- v6.1: Hybrid architecture
 """
 
 import requests
@@ -31,33 +24,19 @@ from pathlib import Path
 from typing import Optional, Dict, Any, List, Tuple, Callable
 
 # === CONFIGURATION ===
-# Load from ~/.env if exists
-env_file = Path.home() / ".env"
-if env_file.exists():
-    for line in env_file.read_text().splitlines():
-        line = line.strip()
-        if line and not line.startswith("#") and "=" in line:
-            key, val = line.split("=", 1)
-            key = key.replace("export ", "").strip()
-            val = val.strip().strip('"').strip("'")
-            if key == "FIGMA_TOKEN":
-                os.environ[key] = val
-                break
-
-FIGMA_TOKEN = os.getenv("FIGMA_TOKEN")
-if not FIGMA_TOKEN:
-    print("❌ FIGMA_TOKEN not found in ~/.env", file=sys.stderr)
-    sys.exit(1)
-
+FIGMA_TOKEN = os.getenv("FIGMA_TOKEN", "***REMOVED***")
 CACHE_DIR = Path.home() / ".sdui_export_cache"
 CACHE_DIR.mkdir(exist_ok=True)
 
-# Extended Backoff for Figma (they can block for minutes)
+# DEFAULT OUTPUT CONFIGURATION
+DEFAULT_EXPORT_DIR = Path.home() / "Scripts/Python/SDUI-export"
+
+# Network Settings
 MAX_RETRIES = 7
 INITIAL_DELAY = 2.0
 BACKOFF_FACTOR = 2.0
 MAX_DELAY = 120.0
-MAX_RETRY_AFTER = 180.0  # Cap Retry-After header at 3 min
+MAX_RETRY_AFTER = 180.0
 
 # === CONSTANTS ===
 SPACING_MAP = {
@@ -77,7 +56,6 @@ SPACING_MAP = {
     64: "xxxxxl",
 }
 
-# Typography Heuristic (Size, Weight) -> Token
 TYPOGRAPHY_MAP = {
     (24, 700): "HeadlineSmall",
     (20, 600): "HeadlineXSmall",
@@ -97,16 +75,20 @@ def get_spacing(px: float) -> str:
 
 
 def normalize_name(name: str) -> str:
-    """Removes emojis, extra spaces, and handles case."""
-    # Remove emojis and non-ascii mostly
     clean = name.encode("ascii", "ignore").decode("ascii")
     return clean.strip()
 
 
+def sanitize_filename(name: str) -> str:
+    """Converts Figma layer name to safe filename (e.g. 'Button / Primary' -> 'Button_Primary')"""
+    # Replace separators and illegal chars with underscore
+    clean = re.sub(r"[^\w\-\.]", "_", name)
+    # Remove repeated underscores
+    clean = re.sub(r"_{2,}", "_", clean)
+    return clean.strip("_")
+
+
 def parse_layer_name(name: str) -> Tuple[Optional[str], Optional[str]]:
-    """
-    Parses 'Component:Variant' or fuzzy matches known types.
-    """
     if not name:
         return None, None
 
@@ -115,8 +97,6 @@ def parse_layer_name(name: str) -> Tuple[Optional[str], Optional[str]]:
     raw_type = parts[0].strip()
     variant = parts[1].strip() if len(parts) > 1 else None
 
-    # Known SDUI Component Mapping (Fuzzy)
-    # Maps Figma Layer Name -> SDUI Component Type
     mapping = {
         "Button": "ButtonView",
         "Label": "LabelView",
@@ -127,12 +107,10 @@ def parse_layer_name(name: str) -> Tuple[Optional[str], Optional[str]]:
         "Badge": "TagView",
     }
 
-    # 1. Exact Match in Mapping
     for key, val in mapping.items():
         if key.lower() in raw_type.lower():
             return val, variant
 
-    # 2. Explicit SDUI Type (PascalCase check)
     if raw_type in COMPONENT_TRANSFORMERS:
         return raw_type, variant
 
@@ -149,7 +127,6 @@ def get_paint_color(fills: List[Dict]) -> Optional[str]:
             r, g, b = [int(c * 255) for c in [color["r"], color["g"], color["b"]]]
             hex_color = f"#{r:02x}{g:02x}{b:02x}"
 
-            # Simple Token Mapping
             if opacity < 0.99:
                 return "neutralTranslucentColor100"
             if hex_color.lower() in ["#ffffff", "#fff"]:
@@ -168,7 +145,6 @@ def get_typography_token(style: Dict) -> str:
 
 
 def get_corners(node: Dict) -> Optional[Dict]:
-    """Returns Corners v2 structure (integers)."""
     cr = node.get("cornerRadius", 0)
     if cr > 0:
         val = int(cr)
@@ -178,8 +154,6 @@ def get_corners(node: Dict) -> Optional[Dict]:
 
 def extract_base_layout_props(node: Dict) -> Dict:
     props = {}
-
-    # Padding
     p_top = node.get("paddingTop", 0)
     p_btm = node.get("paddingBottom", 0)
     p_left = node.get("paddingLeft", 0)
@@ -193,7 +167,6 @@ def extract_base_layout_props(node: Dict) -> Dict:
             "right": get_spacing(p_right),
         }
 
-    # Appearance
     bg = get_paint_color(node.get("fills", []))
     corners = get_corners(node)
     if bg or corners:
@@ -203,14 +176,8 @@ def extract_base_layout_props(node: Dict) -> Dict:
         if corners:
             props["appearance"]["corners"] = corners
 
-    # Weight
     if node.get("layoutGrow", 0) == 1:
         props["weight"] = 1.0
-
-    # Size (Fixed dimensions)
-    # Only add size if it's fixed (layoutSizingHorizontal/Vertical == FIXED)
-    # and not handled by the component logic itself.
-    # Omitted for brevity in this fix, but crucial for production.
 
     return props
 
@@ -219,14 +186,9 @@ def extract_base_layout_props(node: Dict) -> Dict:
 
 
 def build_label_view(node: Dict, variant: Optional[str]) -> Dict:
-    """
-    Schema: components/LabelView/v1/LabelView.json
-    Refers to atoms/Text/v1/Text.json which uses $unwrap for TextContent.
-    """
     text_content = node.get("characters", "Text")
     style = node.get("style", {})
 
-    # Heuristic: Find text child if container
     if "children" in node:
         for child in node["children"]:
             if child.get("type") == "TEXT":
@@ -238,7 +200,6 @@ def build_label_view(node: Dict, variant: Optional[str]) -> Dict:
         "type": "LabelView",
         "content": {
             "text": {
-                # FLATTENED STRUCTURE (Fixed $unwrap violation)
                 "textContentKind": "plain",
                 "value": text_content,
                 "typography": get_typography_token(style),
@@ -250,13 +211,11 @@ def build_label_view(node: Dict, variant: Optional[str]) -> Dict:
 
 def build_button_view(node: Dict, variant: Optional[str]) -> Dict:
     btn_text = "Action"
-    # Try to find text label
     if "children" in node:
         for child in node["children"]:
             if child.get("type") == "TEXT":
                 btn_text = child.get("characters", "")
                 break
-            # Handle recursive label finding for complex buttons
             if "children" in child:
                 for sub in child["children"]:
                     if sub.get("type") == "TEXT":
@@ -288,7 +247,6 @@ def build_button_view(node: Dict, variant: Optional[str]) -> Dict:
             }
         }
     else:
-        # System presets use direct string mapping
         content["title"] = btn_text
 
     return {"type": "ButtonView", "version": 2, "content": content}
@@ -300,9 +258,9 @@ def build_icon_view(node: Dict, variant: Optional[str]) -> Dict:
         "content": {
             "icon": {
                 "type": "name",
-                "name": "placeholder_icon",  # Needs real mapping logic
+                "name": "placeholder_icon",
             },
-            "size": "medium",  # Should map from dimensions
+            "size": "medium",
         },
     }
 
@@ -314,7 +272,6 @@ def build_image_view(node: Dict, variant: Optional[str]) -> Dict:
         "content": {
             "image": {
                 "type": "url",
-                # Strict structure for UrlImageSource inside UrlImage
                 "source": {"type": "url", "url": "https://placeholder.com/img.jpg"},
             },
             "scale": "fill",
@@ -325,29 +282,28 @@ def build_image_view(node: Dict, variant: Optional[str]) -> Dict:
 def build_tag_view(node: Dict, variant: Optional[str]) -> Dict:
     """
     Schema: components/TagView/v1/TagView.json
-    Small labeled badge component with background color.
+    FIXED: 'title' property requires a direct LabelView object structure.
     """
     tag_text = "Tag"
-    # Try to find text content
     if "children" in node:
         for child in node["children"]:
             if child.get("type") == "TEXT":
                 tag_text = child.get("characters", "Tag")
                 break
 
+    label_view_object = {
+        "text": {
+            "textContentKind": "plain",
+            "value": tag_text,
+            "typography": "CaptionMedium",
+            "color": "textColorPrimary",
+        }
+    }
+
     return {
         "type": "TagView",
         "content": {
-            "title": {
-                "type": "LabelView",
-                "content": {
-                    "text": {
-                        "textContentKind": "plain",
-                        "value": tag_text,
-                        "typography": "CaptionMedium",
-                    }
-                },
-            },
+            "title": label_view_object,
             "backgroundColor": get_paint_color(node.get("fills", []))
             or "neutralTranslucentColor100",
         },
@@ -366,32 +322,21 @@ COMPONENT_TRANSFORMERS = {
 
 
 def build_stack_view(node: Dict, children_nodes: List[Dict]) -> Dict:
-    """
-    Creates a StackView configuration with base layout properties.
-    Merges paddings, appearance, and weight from parent node.
-    """
-    # Extract base properties (paddings, appearance, weight)
     base_props = extract_base_layout_props(node)
     layout_element = {"type": "StackView"}
 
     layout_mode = node.get("layoutMode")
     axis = "horizontal" if layout_mode == "HORIZONTAL" else "vertical"
 
-    # Map Figma Alignment to SDUI
     counter_align = node.get("counterAxisAlignItems", "MIN")
-    primary_align = node.get("primaryAxisAlignItems", "MIN")
-
     alignment_map = {
         "MIN": "start",
         "CENTER": "center",
         "MAX": "end",
         "SPACE_BETWEEN": "fill",
     }
-
-    # Logic: SDUI StackView usually controls alignment on cross-axis via 'alignment'
     alignment = alignment_map.get(counter_align, "start")
 
-    # Check for weights in children
     has_weights = any("weight" in child for child in children_nodes)
     distribution = "weighted" if has_weights else "default"
 
@@ -403,7 +348,6 @@ def build_stack_view(node: Dict, children_nodes: List[Dict]) -> Dict:
         "children": children_nodes,
     }
 
-    # Merge base properties (paddings, appearance, weight)
     layout_element.update(base_props)
     return layout_element
 
@@ -418,24 +362,13 @@ def transform_node_full(node: Dict) -> Optional[Dict]:
     name = node.get("name", "")
     sdui_type, variant = parse_layer_name(name)
 
-    # Base Properties
     layout_element = extract_base_layout_props(node)
 
-    # 1. Component Match
     if sdui_type and sdui_type in COMPONENT_TRANSFORMERS:
         component_data = COMPONENT_TRANSFORMERS[sdui_type](node, variant)
         layout_element.update(component_data)
         return layout_element
 
-    # Warn if parsed type not in registry (debugging aid)
-    if sdui_type and sdui_type not in COMPONENT_TRANSFORMERS:
-        print(
-            f"⚠️  WARNING: Unknown SDUI type '{sdui_type}' in layer '{name}'. "
-            f"Falling back to StackView logic.",
-            file=sys.stderr,
-        )
-
-    # 2. Recursive Children Processing
     children_nodes = []
     if "children" in node:
         for child in node["children"]:
@@ -443,15 +376,11 @@ def transform_node_full(node: Dict) -> Optional[Dict]:
             if child_res:
                 children_nodes.append(child_res)
 
-    # 3. Fallback Logic
-
-    # If it's a Text node that wasn't caught by naming
     if node.get("type") == "TEXT":
         component_data = build_label_view(node, None)
         layout_element.update(component_data)
         return layout_element
 
-    # If it has children or is an AutoLayout frame, make it a StackView
     is_auto_layout = node.get("layoutMode") in ["VERTICAL", "HORIZONTAL"]
 
     if is_auto_layout or (children_nodes and not sdui_type):
@@ -459,16 +388,13 @@ def transform_node_full(node: Dict) -> Optional[Dict]:
         layout_element.update(stack_data)
         return layout_element
 
-    # If simple frame without auto-layout and 1 child, unwrap it (optimization)
     if len(children_nodes) == 1 and not is_auto_layout:
-        child = children_nodes[0]
-        # Merge properties (parent padding + child) is hard, simple replacement is safer for now
-        return child
+        return children_nodes[0]
 
     return None
 
 
-# === NETWORK & CACHE (Optimized) ===
+# === NETWORK & CACHE ===
 
 
 def retry_with_backoff(func: Callable) -> Optional[Any]:
@@ -479,20 +405,11 @@ def retry_with_backoff(func: Callable) -> Optional[Any]:
         except requests.exceptions.HTTPError as e:
             if e.response.status_code == 429:
                 retry_after = int(e.response.headers.get("Retry-After", 0))
-
-                # Cap insane Retry-After values
                 if retry_after > MAX_RETRY_AFTER:
-                    print(
-                        f"⚠️  Retry-After={retry_after}s exceeds cap, using {MAX_RETRY_AFTER}s",
-                        file=sys.stderr,
-                    )
                     retry_after = MAX_RETRY_AFTER
-
                 wait_time = max(delay, retry_after) if retry_after > 0 else delay
-
                 print(
-                    f"⏳ 429 Rate Limit. Waiting {int(wait_time)}s (Attempt {attempt+1}/{MAX_RETRIES})...",
-                    file=sys.stderr,
+                    f"⏳ 429 Rate Limit. Waiting {int(wait_time)}s...", file=sys.stderr
                 )
                 time.sleep(wait_time)
                 delay = min(delay * BACKOFF_FACTOR, MAX_DELAY)
@@ -536,31 +453,105 @@ def fetch_figma_node(file_key: str, node_id: str, use_cache: bool) -> Optional[D
     return None
 
 
-# === CLI ===
+# === CLI & OUTPUT LOGIC ===
+
+
+def save_output(data: Dict, output_arg: Optional[str], figma_name: str) -> None:
+    """
+    Handles saving logic with intelligent versioning and naming.
+    """
+    json_output = json.dumps(data, indent=2, ensure_ascii=False)
+
+    # Determine directory
+    if output_arg:
+        output_path_obj = Path(output_arg)
+        # If user provided a specific file (ends in .json), use it but respect versioning logic check
+        if output_path_obj.suffix.lower() == ".json":
+            target_dir = output_path_obj.parent
+            base_filename = output_path_obj.name
+        else:
+            target_dir = output_path_obj
+            base_filename = f"{sanitize_filename(figma_name)}.json"
+    else:
+        target_dir = DEFAULT_EXPORT_DIR
+        base_filename = f"{sanitize_filename(figma_name)}.json"
+
+    # Ensure directory exists
+    try:
+        target_dir.mkdir(parents=True, exist_ok=True)
+    except Exception as e:
+        print(f"❌ Failed to create directory {target_dir}: {e}", file=sys.stderr)
+        sys.exit(1)
+
+    final_path = target_dir / base_filename
+
+    # Smart Versioning Logic
+    if final_path.exists():
+        try:
+            with open(final_path, "r") as f:
+                existing_content = f.read()
+
+            # Normalize for comparison (load and dump to ensure formatting matches)
+            # This handles cases where file might have different EOF whitespace
+            try:
+                if json.loads(existing_content) == data:
+                    print(
+                        f"✅ Content is identical to {final_path.name}. Skipping write.",
+                        file=sys.stderr,
+                    )
+                    # Print to stdout if piped, for chaining
+                    if not sys.stdout.isatty():
+                        print(json_output)
+                    return
+            except json.JSONDecodeError:
+                pass  # If existing file is corrupt, proceed to overwrite/version
+
+            # Content is different, create versioned file
+            print(f"⚠️  Content differs from {final_path.name}.", file=sys.stderr)
+            timestamp = int(time.time())
+            stem = final_path.stem
+            final_path = target_dir / f"{stem}_v{timestamp}.json"
+
+        except Exception as e:
+            print(
+                f"⚠️  Could not read existing file for comparison: {e}", file=sys.stderr
+            )
+
+    # Write file
+    try:
+        with open(final_path, "w") as f:
+            f.write(json_output)
+        print(f"✅ Saved to: {final_path}", file=sys.stderr)
+
+        if not sys.stdout.isatty():
+            print(json_output)
+
+    except Exception as e:
+        print(f"❌ Failed to write output file: {e}", file=sys.stderr)
+        sys.exit(1)
+
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="SDUI Export Tool v6.1 Hybrid")
+    parser = argparse.ArgumentParser(description="SDUI Export Tool v6.3")
     parser.add_argument("url", help="Figma URL")
-    parser.add_argument("--output", "-o", help="Output file")
+    parser.add_argument("--output", "-o", help="Output file or directory")
     parser.add_argument("--no-cache", action="store_true")
     args = parser.parse_args()
 
-    # Extract ID
     match = re.search(r"figma\.com/design/([a-zA-Z0-9]+).+node-id=([\d-]+)", args.url)
     if not match:
         print("❌ Invalid URL", file=sys.stderr)
         sys.exit(1)
 
     file_key, node_id = match.groups()
-    node_id = node_id.replace(":", "-")  # Normalize for filename
+    node_id = node_id.replace(":", "-")
 
     root = fetch_figma_node(file_key, node_id, not args.no_cache)
     if root:
         res = transform_node_full(root)
-        out = json.dumps(res, indent=2, ensure_ascii=False)
-        if args.output:
-            with open(args.output, "w") as f:
-                f.write(out)
-            print(f"✅ Saved to {args.output}", file=sys.stderr)
+        if res:
+            # Extract name from root node for filename
+            figma_layer_name = root.get("name", "export")
+            save_output(res, args.output, figma_layer_name)
         else:
-            print(out)
+            print("❌ Transformation resulted in empty output", file=sys.stderr)
