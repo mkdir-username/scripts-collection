@@ -1,0 +1,128 @@
+{
+  "type": "StackView",
+  "content": {
+    "alignment": "center",
+    "axis": "horizontal",
+    "distribution": "default",
+    "spacing": "l",
+    "children": [
+      {
+        "type": "StackView",
+        "content": {
+          "alignment": "center",
+          "axis": "horizontal",
+          "distribution": "default",
+          "spacing": "s",
+          "children": [
+            {
+              "type": "TagView",
+              "appearance": {
+                "backgroundColor": "#212124",
+                "corners": {
+                  "bottomLeft": 8,
+                  "bottomRight": 8,
+                  "topLeft": 8,
+                  "topRight": 8
+                }
+              },
+              "content": {
+                "backgroundColor": "#212124",
+                "title": {
+                  "type": "LabelView",
+                  "content": {
+                    "text": {
+                      "textContentKind": "plain",
+                      "typography": "CaptionMedium",
+                      "value": "Tag"
+                    }
+                  }
+                }
+              },
+              "paddings": {
+                "bottom": "zero",
+                "left": "m",
+                "right": "m",
+                "top": "zero"
+              }
+            },
+            {
+              "type": "TagView",
+              "appearance": {
+                "backgroundColor": "#212124",
+                "corners": {
+                  "bottomLeft": 8,
+                  "bottomRight": 8,
+                  "topLeft": 8,
+                  "topRight": 8
+                }
+              },
+              "content": {
+                "backgroundColor": "#212124",
+                "title": {
+                  "type": "LabelView",
+                  "content": {
+                    "text": {
+                      "textContentKind": "plain",
+                      "typography": "CaptionMedium",
+                      "value": "Tag"
+                    }
+                  }
+                }
+              },
+              "paddings": {
+                "bottom": "zero",
+                "left": "m",
+                "right": "m",
+                "top": "zero"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "StackView",
+        "content": {
+          "alignment": "center",
+          "axis": "horizontal",
+          "distribution": "default",
+          "spacing": "l",
+          "children": [
+            {
+              "version": 2,
+              "type": "ButtonView",
+              "content": {
+                "preset": "primaryRectangleShape",
+                "title": "Action"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "StackView",
+        "content": {
+          "alignment": "center",
+          "axis": "horizontal",
+          "distribution": "default",
+          "spacing": "l",
+          "children": [
+            {
+              "version": 2,
+              "type": "ButtonView",
+              "content": {
+                "preset": "primaryRectangleShape",
+                "title": "Action"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "paddings": {
+    "bottom": "xss",
+    "left": "m",
+    "right": "m",
+    "top": "xss"
+  }
+}
