@@ -31,7 +31,12 @@ from pathlib import Path
 from typing import Optional, Dict, Any, List, Tuple, Callable
 
 # === CONFIGURATION ===
-FIGMA_TOKEN = os.getenv("FIGMA_TOKEN", "***REMOVED***")
+FIGMA_TOKEN = os.getenv("FIGMA_TOKEN")
+if not FIGMA_TOKEN:
+    print("❌ FIGMA_TOKEN env variable required", file=sys.stderr)
+    print("   export FIGMA_TOKEN='your_token'", file=sys.stderr)
+    sys.exit(1)
+
 CACHE_DIR = Path.home() / ".sdui_export_cache"
 CACHE_DIR.mkdir(exist_ok=True)
 
