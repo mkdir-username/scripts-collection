@@ -7,7 +7,7 @@ SDUI Tools Configuration
 import os
 
 # ==================== VERSION ====================
-VERSION = "3.15.0"
+VERSION = "3.15.2"  # SDUI EL escape: ${{ conflict fix
 
 # ==================== PATHS ====================
 # Script directory (where sdui_tools package lives)

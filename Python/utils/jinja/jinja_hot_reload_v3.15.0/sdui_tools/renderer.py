@@ -12,7 +12,7 @@ import subprocess
 
 from .config import JINJAVA_JAR_PATH
 from .utils import json_finalize, remove_json_comments, safe_write_file
-from .imports import parse_module_imports, resolve_jinja_includes, jinjava_compat
+from .imports import parse_module_imports, resolve_jinja_includes, jinjava_compat, restore_sdui_el
 from .validators import validate_sdui_contract, format_validation_report
 
 
@@ -155,6 +155,9 @@ def render_template(template_path, data_path, jj_full_path, map_path, full_path,
                 raise Exception(error_msg)
             
             rendered = result.stdout
+
+            # Restore SDUI EL placeholders: __SDUI_DOLLAR__ → $
+            rendered = restore_sdui_el(rendered)
 
         except Exception as render_error:
             # Clean up temp data file if error occurred before cleanup

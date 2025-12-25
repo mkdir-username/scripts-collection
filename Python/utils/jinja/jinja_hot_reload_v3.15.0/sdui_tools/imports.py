@@ -2,6 +2,7 @@
 SDUI Tools Import Resolution
 ============================
 Обработка кастомных модульных импортов и Jinja includes.
+Jinjava compatibility transforms.
 """
 
 import os
@@ -11,24 +12,147 @@ from urllib.parse import unquote
 from .utils import resolve_include_path
 
 
+# ══════════════════════════════════════════════════════════════════════════════
+# SDUI EL ESCAPE — решает конфликт ${{ между SDUI Expression Language и Jinja
+# ══════════════════════════════════════════════════════════════════════════════
+
+SDUI_EL_PLACEHOLDER = "__SDUI_EL_OPEN__"
+
+
+def escape_sdui_el(content):
+    """
+    Escape ${{ + { → placeholder перед рендерингом Jinjava.
+
+    Проблема: В паттерне ${{{ var }}.field}:
+        - ${...} — SDUI Expression Language
+        - {{ var }} — Jinja expression
+        - Jinjava видит {{{ как {{ + { (expression + dict literal) → syntax error
+
+    Решение: escape ${{ когда за ним следует { (т.е. паттерн ${{{)
+        - ${{{ var }}.field} → __SDUI_EL_OPEN__{{ var }}.field}
+        - Jinjava рендерит {{ var }} нормально
+        - Post-restore: __SDUI_EL_OPEN__ → ${
+
+    Примеры:
+        ${{{ source_prefix }}.deeplink} → __SDUI_EL_OPEN__{{ source_prefix }}.deeplink}
+        ${source.deeplink} → ${source.deeplink} (без изменений — нет Jinja переменных)
+    """
+    # Escape только паттерн ${{ + { (SDUI EL + Jinja conflict)
+    # ${{{ → __SDUI_EL_OPEN__{{ (убираем ${ и первый {, оставляем Jinja {{}})
+    return content.replace('${{{', SDUI_EL_PLACEHOLDER + '{{')
+
+
+def restore_sdui_el(content):
+    """
+    Восстанавливает ${ после рендеринга Jinjava.
+
+    Пример:
+        До:    __SDUI_EL_OPEN__source.deeplink}
+        После: ${source.deeplink}
+    """
+    return content.replace(SDUI_EL_PLACEHOLDER, '${')
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# JINJAVA COMPATIBILITY TRANSFORMS — модульные функции-трансформеры
+# ══════════════════════════════════════════════════════════════════════════════
+
+def _transform_macro_defaults(content):
+    """Удаляет =none / =None из macro arguments (Jinjava treats missing as undefined)."""
+    return re.sub(r'=\s*[Nn]one\b', '', content)
+
+
+def _transform_none_checks(content):
+    """Преобразует `is none` / `is not none` → `== ""` / `!= ""`."""
+    content = re.sub(r'\bis\s+not\s+[Nn]one\b', '!= ""', content)
+    content = re.sub(r'\bis\s+[Nn]one\b', '== ""', content)
+    return content
+
+
+def _transform_python_literals(content):
+    """Преобразует True/False/None → true/false/null."""
+    content = re.sub(r'\bTrue\b', 'true', content)
+    content = re.sub(r'\bFalse\b', 'false', content)
+    content = re.sub(r'\bNone\b', 'null', content)
+    return content
+
+
+def _transform_dict_get(content):
+    """
+    Преобразует .get() → bracket access + default filter.
+
+    Примеры:
+        dict.get('key')           → dict['key'] | default('')
+        dict.get('key', 'value')  → dict['key'] | default('value')
+        dict.get(var)             → dict[var] | default('')
+    """
+    def replace_get(match):
+        obj = match.group(1)
+        key = match.group(2)
+        default = match.group(4)
+
+        if default:
+            return f"{obj}[{key}] | default({default})"
+        return f"{obj}[{key}] | default('')"
+
+    pattern = r'(\b[\w.]+(?:\[[^\]]+\])?)\s*\.\s*get\s*\(\s*([\'"][^\'"]+[\'"]|\w+)\s*(?:(,)\s*([^)]+))?\s*\)'
+    return re.sub(pattern, replace_get, content)
+
+
+def _transform_dict_methods(content):
+    """Преобразует .items()/.keys()/.values() → | items/keys/values."""
+    content = re.sub(r'\.items\s*\(\s*\)', ' | items', content)
+    content = re.sub(r'\.keys\s*\(\s*\)', ' | keys', content)
+    content = re.sub(r'\.values\s*\(\s*\)', ' | values', content)
+    return content
+
+
+def _transform_string_methods(content):
+    """Преобразует string методы → Jinjava filters."""
+    transforms = [
+        (r'\.strip\s*\(\s*\)', ' | trim'),
+        (r'\.lower\s*\(\s*\)', ' | lower'),
+        (r'\.upper\s*\(\s*\)', ' | upper'),
+        (r'\.title\s*\(\s*\)', ' | title'),
+        (r'\.capitalize\s*\(\s*\)', ' | capitalize'),
+    ]
+    for pattern, replacement in transforms:
+        content = re.sub(pattern, replacement, content)
+    return content
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# MAIN COMPAT FUNCTION
+# ══════════════════════════════════════════════════════════════════════════════
+
 def jinjava_compat(content):
     """
     Преобразует Python jinja2 синтаксис в Jinjava-совместимый.
 
-    - `=none` в аргументах макросов → убираем (делаем optional)
-    - `is none` / `is not none` → проверка через default filter
+    Pipeline (порядок важен):
+        1. Escape SDUI EL (${{) — избегаем конфликта с Jinjava
+        2. Macro default arguments (=none → remove)
+        3. None checks (is none → == "")
+        4. Python literals (True → true)
+        5. Dict .get() → bracket + default
+        6. Dict methods (.items() → | items)
+        7. String methods (.strip() → | trim)
+
+    Note: restore_sdui_el() вызывается ПОСЛЕ рендеринга в renderer.py
     """
-    # =none в default arguments: удаляем default value
-    # macro(arg=none) → macro(arg)
-    # Jinjava будет использовать undefined, который можно проверить через | default
-    content = re.sub(r'=\s*none\b', '', content)
+    # Pipeline: каждый трансформер изолирован и тестируем отдельно
+    transforms = [
+        escape_sdui_el,           # SDUI EL conflict fix (NEW!)
+        _transform_macro_defaults,
+        _transform_none_checks,
+        _transform_python_literals,
+        _transform_dict_get,
+        _transform_dict_methods,
+        _transform_string_methods,
+    ]
 
-    # is not none → проверяем что переменная определена и не пустая
-    # Примечание: в Jinjava лучше использовать `| default('')` и проверять пустоту
-    content = re.sub(r'\bis\s+not\s+none\b', '!= ""', content)
-
-    # is none → == ""
-    content = re.sub(r'\bis\s+none\b', '== ""', content)
+    for transform in transforms:
+        content = transform(content)
 
     return content
 
