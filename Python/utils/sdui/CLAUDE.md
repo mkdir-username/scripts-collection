@@ -216,3 +216,7 @@ For accurate SDUI export:
 3. **Component Naming** — Layer names must match: `LabelView`, `ButtonView`, etc.
 4. **Auto-layout** — Use Figma auto-layout for StackView generation
 5. **Spacing** — Gap/padding values should align with spacing tokens (0, 2, 4, 8, 12, 16, 20, 24, 32)
+
+## ⛔ AI Fingerprints — ЗАПРЕЩЕНО
+
+Никаких `Generated with`, `Co-Authored-By: Claude`, `🤖`, AI/LLM упоминаний.
