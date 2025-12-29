@@ -1,0 +1,32 @@
+{
+  "name": "fms-contract-validator",
+  "version": "0.1.0",
+  "description": "SDUI contract validator with Playwright-based runtime validation",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "fms-validate": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "validate": "npx tsx src/cli.ts",
+    "dev": "npx tsx --watch src/cli.ts",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "playwright": "^1.49.0",
+    "chalk": "^5.3.0",
+    "glob": "^11.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0",
+    "tsx": "^4.19.0",
+    "vitest": "^2.1.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "private": true
+}

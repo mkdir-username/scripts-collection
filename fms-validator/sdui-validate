@@ -1,0 +1,75 @@
+#!/bin/bash
+# SDUI Contract Validator
+# Usage: sdui-validate [contract.json] [--no-screenshot]
+
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Default contract
+DEFAULT_CONTRACT="/Users/username/Documents/FMS_GIT/_JSON/WEB/payroll/1.0_main_screen/desktop/[FULL_PC]_1.0_main_screen_modular_web.json"
+
+# Parse args: if first arg starts with -- it's a flag, use default contract
+if [ -z "$1" ] || [[ "$1" == --* ]]; then
+  CONTRACT="$DEFAULT_CONTRACT"
+  EXTRA_ARGS="$@"
+else
+  CONTRACT="$1"
+  EXTRA_ARGS="${@:2}"
+fi
+
+# Resolve relative paths from FMS_GIT/_JSON/WEB/
+if [[ "$CONTRACT" != /* ]]; then
+  CONTRACT="/Users/username/Documents/FMS_GIT/_JSON/WEB/$CONTRACT"
+fi
+
+# Auto-detect endpoint based on path
+detect_endpoint() {
+  local path="$1"
+
+  case "$path" in
+    *payroll*|*salary*)
+      echo "/salary-api"
+      ;;
+    *income*)
+      echo "/income-api"
+      ;;
+    *privilege*)
+      echo "/privilege-api"
+      ;;
+    *settings*)
+      echo "/settings-api"
+      ;;
+    *profile*)
+      echo "/profile-api"
+      ;;
+    *)
+      # Default: extract from path
+      local feature=$(echo "$path" | grep -oE '_JSON/WEB/([^/]+)' | cut -d'/' -f3)
+      if [ -n "$feature" ]; then
+        echo "/${feature}-api"
+      else
+        echo "/sdui-api"
+      fi
+      ;;
+  esac
+}
+
+ENDPOINT=$(detect_endpoint "$CONTRACT")
+
+# Check if --no-screenshot
+SCREENSHOT_FLAG="--screenshot"
+if [[ "$EXTRA_ARGS" == *"--no-screenshot"* ]]; then
+  SCREENSHOT_FLAG=""
+  EXTRA_ARGS="${EXTRA_ARGS/--no-screenshot/}"
+fi
+
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "📋 SDUI Validator"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "Contract: $(basename "$CONTRACT")"
+echo "Endpoint: $ENDPOINT"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+cd "$SCRIPT_DIR"
+npx tsx src/cli.ts "$CONTRACT" --runtime $SCREENSHOT_FLAG --endpoint "$ENDPOINT" $EXTRA_ARGS
